@@ -1,2 +1,2 @@
 # ECApplicationTemplate
-快速开发模板
+iOS 快速开发模板
