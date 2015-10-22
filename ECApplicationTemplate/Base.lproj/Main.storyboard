@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XyU-UI-GPQ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="leM-ja-MAa">
+            <objects>
+                <navigationController id="XyU-UI-GPQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="is2-ct-YAR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.23137254900000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PcM-kr-vFv" kind="relationship" relationship="rootViewController" id="AEZ-zu-Cpn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UR9-bf-adx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-749" y="-247"/>
+        </scene>
+        <!--欢迎-->
+        <scene sceneID="yhs-3M-uO6">
+            <objects>
+                <viewController id="PcM-kr-vFv" customClass="WelcomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jje-tl-652"/>
+                        <viewControllerLayoutGuide type="bottom" id="pRo-oX-fGX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PDZ-h2-0hz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZH-hP-e20">
+                                <rect key="frame" x="260" y="264" width="80" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="WQf-D5-VVw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Go!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="jumpToTabBarViewController:" destination="PcM-kr-vFv" eventType="touchUpInside" id="HRK-9R-5os"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rZH-hP-e20" firstAttribute="centerX" secondItem="PDZ-h2-0hz" secondAttribute="centerX" id="332-F0-aqM"/>
+                            <constraint firstItem="rZH-hP-e20" firstAttribute="top" secondItem="Jje-tl-652" secondAttribute="bottom" constant="200" id="PPO-AL-SOl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="欢迎" id="Mod-xF-IUl"/>
+                    <connections>
+                        <segue destination="VAJ-Xi-wc4" kind="show" identifier="WelcomeToTabBar" id="eyb-hH-XMr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PI8-pi-1XH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95" y="-247"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="JwL-jR-qZc">
+            <objects>
+                <tabBarController id="VAJ-Xi-wc4" customClass="TabBarController" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="kiy-Jo-3bR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kaO-8f-hpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873" y="-247"/>
+        </scene>
+    </scenes>
+</document>
