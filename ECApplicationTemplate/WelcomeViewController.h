@@ -10,6 +10,9 @@
 
 @interface WelcomeViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIScrollView *guideScrollView;
+@property (nonatomic, weak) IBOutlet UIPageControl *guidePageControl;
+
 - (IBAction)jumpToTabBarViewController:(id)sender;
 
 @end

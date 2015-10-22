@@ -24,7 +24,6 @@
         <!--Settings View Controller-->
         <scene sceneID="eqR-Ng-unP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D8W-h4-e9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bYM-ii-sbA" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Mx-aa-vFu"/>
@@ -55,29 +54,11 @@
                     <navigationItem key="navigationItem" id="cQv-g7-XA8"/>
                     <connections>
                         <outlet property="settingsTableView" destination="7Tp-Le-9x6" id="LDL-ZW-cAJ"/>
-                        <segue destination="AeZ-PG-uQX" kind="show" id="y5Z-YN-4UV"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8W-h4-e9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="401" y="444"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Olj-Rg-UZy">
-            <objects>
-                <viewController id="AeZ-PG-uQX" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="r04-4l-5IT"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZAv-wx-sHe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JA6-HR-Awk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GPZ-vf-slJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1149" y="444"/>
         </scene>
     </scenes>
 </document>
