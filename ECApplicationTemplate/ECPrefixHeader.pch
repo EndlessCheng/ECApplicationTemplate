@@ -20,10 +20,8 @@
 #define GUIDE_PICTURE_NUMBER 4
 
 
-#define notNilAndNull(_ref) (((_ref) != nil) && (![(_ref) isEqual:[NSNull null]]))
 #define isNilOrNull(_ref) (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]))
-
-#define isStringEmpty(_ref) (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) || ([(_ref) isEqualToString:@""]))
+#define isEmptyString(_ref) (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) || ([(_ref) isEqualToString:@""]))
 
 
 #endif /* ECPrefixHeader_pch */

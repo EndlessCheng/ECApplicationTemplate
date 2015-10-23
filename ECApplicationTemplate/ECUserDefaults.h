@@ -9,6 +9,12 @@
 #ifndef ECUserDefaults_h
 #define ECUserDefaults_h
 
-#define ECUserDefaultsLoginState @"loginState"
+#import <Foundation/Foundation.h>
+
+#define kUserDefaultsLoginState @"loginState"
+typedef NS_ENUM(NSUInteger, ECUserDefaultsLoginState) {
+    ECUserDefaultsLoginStateNotLogin = 1,
+    ECUserDefaultsLoginStateIsLogin
+};
 
 #endif /* ECUserDefaults_h */

@@ -7,6 +7,7 @@
 //
 
 #import "WelcomeViewController.h"
+#import "TabBarController.h"
 
 #import "StoryBoardUtil.h"
 
@@ -26,6 +27,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self autoLogin];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,24 +48,20 @@
             button.frame = CGRectMake(0, 0, 200, 40);
             button.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 57);
             [button setTitle:NSLocalizedString(@"Let's Move!",) forState:UIControlStateNormal];
-            [button.titleLabel setFont:[UIFont systemFontOfSize:18]];
+            button.titleLabel.font = [UIFont systemFontOfSize:18];
             [button setTitleColor:textColor forState:UIControlStateNormal];
-            [button.layer setMasksToBounds:YES];
-            [button.layer setCornerRadius:10.0];
-            [button.layer setBorderWidth:1.5f];
-            [button.layer setBorderColor:textColor.CGColor];
+            button.layer.masksToBounds = YES;
+            button.layer.cornerRadius = 10.0;
+            button.layer.borderWidth =1.5;
+            button.layer.borderColor = textColor.CGColor;
             
             [imageView addSubview:button];
             [button addTarget:self action:@selector(hiddenScrollView) forControlEvents:UIControlEventTouchUpInside];
             imageView.userInteractionEnabled = YES;
         }
-        
         [_guideScrollView addSubview:imageView];
     }
-    
     [_guideScrollView setContentSize:CGSizeMake(4 * SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _guideScrollView.delegate = self;
-    
     _guidePageControl.numberOfPages = GUIDE_PICTURE_NUMBER;
 }
 
@@ -73,8 +72,20 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)jumpToTabBarViewController:(id)sender {
-    [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+- (void)autoLogin {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([userDefaults integerForKey:kUserDefaultsLoginState] == ECUserDefaultsLoginStateIsLogin) {
+        [self hiddenScrollView];
+        TabBarController *tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+        [self.navigationController pushViewController:tabBarController animated:NO];
+        
+//        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+    }
+}
+
+- (IBAction)loginButtonClicked:(id)sender {
+    [self performSegueWithIdentifier:@"WelcomeToLogin" sender:self];
 }
 
 
@@ -83,6 +94,14 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetx = scrollView.contentOffset.x;
     _guidePageControl.currentPage = (NSInteger)(offsetx / SCREEN_WIDTH + 0.5);
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
 @end

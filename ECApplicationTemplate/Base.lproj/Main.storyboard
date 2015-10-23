@@ -54,7 +54,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="jumpToTabBarViewController:" destination="PcM-kr-vFv" eventType="touchUpInside" id="HRK-9R-5os"/>
+                                    <action selector="loginButtonClicked:" destination="PcM-kr-vFv" eventType="touchUpInside" id="Hqk-2j-NoS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csf-0t-Jsy">
@@ -70,12 +70,12 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="jumpToTabBarViewController:" destination="PcM-kr-vFv" eventType="touchUpInside" id="Pmc-jv-lPS"/>
-                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-Xb-1mc">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PcM-kr-vFv" id="WAJ-fE-Nxf"/>
+                                </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="DaH-By-nHX">
                                 <rect key="frame" x="273" y="565" width="55" height="20"/>
@@ -115,16 +115,59 @@
                         <outlet property="loginButton" destination="rZH-hP-e20" id="pzH-gb-i2s"/>
                         <outlet property="registerButton" destination="Csf-0t-Jsy" id="aPd-Vi-X1n"/>
                         <segue destination="VAJ-Xi-wc4" kind="show" identifier="WelcomeToTabBar" id="eyb-hH-XMr"/>
+                        <segue destination="Yxf-2d-CmA" kind="show" identifier="WelcomeToLogin" id="dIE-3Z-810"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PI8-pi-1XH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="95" y="-247"/>
         </scene>
+        <!--打开新世界的大门-->
+        <scene sceneID="F2q-iW-FKx">
+            <objects>
+                <viewController id="Yxf-2d-CmA" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dHl-kc-UQh"/>
+                        <viewControllerLayoutGuide type="bottom" id="ibm-tm-pxR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eO6-Et-MF1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZF-JD-lOe">
+                                <rect key="frame" x="213" y="338" width="175" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="xtw-hE-WqJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="Yxf-2d-CmA" eventType="touchUpInside" id="F7e-mU-FGk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LZF-JD-lOe" firstAttribute="centerX" secondItem="eO6-Et-MF1" secondAttribute="centerX" id="M8R-iu-s5F"/>
+                            <constraint firstItem="LZF-JD-lOe" firstAttribute="top" secondItem="dHl-kc-UQh" secondAttribute="bottom" constant="274" id="VcQ-MV-wHw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="打开新世界的大门" id="GXZ-lU-NMr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvA-qT-8uT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="-969"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JwL-jR-qZc">
             <objects>
-                <tabBarController id="VAJ-Xi-wc4" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="VAJ-Xi-wc4" customClass="TabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="kiy-Jo-3bR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -133,7 +176,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kaO-8f-hpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="873" y="-247"/>
+            <point key="canvasLocation" x="1747" y="-247"/>
         </scene>
     </scenes>
 </document>

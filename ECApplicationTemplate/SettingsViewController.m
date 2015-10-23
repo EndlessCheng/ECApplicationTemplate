@@ -108,6 +108,8 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
     switch (alertView.tag) {
         case SettingsAlertTagLogOut:
             if (buttonIndex == 1) {
+                [[NSUserDefaults standardUserDefaults] setInteger:ECUserDefaultsLoginStateNotLogin forKey:kUserDefaultsLoginState];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 [self.navigationController popToRootViewControllerAnimated:NO];
             }
             break;

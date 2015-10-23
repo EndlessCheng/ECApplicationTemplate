@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E577D9661BD73ED200C862E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9651BD73ED200C862E9 /* main.m */; };
 		E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9681BD73ED200C862E9 /* AppDelegate.m */; };
 		E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D96B1BD73ED200C862E9 /* WelcomeViewController.m */; };
@@ -61,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E529DBBF1BDA31C900F4E0E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E577D9611BD73ED200C862E9 /* ECApplicationTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECApplicationTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577D9651BD73ED200C862E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E577D9671BD73ED200C862E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 		E577D9C31BD8EF7C00C862E9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				E529DBBF1BDA31C900F4E0E7 /* LoginViewController.h */,
+				E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				E577D9A11BD7489900C862E9 /* StartViewController.m in Sources */,
 				E577D9721BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld in Sources */,
 				E577D9661BD73ED200C862E9 /* main.m in Sources */,
+				E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */,
 				E577D9A81BD749B300C862E9 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
 
-- (IBAction)jumpToTabBarViewController:(id)sender;
+- (IBAction)loginButtonClicked:(id)sender;
 
 @end
 
