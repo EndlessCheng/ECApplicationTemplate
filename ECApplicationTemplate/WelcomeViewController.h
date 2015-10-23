@@ -13,6 +13,9 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *guideScrollView;
 @property (nonatomic, weak) IBOutlet UIPageControl *guidePageControl;
 
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (nonatomic, weak) IBOutlet UIButton *registerButton;
+
 - (IBAction)jumpToTabBarViewController:(id)sender;
 
 @end

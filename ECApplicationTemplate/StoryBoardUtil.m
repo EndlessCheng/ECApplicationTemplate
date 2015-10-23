@@ -2,8 +2,8 @@
 //  StoryBoardManager.m
 //  StoryBoardTest
 //
-//  Created by 泽泰 舒 on 15/10/19.
-//  Copyright © 2015年 杭州匠物科技. All rights reserved.
+//  Created by chengyh on 15/10/21.
+//  Copyright © 2015年 jianyan. All rights reserved.
 //
 
 #import "StoryBoardUtil.h"

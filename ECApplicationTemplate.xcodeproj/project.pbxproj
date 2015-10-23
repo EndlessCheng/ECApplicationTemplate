@@ -110,6 +110,7 @@
 		E577D9D71BD8F8D100C862E9 /* welcome_guide736_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_guide736_2@3x.png"; sourceTree = "<group>"; };
 		E577D9D81BD8F8D100C862E9 /* welcome_guide736_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_guide736_3@3x.png"; sourceTree = "<group>"; };
 		E577D9D91BD8F8D100C862E9 /* welcome_guide736_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_guide736_4@3x.png"; sourceTree = "<group>"; };
+		E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUserDefaults.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,11 +177,11 @@
 		E577D9641BD73ED200C862E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E577D9EA1BD9012800C862E9 /* ECPrefixHeaders */,
 				E577D9731BD73ED200C862E9 /* Assets.xcassets */,
 				E577D9781BD73ED200C862E9 /* Info.plist */,
 				E577D9701BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld */,
 				E577D9651BD73ED200C862E9 /* main.m */,
-				E577D9C71BD8F38100C862E9 /* ECPrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -310,6 +311,15 @@
 				E577D9D91BD8F8D100C862E9 /* welcome_guide736_4@3x.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		E577D9EA1BD9012800C862E9 /* ECPrefixHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				E577D9C71BD8F38100C862E9 /* ECPrefixHeader.pch */,
+				E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */,
+			);
+			name = ECPrefixHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
