@@ -47,12 +47,11 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(0, 0, 200, 40);
             button.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 57);
-            [button setTitle:NSLocalizedString(@"Let's Move!",) forState:UIControlStateNormal];
+            [button setTitle:NSLocalizedString(@"开始使用",) forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:18];
             [button setTitleColor:textColor forState:UIControlStateNormal];
-            button.layer.masksToBounds = YES;
             button.layer.cornerRadius = 10.0;
-            button.layer.borderWidth =1.5;
+            button.layer.borderWidth = 1.5;
             button.layer.borderColor = textColor.CGColor;
             
             [imageView addSubview:button];
@@ -61,7 +60,7 @@
         }
         [_guideScrollView addSubview:imageView];
     }
-    [_guideScrollView setContentSize:CGSizeMake(4 * SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [_guideScrollView setContentSize:CGSizeMake(GUIDE_PICTURE_NUMBER * SCREEN_WIDTH, SCREEN_HEIGHT)];
     _guidePageControl.numberOfPages = GUIDE_PICTURE_NUMBER;
 }
 

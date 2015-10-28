@@ -23,10 +23,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     StartViewController *startViewController = (StartViewController *)[StoryBoardUtil instantiateInitialViewControllerWithStoryBoardName:@"Start"];
-    startViewController.tabBarItem.title = @"开始";
     SettingsViewController *settingsViewController = (SettingsViewController *)[StoryBoardUtil instantiateInitialViewControllerWithStoryBoardName:@"Settings"];
-    settingsViewController.tabBarItem.title = @"设置";
     self.viewControllers = @[startViewController, settingsViewController];
+    
+    NSArray *imageName = @[@"tabbar_start.png", @"tabbar_user.png"];
+    NSArray *selectedImageName = @[@"tabbar_start_selected.png", @"tabbar_user_selected.png"];
+    for (int i = 0; i < TAB_BAR_NUMBER; i++) {
+        UITabBarItem *tabBarItem = self.viewControllers[i].tabBarItem;
+        tabBarItem.image = [[UIImage imageNamed:imageName[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

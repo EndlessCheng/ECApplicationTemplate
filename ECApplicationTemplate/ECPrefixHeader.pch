@@ -12,16 +12,12 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "ECUserDefaults.h"
+#import "ECColor.h"
+#import "ECNumber.h"
 
 
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-
-#define GUIDE_PICTURE_NUMBER 4
-
-
-#define isNilOrNull(_ref) (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]))
-#define isEmptyString(_ref) (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) || ([(_ref) isEqualToString:@""]))
+#define isNilOrNull(_ref) ((_ref) == nil || [(_ref) isEqual:[NSNull null]])
+#define isEmptyString(_ref) ((_ref) == nil || [(_ref) isEqual:[NSNull null]] || [(_ref) isEqualToString:@""])
 
 
 #endif /* ECPrefixHeader_pch */

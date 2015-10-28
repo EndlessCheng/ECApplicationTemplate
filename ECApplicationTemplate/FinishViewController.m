@@ -26,7 +26,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.navigationController.navigationBar.topItem.title = @"完成";
+    self.navigationController.navigationBar.topItem.title = NSLocalizedString(@"完成",);
 }
 
 - (void)didReceiveMemoryWarning {

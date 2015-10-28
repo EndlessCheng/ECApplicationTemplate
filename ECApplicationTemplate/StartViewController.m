@@ -26,7 +26,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.navigationController.navigationBar.topItem.title = @"开始";
+    self.navigationController.navigationBar.topItem.title = NSLocalizedString(@"开始",);
 }
 
 - (void)didReceiveMemoryWarning {

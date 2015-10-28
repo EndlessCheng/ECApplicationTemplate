@@ -38,7 +38,7 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.navigationController.navigationBar.topItem.title = @"设置";
+    self.navigationController.navigationBar.topItem.title = NSLocalizedString(@"设置",);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +87,7 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
         case 2:
             switch (indexPath.row) {
                 case 2: {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"乃确定不是手滑了吗？" message:nil delegate:self cancelButtonTitle:@"我手滑了" otherButtonTitles:@"我要退出", nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"乃确定不是手滑了吗？",) message:nil delegate:self cancelButtonTitle:@"我手滑了" otherButtonTitles:@"我要退出", nil];
                     alert.tag = SettingsAlertTagLogOut;
                     [alert show];
                     break;
