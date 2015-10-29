@@ -76,10 +76,8 @@
     
     if ([userDefaults integerForKey:kUserDefaultsLoginState] == ECUserDefaultsLoginStateIsLogin) {
         [self hiddenScrollView];
-        TabBarController *tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
-        [self.navigationController pushViewController:tabBarController animated:NO];
         
-//        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
     }
 }
 

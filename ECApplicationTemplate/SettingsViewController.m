@@ -23,6 +23,8 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = NSLocalizedString(@"设置",);
+    
     _settingTitlesGroup = @[
                        @[@"清除缓存", @"消息通知"],
                        @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
@@ -37,8 +39,6 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    self.navigationController.navigationBar.topItem.title = NSLocalizedString(@"设置",);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +63,7 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return section < _settingTitlesGroup.count - 1 ? 10.0 : 0.0;
+    return 8.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -74,11 +74,35 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
     return ((NSArray *)_settingTitlesGroup[section]).count;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIndetifier forIndexPath:indexPath];
     
+    // round corner of cell
+    // TODO: this part can refactor to parent class
+    UIRectCorner rectCorner = 0UL;
+    if (indexPath.row == 0) {
+        rectCorner |= UIRectCornerTopLeft | UIRectCornerTopRight;
+    }
+    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+        rectCorner |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
+    }
+    if (rectCorner != 0UL) {
+        CGFloat cornerRadius = 10.0;
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:rectCorner cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = cell.bounds;
+        maskLayer.path = maskPath.CGPath;
+        cell.layer.mask = maskLayer;
+    }
+    
+    // content of cell
     cell.titleLabel.text = _settingTitlesGroup[indexPath.section][indexPath.row];
     cell.redPoint.hidden = !(indexPath.section == 0 && indexPath.row == 1);
+    
     return cell;
 }
 
@@ -110,7 +134,8 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
             if (buttonIndex == 1) {
                 [[NSUserDefaults standardUserDefaults] setInteger:ECUserDefaultsLoginStateNotLogin forKey:kUserDefaultsLoginState];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                [self.navigationController popToRootViewControllerAnimated:NO];
+                
+                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             }
             break;
         default:

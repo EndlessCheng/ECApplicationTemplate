@@ -13,7 +13,7 @@
 
 #define kUserDefaultsLoginState @"loginState"
 typedef NS_ENUM(NSUInteger, ECUserDefaultsLoginState) {
-    ECUserDefaultsLoginStateNotLogin = 1,
+    ECUserDefaultsLoginStateNotLogin,
     ECUserDefaultsLoginStateIsLogin
 };
 

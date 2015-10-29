@@ -12,12 +12,7 @@
 
 + (UIViewController *)instantiateInitialViewControllerWithStoryBoardName:(NSString *)storyBoardName {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyBoardName bundle:nil];
-    UIViewController *rootView = [storyboard instantiateInitialViewController];
-    
-    if ([rootView isKindOfClass:[UINavigationController class]]) {
-        return ((UINavigationController *)rootView).topViewController;
-    }
-    return rootView;
+    return [storyboard instantiateInitialViewController];
 }
 
 @end

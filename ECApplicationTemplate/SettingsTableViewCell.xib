@@ -39,6 +39,7 @@
                     <constraint firstItem="ich-fy-al7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yQN-Ol-BWC"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="redPoint" destination="NHv-IT-shL" id="aYC-zk-uV6"/>
                 <outlet property="titleLabel" destination="ich-fy-al7" id="zP3-VY-xBC"/>

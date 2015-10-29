@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-382" y="444"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--设置-->
         <scene sceneID="eqR-Ng-unP">
             <objects>
-                <viewController id="bYM-ii-sbA" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bYM-ii-sbA" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Mx-aa-vFu"/>
                         <viewControllerLayoutGuide type="bottom" id="2sZ-Ar-jHl"/>
@@ -33,27 +33,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-Le-9x6">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vsG-qh-sNB">
+                                <rect key="frame" x="10" y="74" width="580" height="516"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="dataSource" destination="bYM-ii-sbA" id="8p3-f8-I4y"/>
-                                    <outlet property="delegate" destination="bYM-ii-sbA" id="XEr-bB-9Lb"/>
+                                    <outlet property="dataSource" destination="bYM-ii-sbA" id="Jhm-bY-MEM"/>
+                                    <outlet property="delegate" destination="bYM-ii-sbA" id="NbX-jh-hYe"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="7Tp-Le-9x6" secondAttribute="trailing" id="901-vv-Ijx"/>
-                            <constraint firstItem="2sZ-Ar-jHl" firstAttribute="top" secondItem="7Tp-Le-9x6" secondAttribute="bottom" id="PO0-V2-vcK"/>
-                            <constraint firstItem="7Tp-Le-9x6" firstAttribute="leading" secondItem="vr9-X5-d3g" secondAttribute="leading" id="bZo-w7-oXf"/>
-                            <constraint firstItem="7Tp-Le-9x6" firstAttribute="top" secondItem="4Mx-aa-vFu" secondAttribute="bottom" id="bfR-uW-dJH"/>
-                            <constraint firstItem="7Tp-Le-9x6" firstAttribute="centerX" secondItem="vr9-X5-d3g" secondAttribute="centerX" id="fLx-Me-cnw"/>
+                            <constraint firstAttribute="trailing" secondItem="vsG-qh-sNB" secondAttribute="trailing" constant="10" id="aGB-4A-9yp"/>
+                            <constraint firstItem="vsG-qh-sNB" firstAttribute="leading" secondItem="vr9-X5-d3g" secondAttribute="leading" constant="10" id="mgu-D6-mLJ"/>
+                            <constraint firstItem="2sZ-Ar-jHl" firstAttribute="top" secondItem="vsG-qh-sNB" secondAttribute="bottom" constant="10" id="ng5-nr-q2e"/>
+                            <constraint firstItem="vsG-qh-sNB" firstAttribute="top" secondItem="4Mx-aa-vFu" secondAttribute="bottom" constant="10" id="weL-bu-fO2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cQv-g7-XA8"/>
+                    <navigationItem key="navigationItem" title="设置" id="cQv-g7-XA8"/>
                     <connections>
-                        <outlet property="settingsTableView" destination="7Tp-Le-9x6" id="LDL-ZW-cAJ"/>
+                        <outlet property="settingsTableView" destination="vsG-qh-sNB" id="lZh-bz-Ok7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8W-h4-e9L" userLabel="First Responder" sceneMemberID="firstResponder"/>

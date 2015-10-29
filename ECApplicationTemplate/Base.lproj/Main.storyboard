@@ -114,7 +114,7 @@
                         <outlet property="guideScrollView" destination="CAA-Xb-1mc" id="7Su-g7-EJE"/>
                         <outlet property="loginButton" destination="rZH-hP-e20" id="pzH-gb-i2s"/>
                         <outlet property="registerButton" destination="Csf-0t-Jsy" id="aPd-Vi-X1n"/>
-                        <segue destination="VAJ-Xi-wc4" kind="show" identifier="WelcomeToTabBar" id="eyb-hH-XMr"/>
+                        <segue destination="VAJ-Xi-wc4" kind="presentation" identifier="WelcomeToTabBar" animates="NO" id="eyb-hH-XMr"/>
                         <segue destination="Yxf-2d-CmA" kind="show" identifier="WelcomeToLogin" id="dIE-3Z-810"/>
                     </connections>
                 </viewController>
