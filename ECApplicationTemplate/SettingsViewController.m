@@ -31,6 +31,9 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
                        @[@"个人信息", @"修改密码", @"注销登录"],
                        ];
     [_settingsTableView registerNib:[UINib nibWithNibName:@"SettingsTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIndetifier];
+    if ([_settingsTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        _settingsTableView.layoutMargins = UIEdgeInsetsZero;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -9,8 +9,9 @@
 #ifndef ECNumber_h
 #define ECNumber_h
 
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SYSTEM_VERSION [UIDevice currentDevice].systemVersion.floatValue
 
 #define GUIDE_PICTURE_NUMBER 4
 

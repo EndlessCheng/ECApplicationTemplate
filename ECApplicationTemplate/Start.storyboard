@@ -69,7 +69,7 @@
         <!--完成-->
         <scene sceneID="Gxc-J5-XLA">
             <objects>
-                <viewController id="UlS-3B-fgn" customClass="FinishViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="UlS-3B-fgn" customClass="FinishViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3WV-Xw-LYE"/>
                         <viewControllerLayoutGuide type="bottom" id="Zo8-BO-uti"/>
