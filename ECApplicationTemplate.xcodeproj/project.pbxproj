@@ -31,7 +31,6 @@
 		E577D96F1BD73ED200C862E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E577D96D1BD73ED200C862E9 /* Main.storyboard */; };
 		E577D9721BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E577D9701BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld */; };
 		E577D9741BD73ED200C862E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E577D9731BD73ED200C862E9 /* Assets.xcassets */; };
-		E577D9771BD73ED200C862E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E577D9751BD73ED200C862E9 /* LaunchScreen.storyboard */; };
 		E577D9821BD73ED200C862E9 /* ECApplicationTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9811BD73ED200C862E9 /* ECApplicationTemplateTests.m */; };
 		E577D98D1BD73ED200C862E9 /* ECApplicationTemplateUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D98C1BD73ED200C862E9 /* ECApplicationTemplateUITests.m */; };
 		E577D99E1BD7480600C862E9 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E577D99D1BD7480600C862E9 /* Start.storyboard */; };
@@ -110,7 +109,6 @@
 		E577D96E1BD73ED200C862E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E577D9711BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ECApplicationTemplate.xcdatamodel; sourceTree = "<group>"; };
 		E577D9731BD73ED200C862E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E577D9761BD73ED200C862E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E577D9781BD73ED200C862E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E577D97D1BD73ED200C862E9 /* ECApplicationTemplateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ECApplicationTemplateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577D9811BD73ED200C862E9 /* ECApplicationTemplateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECApplicationTemplateTests.m; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 		E577D9631BD73ED200C862E9 /* ECApplicationTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				E577D9751BD73ED200C862E9 /* LaunchScreen.storyboard */,
 				E577D9C81BD8F88E00C862E9 /* Resources */,
 				E577D9AB1BD74ACC00C862E9 /* Utils */,
 				E577D9671BD73ED200C862E9 /* AppDelegate.h */,
@@ -264,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				E577D9EA1BD9012800C862E9 /* ECPrefixHeaders */,
-				E577D9731BD73ED200C862E9 /* Assets.xcassets */,
 				E577D9781BD73ED200C862E9 /* Info.plist */,
 				E577D9701BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld */,
 				E577D9651BD73ED200C862E9 /* main.m */,
@@ -383,6 +379,7 @@
 		E577D9C91BD8F8C500C862E9 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				E577D9731BD73ED200C862E9 /* Assets.xcassets */,
 				E529DBC21BE0710000F4E0E7 /* WelcomeGuide */,
 				E529DBC31BE0712500F4E0E7 /* TabBar */,
 			);
@@ -515,7 +512,6 @@
 				E529DC141BE07C0100F4E0E7 /* tabbar_user_selected@2x.png in Resources */,
 				E529DC0C1BE07C0100F4E0E7 /* tabbar_plan_selected@2x.png in Resources */,
 				E577D9E41BD8F8D100C862E9 /* welcome_guide667_3@2x.png in Resources */,
-				E577D9771BD73ED200C862E9 /* LaunchScreen.storyboard in Resources */,
 				E577D9E11BD8F8D100C862E9 /* welcome_guide568_4@2x.png in Resources */,
 				E529DC091BE07C0100F4E0E7 /* tabbar_history_selected@3x.png in Resources */,
 				E577D99E1BD7480600C862E9 /* Start.storyboard in Resources */,
@@ -618,14 +614,6 @@
 				E577D96E1BD73ED200C862E9 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E577D9751BD73ED200C862E9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E577D9761BD73ED200C862E9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
