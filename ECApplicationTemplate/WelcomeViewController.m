@@ -73,8 +73,7 @@
 
 - (void)autoLogin {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([userDefaults integerForKey:kUserDefaultsLoginState] == ECUserDefaultsLoginStateIsLogin) {
+    if ([[userDefaults objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
         [self hiddenScrollView];
         
         [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];

@@ -25,7 +25,7 @@
 }
 
 - (IBAction)loginButtonClicked:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setInteger:ECUserDefaultsLoginStateIsLogin forKey:kUserDefaultsLoginState];
+    [[NSUserDefaults standardUserDefaults] setObject:@(ECUserDefaultsLoginStateIsLogin) forKey:kUserDefaultsLoginState];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
