@@ -7,14 +7,13 @@
 //
 
 #import "SettingsViewController.h"
-
 #import "SettingsTableViewCell.h"
 
 NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 
-@interface SettingsViewController () {
-    NSArray *_settingTitlesGroup;
-}
+@interface SettingsViewController ()
+
+@property (nonatomic, copy) NSArray<NSArray<NSString *> *> *settingTitlesGroup;
 
 @end
 
@@ -25,14 +24,14 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
     // Do any additional setup after loading the view.
     self.navigationItem.title = NSLocalizedString(@"设置",);
     
-    _settingTitlesGroup = @[
+    self.settingTitlesGroup = @[
                        @[@"清除缓存", @"消息通知"],
                        @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
                        @[@"个人信息", @"修改密码", @"注销登录"],
                        ];
-    [_settingsTableView registerNib:[UINib nibWithNibName:@"SettingsTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIndetifier];
-    if ([_settingsTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        _settingsTableView.layoutMargins = UIEdgeInsetsZero;
+    [self.settingsTableView registerNib:[UINib nibWithNibName:@"SettingsTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIndetifier];
+    if ([self.settingsTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        self.settingsTableView.layoutMargins = UIEdgeInsetsZero;
     }
 }
 
@@ -70,11 +69,11 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _settingTitlesGroup.count;
+    return self.settingTitlesGroup.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ((NSArray *)_settingTitlesGroup[section]).count;
+    return self.settingTitlesGroup[section].count;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,7 +102,7 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
     }
     
     // content of cell
-    cell.titleLabel.text = _settingTitlesGroup[indexPath.section][indexPath.row];
+    cell.titleLabel.text = self.settingTitlesGroup[indexPath.section][indexPath.row];
     cell.redPoint.hidden = !(indexPath.section == 0 && indexPath.row == 1);
     
     return cell;
@@ -122,7 +121,6 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
                     break;
             }
             break;
-            
         default:
             break;
     }

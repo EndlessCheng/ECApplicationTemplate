@@ -80,8 +80,7 @@
 /* Begin PBXFileReference section */
 		E529DBBF1BDA31C900F4E0E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		E529DBF41BE0759600F4E0E7 /* ECColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECColor.h; sourceTree = "<group>"; };
-		E529DBF51BE0766100F4E0E7 /* ECNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNumber.h; sourceTree = "<group>"; };
+		E529DBF51BE0766100F4E0E7 /* ECNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNumbers.h; sourceTree = "<group>"; };
 		E529DBF81BE07C0100F4E0E7 /* tabbar_history_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_history_selected@2x.png"; sourceTree = "<group>"; };
 		E529DBF91BE07C0100F4E0E7 /* tabbar_history_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_history_selected@3x.png"; sourceTree = "<group>"; };
 		E529DBFA1BE07C0100F4E0E7 /* tabbar_history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_history@2x.png"; sourceTree = "<group>"; };
@@ -391,8 +390,7 @@
 			children = (
 				E577D9C71BD8F38100C862E9 /* ECPrefixHeader.pch */,
 				E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */,
-				E529DBF41BE0759600F4E0E7 /* ECColor.h */,
-				E529DBF51BE0766100F4E0E7 /* ECNumber.h */,
+				E529DBF51BE0766100F4E0E7 /* ECNumbers.h */,
 			);
 			name = ECPrefixHeaders;
 			sourceTree = "<group>";

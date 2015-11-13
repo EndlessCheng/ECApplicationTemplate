@@ -58,15 +58,15 @@
             [button addTarget:self action:@selector(hiddenScrollView) forControlEvents:UIControlEventTouchUpInside];
             imageView.userInteractionEnabled = YES;
         }
-        [_guideScrollView addSubview:imageView];
+        [self.guideScrollView addSubview:imageView];
     }
-    [_guideScrollView setContentSize:CGSizeMake(GUIDE_PICTURE_NUMBER * SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _guidePageControl.numberOfPages = GUIDE_PICTURE_NUMBER;
+    [self.guideScrollView setContentSize:CGSizeMake(GUIDE_PICTURE_NUMBER * SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.guidePageControl.numberOfPages = GUIDE_PICTURE_NUMBER;
 }
 
 - (void)hiddenScrollView {
-    _guideScrollView.hidden = YES;
-    _guidePageControl.hidden = YES;
+    self.guideScrollView.hidden = YES;
+    self.guidePageControl.hidden = YES;
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.navigationController.navigationBar.hidden = NO;
 }
@@ -89,7 +89,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetx = scrollView.contentOffset.x;
-    _guidePageControl.currentPage = (NSInteger)(offsetx / SCREEN_WIDTH + 0.5);
+    self.guidePageControl.currentPage = (NSInteger)(offsetx / SCREEN_WIDTH + 0.5);
 }
 
 

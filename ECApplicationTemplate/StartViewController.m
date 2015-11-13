@@ -22,6 +22,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (userDefaults ) {
+        ;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
