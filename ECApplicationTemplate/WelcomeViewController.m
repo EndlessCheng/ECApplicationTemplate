@@ -6,10 +6,11 @@
 //  Copyright © 2015年 jianyan. All rights reserved.
 //
 
+#import "AWBluetooth.h"
+#import "StoryBoardUtil.h"
+
 #import "WelcomeViewController.h"
 #import "TabBarController.h"
-
-#import "StoryBoardUtil.h"
 
 @interface WelcomeViewController ()
 
@@ -22,6 +23,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     [UIApplication sharedApplication].statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
+    
     [self setScrollGuideView];
 }
 
@@ -75,6 +77,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([[userDefaults objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
         [self hiddenScrollView];
+        [[AWBluetooth sharedBluetooth] createCentralManager];
         
         [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
     }

@@ -10,4 +10,6 @@
 
 @interface FinishViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *resultLabel;
+
 @end

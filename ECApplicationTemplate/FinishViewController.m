@@ -10,6 +10,8 @@
 
 @interface FinishViewController ()
 
+@property (nonatomic, copy) NSString *resultInfoString;
+
 @end
 
 @implementation FinishViewController
@@ -18,10 +20,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = NSLocalizedString(@"完成",);
+    self.resultInfoString = @"70000";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.resultLabel.text = self.resultInfoString;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

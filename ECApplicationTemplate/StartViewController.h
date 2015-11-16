@@ -8,8 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#import "PeripheralsPopupView.h"
+
+typedef NS_ENUM(NSUInteger, ActionButtonState) {
+    ActionButtonStatePairPeripheral,
+    ActionButtonStateSearchingPairedPeripheral,
+    ActionButtonStateStart,
+};
+
 @interface StartViewController : UIViewController
 
-- (IBAction)jumpToFinishViewController:(id)sender;
+@property (nonatomic, weak) IBOutlet UIButton *actionButton;
+@property (nonatomic) ActionButtonState actionButtonState;
+- (IBAction)clickedActionButton:(id)sender;
+
+@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralPopupView;
+- (IBAction)cancelPairPeripheral:(id)sender;
 
 @end

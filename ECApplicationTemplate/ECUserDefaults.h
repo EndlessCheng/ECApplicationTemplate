@@ -9,12 +9,13 @@
 #ifndef ECUserDefaults_h
 #define ECUserDefaults_h
 
-#import <Foundation/Foundation.h>
-
 #define kUserDefaultsLoginState @"loginState"
 typedef NS_ENUM(NSUInteger, ECUserDefaultsLoginState) {
     ECUserDefaultsLoginStateNotLogin,
     ECUserDefaultsLoginStateIsLogin
 };
+
+#define kUserDefaultsPairedPeripheralUUIDString @"pairedPeripheralUUIDString"
+#define kPairedPeripheralUUIDString [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsPairedPeripheralUUIDString]
 
 #endif /* ECUserDefaults_h */

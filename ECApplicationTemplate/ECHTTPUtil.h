@@ -1,5 +1,5 @@
 //
-//  ECHTTPUtils.h
+//  ECHTTPUtil.h
 //  ECApplicationTemplate
 //
 //  Created by chengyh on 15/10/28.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ECHTTPUtils : NSObject
+@interface ECHTTPUtil : NSObject
 
 + (BOOL)requestVerificationCodeWithAccount:(NSString *)account error:(NSString **)errorString;
 

@@ -12,5 +12,6 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIView *redPoint;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
 
 @end

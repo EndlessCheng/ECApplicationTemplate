@@ -11,12 +11,19 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <Foundation/Foundation.h>
+
+// Constants
 #import "ECUserDefaults.h"
 #import "ECNumbers.h"
+#import "ECNotificationNames.h"
 
 
 #define isNilOrNull(_ref) ((_ref) == nil || [(_ref) isEqual:[NSNull null]])
 #define isEmptyString(_ref) (isNilOrNull(_ref) || [(_ref) isEqualToString:@""])
+
+
+#define kSettingsPairPeripheralInfoLabelText (kPairedPeripheralUUIDString ? @"设备已绑定" : @"请绑定设备");
 
 
 #endif /* ECPrefixHeader_pch */

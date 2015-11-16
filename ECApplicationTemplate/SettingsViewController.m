@@ -6,14 +6,17 @@
 //  Copyright © 2015年 jianyan. All rights reserved.
 //
 
+#import "AWBluetooth.h"
+
 #import "SettingsViewController.h"
 #import "SettingsTableViewCell.h"
-
-NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
+#import "SettingsModel.h"
 
 @interface SettingsViewController ()
 
-@property (nonatomic, copy) NSArray<NSArray<NSString *> *> *settingTitlesGroup;
+@property (nonatomic) SettingsModel *settingsModel;
+
+@property (nonatomic) id<NSObject> didPairToPeripheralObserver;
 
 @end
 
@@ -22,14 +25,12 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.settingsModel = [[SettingsModel alloc] init];
+    self.settingsTableView.dataSource = self.settingsModel;
+    
     self.navigationItem.title = NSLocalizedString(@"设置",);
     
-    self.settingTitlesGroup = @[
-                       @[@"清除缓存", @"消息通知"],
-                       @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
-                       @[@"个人信息", @"修改密码", @"注销登录"],
-                       ];
-    [self.settingsTableView registerNib:[UINib nibWithNibName:@"SettingsTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIndetifier];
     if ([self.settingsTableView respondsToSelector:@selector(setLayoutMargins:)]) {
         self.settingsTableView.layoutMargins = UIEdgeInsetsZero;
     }
@@ -37,6 +38,8 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.settingsTableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -58,7 +61,15 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 }
 */
 
-#pragma mark - Table View
+- (void)reloadPairPeripheralCell {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    SettingsTableViewCell *cell = (SettingsTableViewCell *)[self.settingsTableView cellForRowAtIndexPath:indexPath];
+    cell.infoLabel.text = kSettingsPairPeripheralInfoLabelText;
+    [self.settingsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
+#pragma mark - Table View Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGFLOAT_MIN;
@@ -68,52 +79,40 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
     return 8.0;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.settingTitlesGroup.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.settingTitlesGroup[section].count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIndetifier forIndexPath:indexPath];
-    
-    // round corner of cell
-    // TODO: this part can refactor to parent class
-    UIRectCorner rectCorner = 0UL;
-    if (indexPath.row == 0) {
-        rectCorner |= UIRectCornerTopLeft | UIRectCornerTopRight;
-    }
-    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
-        rectCorner |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
-    }
-    if (rectCorner != 0UL) {
-        CGFloat cornerRadius = 10.0;
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:rectCorner cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
-        CAShapeLayer *maskLayer = [CAShapeLayer layer];
-        maskLayer.frame = cell.bounds;
-        maskLayer.path = maskPath.CGPath;
-        cell.layer.mask = maskLayer;
-    }
-    
-    // content of cell
-    cell.titleLabel.text = self.settingTitlesGroup[indexPath.section][indexPath.row];
-    cell.redPoint.hidden = !(indexPath.section == 0 && indexPath.row == 1);
-    
-    return cell;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case 2:
+        case 1:
             switch (indexPath.row) {
-                case 2: {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"乃确定不是手滑了吗？",) message:nil delegate:self cancelButtonTitle:@"我手滑了" otherButtonTitles:@"我要退出", nil];
-                    alert.tag = SettingsAlertTagLogOut;
-                    [alert show];
+                case 1: {
+                    if (kPairedPeripheralUUIDString) {
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"解绑后蓝牙将会断开" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                        alertView.tag = SettingsAlertTagDisPair;
+                        [alertView show];
+                    } else {
+                        self.didPairToPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationPeripheralsPopupViewDidPairToPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
+                            // 已绑定并连接设备
+                            [[NSNotificationCenter defaultCenter] removeObserver:self.didPairToPeripheralObserver];
+                            
+                            [self reloadPairPeripheralCell];
+                        }];
+                        
+                        self.peripheralPopupView.hidden = NO;
+                    }
                     break;
-                } default:
+                }
+                default:
+                    break;
+            }
+            break;
+        case 3:
+            switch (indexPath.row) {
+                case 0: {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"乃确定不是手滑了吗？",) message:nil delegate:self cancelButtonTitle:@"我手滑了" otherButtonTitles:@"我要退出", nil];
+                    alertView.tag = SettingsAlertTagLogOut;
+                    [alertView show];
+                    break;
+                }
+                default:
                     break;
             }
             break;
@@ -126,11 +125,23 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
 #pragma mark - Alert View Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     switch (alertView.tag) {
+        case SettingsAlertTagDisPair:
+            if (buttonIndex == 1) {
+                [[AWBluetooth sharedBluetooth] disconnectPeripheral];
+                [userDefaults removeObjectForKey:kUserDefaultsPairedPeripheralUUIDString];
+                [userDefaults synchronize];
+                [[AWBluetooth sharedBluetooth] createCentralManager];
+                
+                [self reloadPairPeripheralCell];
+            }
+            break;
         case SettingsAlertTagLogOut:
             if (buttonIndex == 1) {
-                [[NSUserDefaults standardUserDefaults] setObject:@(ECUserDefaultsLoginStateNotLogin) forKey:kUserDefaultsLoginState];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                [[AWBluetooth sharedBluetooth] disconnectPeripheral];
+                [userDefaults setObject:@(ECUserDefaultsLoginStateNotLogin) forKey:kUserDefaultsLoginState];
+                [userDefaults synchronize];
                 
                 [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             }
@@ -138,6 +149,15 @@ NSString *const kCellIndetifier = @"SettingsTableViewCellIndetifier";
         default:
             break;
     }
+}
+
+
+#pragma mark - IBAction
+
+// 注意“取消绑定”和“断开绑定”是两码事
+- (IBAction)cancelPairPeripheral:(id)sender {
+    [[AWBluetooth sharedBluetooth] stopScan];
+    self.peripheralPopupView.hidden = YES;
 }
 
 @end

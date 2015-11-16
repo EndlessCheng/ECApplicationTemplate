@@ -9,6 +9,9 @@
 #ifndef ECNumbers_h
 #define ECNumbers_h
 
+
+#pragma mark - UI Numbers
+
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 

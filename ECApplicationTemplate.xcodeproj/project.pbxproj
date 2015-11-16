@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50542581BF59FE300B66F1F /* PeripheralsPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50542571BF59FE300B66F1F /* PeripheralsPopupView.m */; };
+		E505425B1BF5B0D700B66F1F /* PeripheralsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E505425A1BF5B0D700B66F1F /* PeripheralsTableViewCell.m */; };
+		E50542641BF5B2C300B66F1F /* AWBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = E50542611BF5B2C300B66F1F /* AWBluetooth.m */; };
+		E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */; };
+		E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */; };
+		E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */; };
 		E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */; };
 		E529DC081BE07C0100F4E0E7 /* tabbar_history_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DBF81BE07C0100F4E0E7 /* tabbar_history_selected@2x.png */; };
 		E529DC091BE07C0100F4E0E7 /* tabbar_history_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DBF91BE07C0100F4E0E7 /* tabbar_history_selected@3x.png */; };
@@ -24,7 +30,7 @@
 		E529DC151BE07C0100F4E0E7 /* tabbar_user_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC051BE07C0100F4E0E7 /* tabbar_user_selected@3x.png */; };
 		E529DC161BE07C0100F4E0E7 /* tabbar_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC061BE07C0100F4E0E7 /* tabbar_user@2x.png */; };
 		E529DC171BE07C0100F4E0E7 /* tabbar_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */; };
-		E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DC191BE09F6800F4E0E7 /* ECHTTPUtils.m */; };
+		E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */; };
 		E577D9661BD73ED200C862E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9651BD73ED200C862E9 /* main.m */; };
 		E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9681BD73ED200C862E9 /* AppDelegate.m */; };
 		E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D96B1BD73ED200C862E9 /* WelcomeViewController.m */; };
@@ -41,7 +47,6 @@
 		E577D9AE1BD74ADA00C862E9 /* StoryBoardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9AD1BD74ADA00C862E9 /* StoryBoardUtil.m */; };
 		E577D9B41BD74C1B00C862E9 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9B31BD74C1B00C862E9 /* TabBarController.m */; };
 		E577D9BE1BD7904800C862E9 /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9BC1BD7904800C862E9 /* SettingsTableViewCell.m */; };
-		E577D9BF1BD7904800C862E9 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E577D9BD1BD7904800C862E9 /* SettingsTableViewCell.xib */; };
 		E577D9DA1BD8F8D100C862E9 /* welcome_guide480_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E577D9CA1BD8F8D100C862E9 /* welcome_guide480_1@2x.png */; };
 		E577D9DB1BD8F8D100C862E9 /* welcome_guide480_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E577D9CB1BD8F8D100C862E9 /* welcome_guide480_2@2x.png */; };
 		E577D9DC1BD8F8D100C862E9 /* welcome_guide480_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E577D9CC1BD8F8D100C862E9 /* welcome_guide480_3@2x.png */; };
@@ -78,6 +83,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E50542561BF59FE300B66F1F /* PeripheralsPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralsPopupView.h; sourceTree = "<group>"; };
+		E50542571BF59FE300B66F1F /* PeripheralsPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralsPopupView.m; sourceTree = "<group>"; };
+		E50542591BF5B0D700B66F1F /* PeripheralsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralsTableViewCell.h; sourceTree = "<group>"; };
+		E505425A1BF5B0D700B66F1F /* PeripheralsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralsTableViewCell.m; sourceTree = "<group>"; };
+		E50542601BF5B2C300B66F1F /* AWBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBluetooth.h; sourceTree = "<group>"; };
+		E50542611BF5B2C300B66F1F /* AWBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBluetooth.m; sourceTree = "<group>"; };
+		E5176AB81BF61A2600E0A679 /* ECNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNotificationNames.h; sourceTree = "<group>"; };
+		E5176AB91BF62CAC00E0A679 /* SettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsModel.h; sourceTree = "<group>"; };
+		E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModel.m; sourceTree = "<group>"; };
+		E5176ABD1BF9849F00E0A679 /* AWPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPeripheral.h; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWPeripheral.h; sourceTree = "<group>"; };
+		E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPeripheral.m; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWPeripheral.m; sourceTree = "<group>"; };
+		E5176AC61BF9941100E0A679 /* NSString+AWHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AWHexString.h"; sourceTree = "<group>"; };
+		E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AWHexString.m"; sourceTree = "<group>"; };
 		E529DBBF1BDA31C900F4E0E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E529DBF51BE0766100F4E0E7 /* ECNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNumbers.h; sourceTree = "<group>"; };
@@ -97,8 +115,8 @@
 		E529DC051BE07C0100F4E0E7 /* tabbar_user_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_user_selected@3x.png"; sourceTree = "<group>"; };
 		E529DC061BE07C0100F4E0E7 /* tabbar_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_user@2x.png"; sourceTree = "<group>"; };
 		E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_user@3x.png"; sourceTree = "<group>"; };
-		E529DC181BE09F6800F4E0E7 /* ECHTTPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECHTTPUtils.h; sourceTree = "<group>"; };
-		E529DC191BE09F6800F4E0E7 /* ECHTTPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECHTTPUtils.m; sourceTree = "<group>"; };
+		E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECHTTPUtil.h; sourceTree = "<group>"; };
+		E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECHTTPUtil.m; sourceTree = "<group>"; };
 		E577D9611BD73ED200C862E9 /* ECApplicationTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECApplicationTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577D9651BD73ED200C862E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E577D9671BD73ED200C862E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -129,7 +147,6 @@
 		E577D9B31BD74C1B00C862E9 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		E577D9BB1BD7904800C862E9 /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
 		E577D9BC1BD7904800C862E9 /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
-		E577D9BD1BD7904800C862E9 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		E577D9C71BD8F38100C862E9 /* ECPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECPrefixHeader.pch; sourceTree = "<group>"; };
 		E577D9CA1BD8F8D100C862E9 /* welcome_guide480_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_guide480_1@2x.png"; sourceTree = "<group>"; };
 		E577D9CB1BD8F8D100C862E9 /* welcome_guide480_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_guide480_2@2x.png"; sourceTree = "<group>"; };
@@ -175,6 +192,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E505424F1BF59D9100B66F1F /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				E577D99F1BD7489900C862E9 /* StartViewController.h */,
+				E577D9A01BD7489900C862E9 /* StartViewController.m */,
+			);
+			name = Start;
+			sourceTree = "<group>";
+		};
+		E50542501BF59D9900B66F1F /* Finish */ = {
+			isa = PBXGroup;
+			children = (
+				E577D9A21BD748D600C862E9 /* FinishViewController.h */,
+				E577D9A31BD748D600C862E9 /* FinishViewController.m */,
+			);
+			name = Finish;
+			sourceTree = "<group>";
+		};
+		E50542511BF59F9300B66F1F /* CommonModule */ = {
+			isa = PBXGroup;
+			children = (
+				E577D9AB1BD74ACC00C862E9 /* Utils */,
+				E50542521BF59FAA00B66F1F /* Views */,
+			);
+			name = CommonModule;
+			sourceTree = "<group>";
+		};
+		E50542521BF59FAA00B66F1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E50542561BF59FE300B66F1F /* PeripheralsPopupView.h */,
+				E50542571BF59FE300B66F1F /* PeripheralsPopupView.m */,
+				E50542591BF5B0D700B66F1F /* PeripheralsTableViewCell.h */,
+				E505425A1BF5B0D700B66F1F /* PeripheralsTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E50542651BF5B3B300B66F1F /* AWHardwares */ = {
+			isa = PBXGroup;
+			children = (
+				E5176AC61BF9941100E0A679 /* NSString+AWHexString.h */,
+				E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */,
+				E5176ABD1BF9849F00E0A679 /* AWPeripheral.h */,
+				E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */,
+				E50542601BF5B2C300B66F1F /* AWBluetooth.h */,
+				E50542611BF5B2C300B66F1F /* AWBluetooth.m */,
+			);
+			name = AWHardwares;
+			sourceTree = "<group>";
+		};
+		E50542661BF5B4D200B66F1F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E577D99A1BD7421E00C862E9 /* Welcome */,
+				E577D99C1BD747F500C862E9 /* Home */,
+				E577D9A51BD7499000C862E9 /* Settings */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		E529DBC21BE0710000F4E0E7 /* WelcomeGuide */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,13 +323,11 @@
 			isa = PBXGroup;
 			children = (
 				E577D9C81BD8F88E00C862E9 /* Resources */,
-				E577D9AB1BD74ACC00C862E9 /* Utils */,
+				E577D9641BD73ED200C862E9 /* Supporting Files */,
+				E50542511BF59F9300B66F1F /* CommonModule */,
 				E577D9671BD73ED200C862E9 /* AppDelegate.h */,
 				E577D9681BD73ED200C862E9 /* AppDelegate.m */,
-				E577D99A1BD7421E00C862E9 /* Welcome */,
-				E577D99C1BD747F500C862E9 /* Start */,
-				E577D9A51BD7499000C862E9 /* Settings */,
-				E577D9641BD73ED200C862E9 /* Supporting Files */,
+				E50542661BF5B4D200B66F1F /* ViewControllers */,
 			);
 			path = ECApplicationTemplate;
 			sourceTree = "<group>";
@@ -300,16 +376,14 @@
 			name = Welcome;
 			sourceTree = "<group>";
 		};
-		E577D99C1BD747F500C862E9 /* Start */ = {
+		E577D99C1BD747F500C862E9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				E577D99D1BD7480600C862E9 /* Start.storyboard */,
-				E577D99F1BD7489900C862E9 /* StartViewController.h */,
-				E577D9A01BD7489900C862E9 /* StartViewController.m */,
-				E577D9A21BD748D600C862E9 /* FinishViewController.h */,
-				E577D9A31BD748D600C862E9 /* FinishViewController.m */,
+				E505424F1BF59D9100B66F1F /* Start */,
+				E50542501BF59D9900B66F1F /* Finish */,
 			);
-			name = Start;
+			name = Home;
 			sourceTree = "<group>";
 		};
 		E577D9A51BD7499000C862E9 /* Settings */ = {
@@ -318,7 +392,10 @@
 				E577D9A91BD749BD00C862E9 /* Settings.storyboard */,
 				E577D9A61BD749B300C862E9 /* SettingsViewController.h */,
 				E577D9A71BD749B300C862E9 /* SettingsViewController.m */,
-				E577D9B81BD78FE800C862E9 /* SettingsTableViewCell */,
+				E577D9BB1BD7904800C862E9 /* SettingsTableViewCell.h */,
+				E577D9BC1BD7904800C862E9 /* SettingsTableViewCell.m */,
+				E5176AB91BF62CAC00E0A679 /* SettingsModel.h */,
+				E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -326,22 +403,13 @@
 		E577D9AB1BD74ACC00C862E9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E50542651BF5B3B300B66F1F /* AWHardwares */,
 				E577D9AC1BD74ADA00C862E9 /* StoryBoardUtil.h */,
 				E577D9AD1BD74ADA00C862E9 /* StoryBoardUtil.m */,
-				E529DC181BE09F6800F4E0E7 /* ECHTTPUtils.h */,
-				E529DC191BE09F6800F4E0E7 /* ECHTTPUtils.m */,
+				E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */,
+				E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */,
 			);
 			name = Utils;
-			sourceTree = "<group>";
-		};
-		E577D9B81BD78FE800C862E9 /* SettingsTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				E577D9BD1BD7904800C862E9 /* SettingsTableViewCell.xib */,
-				E577D9BB1BD7904800C862E9 /* SettingsTableViewCell.h */,
-				E577D9BC1BD7904800C862E9 /* SettingsTableViewCell.m */,
-			);
-			name = SettingsTableViewCell;
 			sourceTree = "<group>";
 		};
 		E577D9C31BD8EF7C00C862E9 /* Login */ = {
@@ -389,8 +457,9 @@
 			isa = PBXGroup;
 			children = (
 				E577D9C71BD8F38100C862E9 /* ECPrefixHeader.pch */,
-				E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */,
 				E529DBF51BE0766100F4E0E7 /* ECNumbers.h */,
+				E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */,
+				E5176AB81BF61A2600E0A679 /* ECNotificationNames.h */,
 			);
 			name = ECPrefixHeaders;
 			sourceTree = "<group>";
@@ -498,7 +567,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E577D9BF1BD7904800C862E9 /* SettingsTableViewCell.xib in Resources */,
 				E529DC101BE07C0100F4E0E7 /* tabbar_start_selected@2x.png in Resources */,
 				E577D9E71BD8F8D100C862E9 /* welcome_guide736_2@3x.png in Resources */,
 				E577D9E01BD8F8D100C862E9 /* welcome_guide568_3@2x.png in Resources */,
@@ -560,17 +628,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */,
+				E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */,
 				E577D9A41BD748D600C862E9 /* FinishViewController.m in Sources */,
 				E577D9AE1BD74ADA00C862E9 /* StoryBoardUtil.m in Sources */,
 				E577D9B41BD74C1B00C862E9 /* TabBarController.m in Sources */,
 				E577D9BE1BD7904800C862E9 /* SettingsTableViewCell.m in Sources */,
+				E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */,
 				E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */,
 				E577D9A11BD7489900C862E9 /* StartViewController.m in Sources */,
 				E577D9721BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld in Sources */,
+				E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */,
 				E577D9661BD73ED200C862E9 /* main.m in Sources */,
-				E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtils.m in Sources */,
+				E505425B1BF5B0D700B66F1F /* PeripheralsTableViewCell.m in Sources */,
+				E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */,
 				E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */,
+				E50542641BF5B2C300B66F1F /* AWBluetooth.m in Sources */,
 				E577D9A81BD749B300C862E9 /* SettingsViewController.m in Sources */,
+				E50542581BF59FE300B66F1F /* PeripheralsPopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

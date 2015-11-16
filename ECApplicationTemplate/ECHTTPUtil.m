@@ -1,14 +1,14 @@
 //
-//  ECHTTPUtils.m
+//  ECHTTPUtil.m
 //  ECApplicationTemplate
 //
 //  Created by chengyh on 15/10/28.
 //  Copyright © 2015年 jianyan. All rights reserved.
 //
 
-#import "ECHTTPUtils.h"
+#import "ECHTTPUtil.h"
 
-@implementation ECHTTPUtils
+@implementation ECHTTPUtil
 
 + (BOOL)requestVerificationCodeWithAccount:(NSString *)account error:(NSString **)errorString {
     return YES;
