@@ -99,8 +99,18 @@
                         self.peripheralPopupView.hidden = NO;
                     }
                     break;
-                }
-                default:
+                } case 2: {
+                    if (!kPairedPeripheralUUIDString) {
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"未绑定设备" message:@"请先绑定设备后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                        [alertView show];
+                        break;
+                    }
+                    
+                    NSString *binPath = [[NSBundle mainBundle] pathForResource:@"OADbin" ofType:@"bin"];
+                    NSLog(@"binPath: %@", binPath);
+                    [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImageWithAPPServiceImageData:[NSData dataWithContentsOfFile:binPath]];
+                    break;
+                } default:
                     break;
             }
             break;
@@ -129,17 +139,17 @@
     switch (alertView.tag) {
         case SettingsAlertTagDisPair:
             if (buttonIndex == 1) {
-                [[AWBluetooth sharedBluetooth] disconnectPeripheral];
+                [[AWBluetooth sharedBluetooth] cancelPeripheralConnection];
                 [userDefaults removeObjectForKey:kUserDefaultsPairedPeripheralUUIDString];
                 [userDefaults synchronize];
-                [[AWBluetooth sharedBluetooth] createCentralManager];
                 
                 [self reloadPairPeripheralCell];
             }
             break;
         case SettingsAlertTagLogOut:
             if (buttonIndex == 1) {
-                [[AWBluetooth sharedBluetooth] disconnectPeripheral];
+                [[AWBluetooth sharedBluetooth] cancelPeripheralConnection];
+                
                 [userDefaults setObject:@(ECUserDefaultsLoginStateNotLogin) forKey:kUserDefaultsLoginState];
                 [userDefaults synchronize];
                 

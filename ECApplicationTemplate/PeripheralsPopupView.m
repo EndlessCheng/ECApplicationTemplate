@@ -27,6 +27,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.manufacturerStrings = [[NSMutableArray alloc] init];
+    
+    if ([self.peripheralsTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        self.peripheralsTableView.layoutMargins = UIEdgeInsetsZero;
+    }
 }
 
 - (void)clearTableView {
@@ -109,14 +113,11 @@
     switch (alertView.tag) {
         case PeripheralsPopupViewAlertTagPairPeripheral:
             if (buttonIndex == 0) {
-                [[AWBluetooth sharedBluetooth] disconnectPeripheral];
+                [[AWBluetooth sharedBluetooth] cancelPeripheralConnection];
                 [self clearTableView];
                 
-                [[AWBluetooth sharedBluetooth] createCentralManager];
                 [[AWBluetooth sharedBluetooth] scanNormalPeripherals];
             } else if (buttonIndex == 1) {
-                
-                
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setObject:self.pairedPeripheralUUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
                 [userDefaults synchronize];

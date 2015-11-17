@@ -14,16 +14,16 @@
 @property (nonatomic) NSMutableDictionary<NSString *, NSString *> *peripheralUUIDStringDictionary;
 
 + (AWBluetooth *)sharedBluetooth;
+- (void)createCentralManager;
 
 - (BOOL)isPoweredOn;
 
-- (void)createCentralManager;
 - (void)scanNormalPeripherals;
 - (void)stopScan;
 
 - (void)connectToPeripheralWithUUIDString:(NSString *)UUIDString;
 - (void)connectToPairedPeripheral;
-- (void)disconnectPeripheral;
+- (void)cancelPeripheralConnection;
 
 - (void)updatePeripheralAPPServiceImageWithAPPServiceImageData:(NSData *)APPServiceImageData;
 

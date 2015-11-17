@@ -13,6 +13,7 @@
 		E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */; };
 		E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */; };
 		E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */; };
+		E5176ACB1BFAD41100E0A679 /* OADbin.bin in Resources */ = {isa = PBXBuildFile; fileRef = E5176ACA1BFAD41100E0A679 /* OADbin.bin */; };
 		E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */; };
 		E529DC081BE07C0100F4E0E7 /* tabbar_history_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DBF81BE07C0100F4E0E7 /* tabbar_history_selected@2x.png */; };
 		E529DC091BE07C0100F4E0E7 /* tabbar_history_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DBF91BE07C0100F4E0E7 /* tabbar_history_selected@3x.png */; };
@@ -96,6 +97,7 @@
 		E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPeripheral.m; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWPeripheral.m; sourceTree = "<group>"; };
 		E5176AC61BF9941100E0A679 /* NSString+AWHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AWHexString.h"; sourceTree = "<group>"; };
 		E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AWHexString.m"; sourceTree = "<group>"; };
+		E5176ACA1BFAD41100E0A679 /* OADbin.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = OADbin.bin; path = ../../../WeCoachSrc/wecoach_public_class/Resources/bin/OADbin.bin; sourceTree = "<group>"; };
 		E529DBBF1BDA31C900F4E0E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E529DBF51BE0766100F4E0E7 /* ECNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNumbers.h; sourceTree = "<group>"; };
@@ -251,6 +253,14 @@
 				E577D9A51BD7499000C862E9 /* Settings */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E5176AC91BFAD40100E0A679 /* Bin */ = {
+			isa = PBXGroup;
+			children = (
+				E5176ACA1BFAD41100E0A679 /* OADbin.bin */,
+			);
+			name = Bin;
 			sourceTree = "<group>";
 		};
 		E529DBC21BE0710000F4E0E7 /* WelcomeGuide */ = {
@@ -438,6 +448,7 @@
 		E577D9C81BD8F88E00C862E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5176AC91BFAD40100E0A679 /* Bin */,
 				E577D9C91BD8F8C500C862E9 /* Image */,
 			);
 			name = Resources;
@@ -602,6 +613,7 @@
 				E529DC131BE07C0100F4E0E7 /* tabbar_start@3x.png in Resources */,
 				E577D9E51BD8F8D100C862E9 /* welcome_guide667_4@2x.png in Resources */,
 				E577D9E21BD8F8D100C862E9 /* welcome_guide667_1@2x.png in Resources */,
+				E5176ACB1BFAD41100E0A679 /* OADbin.bin in Resources */,
 				E577D9DF1BD8F8D100C862E9 /* welcome_guide568_2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

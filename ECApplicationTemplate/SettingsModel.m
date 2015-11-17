@@ -22,7 +22,7 @@
     if (self) {
         self.settingTitlesGroup = @[
                                     @[@"个人信息", @"修改密码"],
-                                    @[@"消息通知", @"设备绑定"],
+                                    @[@"消息通知", @"设备绑定", @"固件升级"],
                                     @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
                                     @[@"注销登录"],
                                     ];
@@ -62,7 +62,6 @@
         cell.layer.mask = maskLayer;
     }
     
-    // content of cell
     cell.titleLabel.text = self.settingTitlesGroup[indexPath.section][indexPath.row];
     cell.redPoint.hidden = YES;
     cell.infoLabel.hidden = YES;
@@ -78,6 +77,9 @@
                     cell.infoLabel.hidden = NO;
                     break;
                 }
+                case 2:
+                    // TODO: 检测到新版本，请升级
+                    break;
             }
             break;
         default:

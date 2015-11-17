@@ -24,6 +24,8 @@
     [UIApplication sharedApplication].statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
     
+    [[AWBluetooth sharedBluetooth] createCentralManager];
+    
     [self setScrollGuideView];
 }
 
@@ -77,7 +79,6 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([[userDefaults objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
         [self hiddenScrollView];
-        [[AWBluetooth sharedBluetooth] createCentralManager];
         
         [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
     }

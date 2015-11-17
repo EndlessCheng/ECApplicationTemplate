@@ -16,6 +16,8 @@
 
 @property (nonatomic) CBCentralManager *centralManager;
 
+@property (nonatomic) BOOL hadConnected;
+
 @property (nonatomic) BOOL needUpdate;
 @property (nonatomic) NSData *APPServiceImageData;
 @property (nonatomic) int APPServiceImageVersion;
@@ -36,14 +38,15 @@
     return sharedBluetooth;
 }
 
-- (BOOL)isPoweredOn {
-    return self.centralManager.state == CBCentralManagerStatePoweredOn;
-}
-
 - (void)createCentralManager {
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     self.needUpdate = NO;
 }
+
+- (BOOL)isPoweredOn {
+    return self.centralManager.state == CBCentralManagerStatePoweredOn;
+}
+
 
 #pragma mark - Scan
 
@@ -60,7 +63,22 @@
     
     self.peripheralUUIDStringDictionary = [[NSMutableDictionary alloc] init];
     NSArray *scanServices = @[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString]];
-    NSLog(@"1. scanForPeripheralsWithServices: %@", scanServices);
+    NSLog(@"1. scanForPeripheralsWithNormalServices: %@", scanServices);
+    [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
+}
+
+- (void)scanOADPeripherals {
+    if (![self isPoweredOn]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self scanOADPeripherals];
+        });
+        return;
+    }
+    
+    self.peripheralDictionary = [[NSMutableDictionary alloc] init];
+    // TODO: try kOADServiceUUIDString ???
+    NSArray *scanServices = @[[CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]];
+    NSLog(@"1. scanForPeripheralsWithOADServices: %@", scanServices);
     [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
 }
 
@@ -73,6 +91,11 @@
 
 // 禁止接受manufacturerString作为参数！只有UUID才能直连
 - (void)connectToPeripheralWithUUIDString:(NSString *)UUIDString {
+    if (!UUIDString) {
+        NSLog(@"empty UUID string!");
+        return;
+    }
+    
     NSLog(@"connectToPeripheralWithUUIDString self.centralManager.state: %@", @(self.centralManager.state));
     if (![self isPoweredOn]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -81,43 +104,32 @@
         return;
     }
     
+    NSLog(@"1-2. retrievePeripheralsWithIdentifiers: %@", UUIDString);
     CBPeripheral *pairedPeripheral = [self.centralManager retrievePeripheralsWithIdentifiers:@[[CBUUID UUIDWithString:UUIDString]]][0];
     [self saveAndConnectPeripheral:pairedPeripheral];
 }
 
 - (void)connectToPairedPeripheral {
-    NSLog(@"1-2. retrievePeripheralsWithIdentifiers: %@", kPairedPeripheralUUIDString);
     [self connectToPeripheralWithUUIDString:kPairedPeripheralUUIDString];
 }
 
-- (void)disconnectPeripheral {
+- (void)cancelPeripheralConnection {
+    [self.centralManager cancelPeripheralConnection:[AWPeripheral sharedPeripheral].pairedPeripheral];
     [AWPeripheral sharedPeripheral].pairedPeripheral = nil;
-    self.centralManager = nil;
+    // now [AWPeripheral sharedPeripheral].isConnected == NO
 }
 
 
 #pragma mark - Update Peripheral APPServiceImage
 
 - (void)updatePeripheralAPPServiceImageWithAPPServiceImageData:(NSData *)APPServiceImageData {
-    if (!self.centralManager) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"未绑定设备" message:@"请先绑定设备后再升级" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alertView show];
-        return;
-    }
-    
     self.needUpdate = YES;
-    NSString *binPath = [[NSBundle mainBundle] pathForResource:@"OADbin" ofType:@"bin"];
-    NSLog(@"binPath: %@", binPath);
-    self.APPServiceImageData = [NSData dataWithContentsOfFile:binPath];
-    
-    
     self.APPServiceImageData = APPServiceImageData;
     NSLog(@"binData.length: %@", @(self.APPServiceImageData.length));
-    
     const Byte *bytes = self.APPServiceImageData.bytes;
     self.APPServiceImageVersion = bytes[5] << 8 | bytes[4];
     
-    [self scanNormalPeripherals];
+    [self connectToPairedPeripheral];
 }
 
 - (void)prepareForOAD {
@@ -125,21 +137,10 @@
     self.isReadyForOAD = YES;
 }
 
-- (void)scanOADPeripherals {
-    NSLog(@"self.centralManager.state: %@", @(self.centralManager.state));
-    
-    if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
-        self.peripheralDictionary = [[NSMutableDictionary alloc] init];
-        // TODO: try kOADServiceUUIDString ???
-        NSArray *scanServices = @[[CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]];
-        NSLog(@"1. scanForPeripheralsWithServices: %@", scanServices);
-        [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
-    }
-}
-
 
 #pragma mark - Central Manager Delegate
 
+// 状态改变时自动重连
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     if (kPairedPeripheralUUIDString) {
         [self connectToPairedPeripheral];
@@ -149,9 +150,6 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSLog(@"2. didDiscoverPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
     NSLog(@"advertisementData: %@", advertisementData);
-    NSData *manufacturerData = advertisementData[@"kCBAdvDataManufacturerData"];
-    NSString *manufacturerString = [NSString hexStringWithData:manufacturerData];
-    NSLog(@"manufacturerData: %@", manufacturerString);
     NSLog(@"RSSI: %@", RSSI);
     
     if (self.isReadyForOAD) {
@@ -170,6 +168,7 @@
         }
     } else {
         if ([peripheral.name isEqualToString:kNormalStatePeripheralName]) {
+            NSString *manufacturerString = [NSString hexStringWithData:advertisementData[@"kCBAdvDataManufacturerData"]];
             self.peripheralUUIDStringDictionary[manufacturerString] = peripheral.identifier.UUIDString;
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPeripheralsPopupViewFindNewPeripheral object:@{kFindNewPeripheralManufacturer: manufacturerString}];
         }
@@ -183,8 +182,13 @@
     
     [self.centralManager connectPeripheral:peripheral options:nil];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (![AWPeripheral sharedPeripheral].isConnected) {
+    [self checkConnectionAfterSeconds:1.0];
+}
+
+- (void)checkConnectionAfterSeconds:(double)seconds {
+    self.hadConnected = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self.hadConnected) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接失败" message:@"请将手机靠近设备后再尝试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alertView show];
         }
@@ -194,6 +198,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"3. didConnectPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
     
+    self.hadConnected = YES;
     [AWPeripheral sharedPeripheral].isConnected = YES;
     
     if ([peripheral.name isEqualToString:kNormalStatePeripheralName]) {
@@ -206,11 +211,20 @@
     [peripheral discoverServices:services];
 }
 
-// TODO: 蓝牙非人为断开时重新连接
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    // 人为cancelPeripheralConnection
+    if (![AWPeripheral sharedPeripheral].isConnected) {
+        return;
+    }
+    
+    // 意外断开，如距离过远，连接到充电座等
     NSLog(@"*** didDisconnectPeripheral");
     [AWPeripheral sharedPeripheral].isConnected = NO;
-    [self connectToPairedPeripheral];
+    if (self.isReadyForOAD) {
+        [self scanOADPeripherals];
+    } else {
+        [self connectToPairedPeripheral];
+    }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
@@ -265,28 +279,27 @@
         if (!self.needUpdate) {
             return;
         }
-        if (![self isNeedUpdate]) {
-            self.needUpdate = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"当前设备已为最新版本" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alertView show];
-            return;
-        }
+//        if (![self isNeedUpdate]) {
+//            self.needUpdate = NO;
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"当前设备已为最新版本" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//            [alertView show];
+//            return;
+//        }
     } else if ([characteristicUUIDString isEqualToString:kGetSensorDataCharacteristicUUIDString]) {
         if (!self.needUpdate) {
             return;
         }
-//        NSLog(@"7.2. isCharging: %d", [AWPeripheral sharedPeripheral].isCharging);
         if ([AWPeripheral sharedPeripheral].isCharging) {
             self.needUpdate = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"请勿在升级时充电" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"请勿在升级时充电" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alertView show];
             return;
         }
         int batteryPercentage = (int)[AWPeripheral sharedPeripheral].batteryPercentage;
-//        NSLog(@"7.3. GetBatteryVoltage: %f", batteryVoltage);
+        NSLog(@"7.3. GetBatteryVoltage: %d", batteryPercentage);
         if (batteryPercentage <= 15) {
             self.needUpdate = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"设备电量不足%d%%", batteryPercentage] message:@"请充电后再升级" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"设备电量不足%d%%", batteryPercentage] message:@"请充电后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alertView show];
             return;
         }
@@ -296,6 +309,8 @@
         }
         NSLog(@"8. Disable APPServiceImage");
         [[AWPeripheral sharedPeripheral] disableAPPServiceImage];
+        // 由于断开后连上很快，并且为防止意外的bug，这里不设置pairedPeripheral = nil;
+        
         [self prepareForOAD];
         [self scanOADPeripherals];
     } else if ([characteristicUUIDString isEqualToString:kOADServiceImageIdentifyCharacteristicUUIDString]) {
@@ -318,7 +333,7 @@
         if (OADServiceImageWriteOffset == 2815) {
             self.isReadyForOAD = NO;
             self.needUpdate = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"升级成功" message:@"您的固件已升级到最新版本" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"升级成功" message:@"您的固件已升级到最新版本" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alertView show];
             
             [self scanNormalPeripherals];
