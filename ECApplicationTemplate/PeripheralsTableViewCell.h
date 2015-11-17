@@ -13,4 +13,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *manufacturerLabel;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *pairingPeripheralIndicatorView;
 
+@property (nonatomic) NSString *manufacturerString;
+
 @end

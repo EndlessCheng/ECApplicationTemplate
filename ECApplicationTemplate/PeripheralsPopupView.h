@@ -10,6 +10,7 @@
 
 typedef NS_ENUM(NSUInteger, PeripheralsPopupViewAlertTag) {
     PeripheralsPopupViewAlertTagPairPeripheral = 1,
+    PeripheralsPopupViewAlertTagUpdate,
 };
 
 @interface PeripheralsPopupView : UIView <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>

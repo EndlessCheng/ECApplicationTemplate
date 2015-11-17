@@ -18,4 +18,7 @@ typedef NS_ENUM(NSUInteger, ECUserDefaultsLoginState) {
 #define kUserDefaultsPairedPeripheralUUIDString @"pairedPeripheralUUIDString"
 #define kPairedPeripheralUUIDString [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsPairedPeripheralUUIDString]
 
+#define kUserDefaultsDidUpdateAPPServiceImage @"didUpdateAPPServiceImage"
+#define kFailedUpdateAPPServiceImage ([[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsDidUpdateAPPServiceImage] && !((NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsDidUpdateAPPServiceImage]).boolValue)
+
 #endif /* ECUserDefaults_h */

@@ -7,6 +7,7 @@
 //
 
 #import "AWBluetooth.h"
+#import "AWPeripheral.h"
 
 #import "PeripheralsPopupView.h"
 #import "PeripheralsTableViewCell.h"
@@ -50,12 +51,12 @@
             NSString *manufacturerString = dict[kFindNewPeripheralManufacturer];
             if (![self.manufacturerStrings containsObject:manufacturerString]) {
                 [self.manufacturerStrings addObject:manufacturerString];
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.manufacturerStrings.count - 1 inSection:0];
-                [self.peripheralsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+                
+                [self.peripheralsTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.manufacturerStrings.count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
             }
         }];
         
-        [[AWBluetooth sharedBluetooth] scanNormalPeripherals];
+        [[AWBluetooth sharedBluetooth] scanPeripherals];
     }
 }
 
@@ -81,29 +82,39 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PeripheralsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralsTableViewCellIdentifier" forIndexPath:indexPath];
     
-    cell.manufacturerLabel.text = self.manufacturerStrings[indexPath.row];
+    cell.manufacturerLabel.text = [self.manufacturerStrings[indexPath.row] isEqualToString:kOADManufacturerString] ? @"固件升级" : self.manufacturerStrings[indexPath.row];
     cell.pairingPeripheralIndicatorView.hidden = YES;
+    cell.manufacturerString = self.manufacturerStrings[indexPath.row];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.didConnectToUnpairedPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationPeripheralsPopupViewDidConnectToUnpairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectToUnpairedPeripheralObserver];
-        
-        self.pairedPeripheralUUIDString = [AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[self.manufacturerStrings[indexPath.row]];
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接成功" message:@"是否绑定该设备" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.tag = PeripheralsPopupViewAlertTagPairPeripheral;
+    NSString *manufacturerString = self.manufacturerStrings[indexPath.row];
+    if ([manufacturerString isEqualToString:kOADManufacturerString]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"上次升级未成功，是否继续升级？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"继续", nil];
+        alertView.tag = PeripheralsPopupViewAlertTagUpdate;
         [alertView show];
-    }];
-    
-    PeripheralsTableViewCell *cell = (PeripheralsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.pairingPeripheralIndicatorView.hidden = NO;
-    [cell.pairingPeripheralIndicatorView startAnimating];
-    
-    NSString *manufacturerString = cell.manufacturerLabel.text;
-    [[AWBluetooth sharedBluetooth] connectToPeripheralWithUUIDString:[AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[manufacturerString]];
+    } else {
+        PeripheralsTableViewCell *cell = (PeripheralsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.pairingPeripheralIndicatorView.hidden = NO;
+        
+        self.didConnectToUnpairedPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationPeripheralsPopupViewDidConnectToUnpairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectToUnpairedPeripheralObserver];
+            
+            // ???如果响应很慢，直接return，该次连接失败
+            if (indexPath.row >= self.manufacturerStrings.count) {
+                return;
+            }
+            
+            self.pairedPeripheralUUIDString = [AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[manufacturerString];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接成功" message:@"是否绑定该设备" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag = PeripheralsPopupViewAlertTagPairPeripheral;
+            [alertView show];
+        }];
+        
+        [[AWBluetooth sharedBluetooth] connectToPeripheralWithUUIDString:[AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[cell.manufacturerString]];
+    }
 }
 
 
@@ -116,7 +127,7 @@
                 [[AWBluetooth sharedBluetooth] cancelPeripheralConnection];
                 [self clearTableView];
                 
-                [[AWBluetooth sharedBluetooth] scanNormalPeripherals];
+                [[AWBluetooth sharedBluetooth] scanPeripherals];
             } else if (buttonIndex == 1) {
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setObject:self.pairedPeripheralUUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
@@ -125,6 +136,11 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPeripheralsPopupViewDidPairToPeripheral object:nil];
                 
                 self.hidden = YES;
+            }
+            break;
+        case PeripheralsPopupViewAlertTagUpdate:
+            if (buttonIndex == 1) {
+                [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImage];
             }
             break;
         default:

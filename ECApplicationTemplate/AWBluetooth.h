@@ -13,18 +13,20 @@
 @property (nonatomic) NSMutableDictionary<NSNumber *, CBPeripheral *> *peripheralDictionary;
 @property (nonatomic) NSMutableDictionary<NSString *, NSString *> *peripheralUUIDStringDictionary;
 
+@property (nonatomic) NSData *APPServiceImageData;
+
 + (AWBluetooth *)sharedBluetooth;
 - (void)createCentralManager;
 
 - (BOOL)isPoweredOn;
 
-- (void)scanNormalPeripherals;
+- (void)scanPeripherals;
 - (void)stopScan;
 
 - (void)connectToPeripheralWithUUIDString:(NSString *)UUIDString;
 - (void)connectToPairedPeripheral;
 - (void)cancelPeripheralConnection;
 
-- (void)updatePeripheralAPPServiceImageWithAPPServiceImageData:(NSData *)APPServiceImageData;
+- (void)updatePeripheralAPPServiceImage;
 
 @end
