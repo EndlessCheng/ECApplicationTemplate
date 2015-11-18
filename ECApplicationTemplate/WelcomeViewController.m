@@ -14,8 +14,6 @@
 
 @interface WelcomeViewController ()
 
-@property (nonatomic) id<NSObject> connectionFailedObserver;
-
 @end
 
 @implementation WelcomeViewController
@@ -26,7 +24,6 @@
     [UIApplication sharedApplication].statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
     
-    [self setBlueTooth];
     [self setScrollGuideView];
 }
 
@@ -47,17 +44,6 @@
 
 
 #pragma mark - User Methods
-
-- (void)setBlueTooth {
-    self.connectionFailedObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationConnectionFailed object:nil queue:nil usingBlock:^(NSNotification *n) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接失败" message:@"请将手机靠近设备后再尝试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alertView show];
-    }];
-    
-
-    
-    [[AWBluetooth sharedBluetooth] createCentralManager];
-}
 
 - (void)setScrollGuideView {
     for (int i = 0; i < GUIDE_PICTURE_NUMBER; i++) {

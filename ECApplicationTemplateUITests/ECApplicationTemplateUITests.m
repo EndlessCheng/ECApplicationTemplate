@@ -35,6 +35,9 @@
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[app.tabBars childrenMatchingType:XCUIElementTypeButton] elementBoundByIndex:1] tap];
 }
 
 @end

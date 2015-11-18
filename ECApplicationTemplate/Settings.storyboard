@@ -217,8 +217,8 @@
                                         </userDefinedRuntimeAttributes>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="Ww4-lH-2hZ"/>
                                                 <exclude reference="NhG-H8-8dz"/>
+                                                <exclude reference="Ww4-lH-2hZ"/>
                                                 <exclude reference="qM6-Fq-Fcp"/>
                                             </mask>
                                         </variation>
@@ -293,8 +293,8 @@
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="7kx-Z7-9XQ"/>
-                                                <exclude reference="uqL-ko-FkH"/>
                                                 <exclude reference="fCF-p1-qVU"/>
+                                                <exclude reference="uqL-ko-FkH"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -309,8 +309,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="sJQ-Wm-BCO"/>
                                         <exclude reference="rXf-0K-Nl5"/>
+                                        <exclude reference="sJQ-Wm-BCO"/>
                                     </mask>
                                 </variation>
                             </view>

@@ -6,17 +6,22 @@
 //  Copyright © 2015年 jianyan. All rights reserved.
 //
 
+#import "AWBluetooth.h"
+
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic) id<NSObject> connectionFailedObserver;
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setBlueTooth];
+    
     return YES;
 }
 
@@ -43,6 +48,19 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+
+#pragma mark - After Application Launch
+
+- (void)setBlueTooth {
+    self.connectionFailedObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationConnectionFailed object:nil queue:nil usingBlock:^(NSNotification *n) {
+        //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接失败" message:@"请将手机靠近设备后再尝试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        //        [alertView show];
+    }];
+    
+    [[AWBluetooth sharedBluetooth] createCentralManager];
+}
+
 
 #pragma mark - Core Data stack
 
@@ -93,7 +111,6 @@
     return _persistentStoreCoordinator;
 }
 
-
 - (NSManagedObjectContext *)managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext) {
@@ -108,6 +125,7 @@
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
 }
+
 
 #pragma mark - Core Data Saving support
 
