@@ -175,7 +175,6 @@
     [AWPeripheral sharedPeripheral].peripheralState |= 1;
     
     if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 0) { // OAD 则跳过 post notification
-        NSLog(@"kPairedPeripheralUUIDString: %@", kPairedPeripheralUUIDString);
         [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
     }
 

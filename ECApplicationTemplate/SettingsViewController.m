@@ -194,12 +194,16 @@
                     if (writtenBytesLength == [AWFileUtil getLocalAPPServiceImageData].length) {
                         [[NSNotificationCenter defaultCenter] removeObserver:self.updateAPPServiceImageObserver];
                         
+                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                        [userDefaults setObject:@([AWFileUtil getLocalAPPServiceImageVersion]) forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
+                        [userDefaults synchronize];
+                        
                         [[AWBluetooth sharedBluetooth] scanAllPeripherals];
                         
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"升级成功" message:@"您的固件已升级到最新版本，赶快运动吧" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                         [alertView show];
-                        self.updateProgressBackgroundView.hidden = YES;
                         
+                        self.updateProgressBackgroundView.hidden = YES;
                         self.tabBarController.tabBar.userInteractionEnabled = YES;
                     }
                 }];
