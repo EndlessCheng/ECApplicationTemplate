@@ -97,6 +97,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.userInteractionEnabled = NO;
+    
     NSString *manufacturerString = self.manufacturerStrings[indexPath.row];
     PeripheralsTableViewCell *cell = (PeripheralsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.pairingPeripheralIndicatorView.hidden = NO;
@@ -104,15 +106,16 @@
     self.didConnectUnpairedPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDidConnectUnpairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
         [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectUnpairedPeripheralObserver];
         
-        // ???如果响应很慢，直接return，该次连接失败
-        if (indexPath.row >= self.manufacturerStrings.count) {
-            return;
+        if (indexPath.row < self.manufacturerStrings.count) {
+            self.pairedPeripheralUUIDString = [AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[manufacturerString];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接成功" message:@"是否绑定该设备" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag = PeripheralsPopupViewAlertTagPairPeripheral;
+            [alertView show];
+        } else {
+            // ???如果响应很慢，该次连接失败
         }
         
-        self.pairedPeripheralUUIDString = [AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[manufacturerString];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接成功" message:@"是否绑定该设备" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.tag = PeripheralsPopupViewAlertTagPairPeripheral;
-        [alertView show];
+        self.userInteractionEnabled = YES;
     }];
     
     [[AWBluetooth sharedBluetooth] connectToPeripheralWithUUIDString:[AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[cell.manufacturerString]];
