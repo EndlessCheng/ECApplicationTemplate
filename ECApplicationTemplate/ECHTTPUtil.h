@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class AWUserInfo;
+
 @interface ECHTTPUtil : NSObject
 
 + (BOOL)requestVerificationCodeWithAccount:(NSString *)account error:(NSString **)errorString;
+
++ (BOOL)login;
+
++ (AWUserInfo *)fetchUserInfo;
 
 @end

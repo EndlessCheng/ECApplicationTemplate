@@ -7,6 +7,8 @@
 //
 
 #import "AWBluetooth.h"
+#import "AWPeripheral.h"
+#import "AWFileUtil.h"
 
 #import "SettingsViewController.h"
 #import "SettingsTableViewCell.h"
@@ -16,7 +18,7 @@
 
 @property (nonatomic) SettingsModel *settingsModel;
 
-@property (nonatomic) id<NSObject> didPairToPeripheralObserver;
+@property (nonatomic) id<NSObject> getAPPServiceImageVersionObserver;
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;
 
 @end
@@ -26,15 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = NSLocalizedString(@"设置",);
     
     self.settingsModel = [[SettingsModel alloc] init];
     self.settingsTableView.dataSource = self.settingsModel;
-    
-    self.navigationItem.title = NSLocalizedString(@"设置",);
-    
     if ([self.settingsTableView respondsToSelector:@selector(setLayoutMargins:)]) {
         self.settingsTableView.layoutMargins = UIEdgeInsetsZero;
     }
+    
+    self.peripheralsPopupView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,9 +62,9 @@
 }
 
 - (void)updateUpdateProgressViewWithWrittenBytesLength:(long)writtenBytesLength {
-    self.updateProgressView.progress = (float)writtenBytesLength / [AWBluetooth sharedBluetooth].APPServiceImageData.length;
+    self.updateProgressView.progress = (float)writtenBytesLength / [AWFileUtil getLocalAPPServiceImageData].length;
     self.progressPercentLabel.text = [NSString stringWithFormat:@"%.1f%%", self.updateProgressView.progress * 100];
-    self.progressRateLabel.text = [NSString stringWithFormat:@"%ld/%ld", (long)(writtenBytesLength * UPDATE_PROGRESS_MAGIC), (long)([AWBluetooth sharedBluetooth].APPServiceImageData.length * UPDATE_PROGRESS_MAGIC)];
+    self.progressRateLabel.text = [NSString stringWithFormat:@"%ld/%ld", (long)(writtenBytesLength * UPDATE_PROGRESS_MAGIC), (long)([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC)];
 }
 
 /*
@@ -95,30 +97,23 @@
                         alertView.tag = SettingsAlertTagDisPair;
                         [alertView show];
                     } else {
-                        self.didPairToPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationPeripheralsPopupViewDidPairToPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
-                            // 已绑定并连接设备
-                            [[NSNotificationCenter defaultCenter] removeObserver:self.didPairToPeripheralObserver];
-                            
-                            [self reloadPairPeripheralCell];
-                        }];
-                        
-                        self.peripheralPopupView.hidden = NO;
+                        self.tabBarController.tabBar.userInteractionEnabled = NO;
+                        self.peripheralsPopupView.hidden = NO;
                     }
                     break;
                 } case 2: {
+                    UIAlertView *alertView;
                     if (kFailedUpdateAPPServiceImage) {
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"上次升级未成功，按确定开始升级。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                        alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"上次升级未成功，按确定开始升级" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                         alertView.tag = SettingsAlertTagUpdate;
-                        [alertView show];
-                        break;
+                    } else if (!kPairedPeripheralUUIDString) {
+                        alertView = [[UIAlertView alloc] initWithTitle:@"未绑定设备" message:@"请先绑定设备后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    } else if (kPairedPeripheralAPPServiceImageVersion < [AWFileUtil getLocalAPPServiceImageVersion]) {
+                        alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"升级耗时约2分钟，按确定开始升级" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                        alertView.tag = SettingsAlertTagUpdate;
+                    } else {
+                        alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"固件已升级到最新版本，赶快运动吧" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     }
-                    if (!kPairedPeripheralUUIDString) {
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"未绑定设备" message:@"请先绑定设备后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                        [alertView show];
-                        break;
-                    }
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"升级耗时约2分钟，按确定开始升级。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                    alertView.tag = SettingsAlertTagUpdate;
                     [alertView show];
                     break;
                 } default:
@@ -143,6 +138,28 @@
 }
 
 
+#pragma mark - Peripherals Popup View Delegate
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didPairPeripheralWithUUIDString:(NSString *)UUIDString {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:UUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
+    [userDefaults synchronize];
+    
+    // 在用户绑定后还会等待一会表示“准备数据”
+    self.getAPPServiceImageVersionObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationGetAPPServiceImageVersion object:nil queue:nil usingBlock:^(NSNotification *n) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self.getAPPServiceImageVersionObserver];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:n.object forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
+        [userDefaults synchronize];
+        
+        [self reloadPairPeripheralCell];
+        
+        peripheralsPopupView.hidden = YES;
+        self.tabBarController.tabBar.userInteractionEnabled = YES;
+    }];
+}
+
+
 #pragma mark - Alert View Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -159,9 +176,12 @@
             break;
         case SettingsAlertTagUpdate:
             if (buttonIndex == 1) {
+                // TODO: 提取模块
+                self.tabBarController.tabBar.userInteractionEnabled = NO;
+                
                 self.updateProgressView.progress = 0.0;
                 self.progressPercentLabel.text = @"0.0%";
-                self.progressRateLabel.text = @"启动中...";
+                self.progressRateLabel.text = @"加载数据...";
                 self.updateProgressBackgroundView.hidden = NO;
                 
                 self.updateAPPServiceImageObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationOADServiceImageBlockNumber object:nil queue:nil usingBlock:^(NSNotification *n) {
@@ -171,15 +191,20 @@
                     
                     [self updateUpdateProgressViewWithWrittenBytesLength:writtenBytesLength];
                     
-                    if (writtenBytesLength == [AWBluetooth sharedBluetooth].APPServiceImageData.length) {
+                    if (writtenBytesLength == [AWFileUtil getLocalAPPServiceImageData].length) {
                         [[NSNotificationCenter defaultCenter] removeObserver:self.updateAPPServiceImageObserver];
+                        
+                        [[AWBluetooth sharedBluetooth] scanAllPeripherals];
                         
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"升级成功" message:@"您的固件已升级到最新版本，赶快运动吧" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                         [alertView show];
                         self.updateProgressBackgroundView.hidden = YES;
+                        
+                        self.tabBarController.tabBar.userInteractionEnabled = YES;
                     }
                 }];
                 
+                [AWPeripheral sharedPeripheral].needUpdate = YES;
                 [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImage];
             }
             break;
@@ -204,7 +229,8 @@
 // 注意“取消绑定”和“断开绑定”是两码事
 - (IBAction)cancelPairPeripheral:(id)sender {
     [[AWBluetooth sharedBluetooth] stopScan];
-    self.peripheralPopupView.hidden = YES;
+    self.peripheralsPopupView.hidden = YES;
+    self.tabBarController.tabBar.userInteractionEnabled = YES;
 }
 
 @end

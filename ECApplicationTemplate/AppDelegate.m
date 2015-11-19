@@ -12,8 +12,6 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic) id<NSObject> connectionFailedObserver;
-
 @end
 
 @implementation AppDelegate
@@ -52,12 +50,7 @@
 
 #pragma mark - After Application Launch
 
-- (void)setBlueTooth {
-    self.connectionFailedObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationConnectionFailed object:nil queue:nil usingBlock:^(NSNotification *n) {
-        //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接失败" message:@"请将手机靠近设备后再尝试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        //        [alertView show];
-    }];
-    
+- (void)setBlueTooth {    
     [[AWBluetooth sharedBluetooth] createCentralManager];
 }
 

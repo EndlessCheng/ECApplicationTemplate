@@ -14,6 +14,7 @@
 		E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */; };
 		E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */; };
 		E5176ACB1BFAD41100E0A679 /* OADbin.bin in Resources */ = {isa = PBXBuildFile; fileRef = E5176ACA1BFAD41100E0A679 /* OADbin.bin */; };
+		E5176AD31BFC650700E0A679 /* AWUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176AD21BFC650700E0A679 /* AWUserInfo.m */; };
 		E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */; };
 		E529DC081BE07C0100F4E0E7 /* tabbar_history_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DBF81BE07C0100F4E0E7 /* tabbar_history_selected@2x.png */; };
 		E529DC091BE07C0100F4E0E7 /* tabbar_history_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DBF91BE07C0100F4E0E7 /* tabbar_history_selected@3x.png */; };
@@ -32,6 +33,8 @@
 		E529DC161BE07C0100F4E0E7 /* tabbar_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC061BE07C0100F4E0E7 /* tabbar_user@2x.png */; };
 		E529DC171BE07C0100F4E0E7 /* tabbar_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */; };
 		E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */; };
+		E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */; };
+		E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */; };
 		E577D9661BD73ED200C862E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9651BD73ED200C862E9 /* main.m */; };
 		E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9681BD73ED200C862E9 /* AppDelegate.m */; };
 		E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D96B1BD73ED200C862E9 /* WelcomeViewController.m */; };
@@ -98,6 +101,8 @@
 		E5176AC61BF9941100E0A679 /* NSString+AWHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AWHexString.h"; sourceTree = "<group>"; };
 		E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AWHexString.m"; sourceTree = "<group>"; };
 		E5176ACA1BFAD41100E0A679 /* OADbin.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = OADbin.bin; path = ../../../WeCoachSrc/wecoach_public_class/Resources/bin/OADbin.bin; sourceTree = "<group>"; };
+		E5176AD11BFC650700E0A679 /* AWUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWUserInfo.h; sourceTree = "<group>"; };
+		E5176AD21BFC650700E0A679 /* AWUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWUserInfo.m; sourceTree = "<group>"; };
 		E529DBBF1BDA31C900F4E0E7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E529DBC01BDA31C900F4E0E7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E529DBF51BE0766100F4E0E7 /* ECNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNumbers.h; sourceTree = "<group>"; };
@@ -119,6 +124,9 @@
 		E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_user@3x.png"; sourceTree = "<group>"; };
 		E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECHTTPUtil.h; sourceTree = "<group>"; };
 		E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECHTTPUtil.m; sourceTree = "<group>"; };
+		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
+		E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWFileUtil.m; sourceTree = "<group>"; };
+		E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E577D9611BD73ED200C862E9 /* ECApplicationTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECApplicationTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577D9651BD73ED200C862E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E577D9671BD73ED200C862E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -215,6 +223,7 @@
 		E50542511BF59F9300B66F1F /* CommonModule */ = {
 			isa = PBXGroup;
 			children = (
+				E5176ACD1BFC64D700E0A679 /* Models */,
 				E577D9AB1BD74ACC00C862E9 /* Utils */,
 				E50542521BF59FAA00B66F1F /* Views */,
 			);
@@ -248,6 +257,7 @@
 		E50542661BF5B4D200B66F1F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */,
 				E577D99A1BD7421E00C862E9 /* Welcome */,
 				E577D99C1BD747F500C862E9 /* Home */,
 				E577D9A51BD7499000C862E9 /* Settings */,
@@ -261,6 +271,15 @@
 				E5176ACA1BFAD41100E0A679 /* OADbin.bin */,
 			);
 			name = Bin;
+			sourceTree = "<group>";
+		};
+		E5176ACD1BFC64D700E0A679 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E5176AD11BFC650700E0A679 /* AWUserInfo.h */,
+				E5176AD21BFC650700E0A679 /* AWUserInfo.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		E529DBC21BE0710000F4E0E7 /* WelcomeGuide */ = {
@@ -418,6 +437,8 @@
 				E577D9AD1BD74ADA00C862E9 /* StoryBoardUtil.m */,
 				E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */,
 				E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */,
+				E55E2E591BFCEBDB00446221 /* AWFileUtil.h */,
+				E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -603,6 +624,7 @@
 				E529DC151BE07C0100F4E0E7 /* tabbar_user_selected@3x.png in Resources */,
 				E577D9DE1BD8F8D100C862E9 /* welcome_guide568_1@2x.png in Resources */,
 				E577D9DA1BD8F8D100C862E9 /* welcome_guide480_1@2x.png in Resources */,
+				E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */,
 				E529DC081BE07C0100F4E0E7 /* tabbar_history_selected@2x.png in Resources */,
 				E577D96F1BD73ED200C862E9 /* Main.storyboard in Resources */,
 				E529DC121BE07C0100F4E0E7 /* tabbar_start@2x.png in Resources */,
@@ -640,6 +662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */,
+				E5176AD31BFC650700E0A679 /* AWUserInfo.m in Sources */,
 				E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */,
 				E577D9A41BD748D600C862E9 /* FinishViewController.m in Sources */,
 				E577D9AE1BD74ADA00C862E9 /* StoryBoardUtil.m in Sources */,
@@ -651,6 +674,7 @@
 				E577D9721BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld in Sources */,
 				E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */,
 				E577D9661BD73ED200C862E9 /* main.m in Sources */,
+				E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */,
 				E505425B1BF5B0D700B66F1F /* PeripheralsTableViewCell.m in Sources */,
 				E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */,
 				E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */,

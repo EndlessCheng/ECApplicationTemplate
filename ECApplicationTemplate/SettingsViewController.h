@@ -17,11 +17,11 @@ typedef NS_ENUM(NSUInteger, SettingsAlertTag) {
     SettingsAlertTagLogOut,
 };
 
-@interface SettingsViewController : UIViewController <UITableViewDelegate, UIAlertViewDelegate>
+@interface SettingsViewController : UIViewController <PeripheralsPopupViewDelegate, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *settingsTableView;
 
-@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralPopupView;
+@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
 - (IBAction)cancelPairPeripheral:(id)sender;
 
 @property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;

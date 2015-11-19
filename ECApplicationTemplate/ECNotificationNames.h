@@ -9,22 +9,33 @@
 #ifndef ECNotificationNames_h
 #define ECNotificationNames_h
 
-// 扫描到新外设
-#define kNotificationPeripheralsPopupViewFindNewPeripheral @"peripheralsPopupViewFindNewPeripheral"
+#pragma mark - Peripheral Service A (AA50)
+
+#define kNotificationGetSensorData @"getSensorData" // AA51
+
+
+#pragma mark - Peripheral Service B (AB50)
+
+#define kNotificationGetAPPServiceImageVersion @"getAPPServiceImageVersion" // AB56
+
+#define kNotificationIsReadyForOAD @"isReadyForOAD" // AB55
+
+
+#pragma mark - Peripheral Service OAD (FFC0)
+
+#define kNotificationOADServiceImageBlockNumber @"OADServiceImageBlockNumber" // FFC2
+#define kOADServiceImageBlockNumber @"OADServiceImageBlockNumber"
+
+
+#pragma mark - Bluetooth Scan / Connection
+
+#define kNotificationFindNewPeripheral @"findNewPeripheral"
 #define kFindNewPeripheralManufacturer @"findNewPeripheralManufacturer"
 
 #define kNotificationConnectionFailed @"connectionFailed"
 
-// 点击待绑定列表中的某个外设之后，连接上
-#define kNotificationPeripheralsPopupViewDidConnectToUnpairedPeripheral @"peripheralsPopupViewDidConnectToUnpairedPeripheral"
+#define kNotificationDidConnectPairedPeripheral @"DidConnectPairedPeripheral"
+#define kNotificationDidConnectUnpairedPeripheral @"didConnectUnpairedPeripheral"
 
-// 绑定到所连接的外设
-#define kNotificationPeripheralsPopupViewDidPairToPeripheral @"peripheralsPopupViewDidPairToUnpairedPeripheral"
-
-// 自动连接
-#define kNotificationStartViewControllerDidConnectToPairedPeripheral @"startViewControllerDidConnectToPairedPeripheral"
-
-#define kNotificationOADServiceImageBlockNumber @"OADServiceImageBlockNumber"
-#define kOADServiceImageBlockNumber @"OADServiceImageBlockNumber"
 
 #endif /* ECNotificationNames_h */

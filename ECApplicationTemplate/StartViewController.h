@@ -13,7 +13,8 @@
 typedef NS_ENUM(NSUInteger, ActionButtonState) {
     ActionButtonStatePairPeripheral,
     ActionButtonStateSearchingPairedPeripheral,
-    ActionButtonStateUpdate,
+    ActionButtonStatePreparing,
+    ActionButtonStatePleaseUpdate,
     ActionButtonStateStart,
 };
 
@@ -21,13 +22,13 @@ typedef NS_ENUM(NSUInteger, StartAlertTag) {
     StartAlertTagUpdate = 1,
 };
 
-@interface StartViewController : UIViewController <UIAlertViewDelegate>
+@interface StartViewController : UIViewController <PeripheralsPopupViewDelegate,  UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *actionButton;
 @property (nonatomic) ActionButtonState actionButtonState;
 - (IBAction)clickedActionButton:(id)sender;
 
-@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralPopupView;
+@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
 - (IBAction)cancelPairPeripheral:(id)sender;
 
 @property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;

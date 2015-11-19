@@ -13,6 +13,9 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <Foundation/Foundation.h>
 
+#import "ECHTTPUtil.h"
+#import "AWUserInfo.h"
+
 // Constants
 #import "ECUserDefaults.h"
 #import "ECNumbers.h"
@@ -24,6 +27,6 @@
 
 
 #define kSettingsPairPeripheralInfoLabelText (kPairedPeripheralUUIDString ? @"设备已绑定" : @"请绑定设备");
-
+#define kPleaseUpdateAPPServiceImageMessage @"请升级固件到最新版本。升级耗时约2分钟，按确定开始升级。"
 
 #endif /* ECPrefixHeader_pch */

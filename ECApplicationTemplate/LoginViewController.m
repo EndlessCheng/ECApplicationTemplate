@@ -25,9 +25,9 @@
 }
 
 - (IBAction)loginButtonClicked:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setObject:@(ECUserDefaultsLoginStateIsLogin) forKey:kUserDefaultsLoginState];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    if ([ECHTTPUtil login]) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
 }
 
 /*

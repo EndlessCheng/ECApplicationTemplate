@@ -84,9 +84,15 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([[userDefaults objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
         [self hiddenScrollView];
+
+        [self setUserInfo:[ECHTTPUtil fetchUserInfo]];
         
         [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
     }
+}
+
+- (void)setUserInfo:(AWUserInfo *)userInfo {
+    // change NSUserDefaults
 }
 
 - (IBAction)loginButtonClicked:(id)sender {

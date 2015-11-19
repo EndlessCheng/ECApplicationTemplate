@@ -14,4 +14,14 @@
     return YES;
 }
 
++ (BOOL)login {
+    [[NSUserDefaults standardUserDefaults] setObject:@(ECUserDefaultsLoginStateIsLogin) forKey:kUserDefaultsLoginState];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    return YES;
+}
+
++ (AWUserInfo *)fetchUserInfo {
+    return [[AWUserInfo alloc] init];
+}
+
 @end

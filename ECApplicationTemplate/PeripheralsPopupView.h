@@ -13,7 +13,20 @@ typedef NS_ENUM(NSUInteger, PeripheralsPopupViewAlertTag) {
     PeripheralsPopupViewAlertTagUpdate,
 };
 
+@class PeripheralsPopupView;
+
+@protocol PeripheralsPopupViewDelegate <NSObject>
+
+@required
+
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didPairPeripheralWithUUIDString:(NSString *)UUIDString;
+
+@end
+
+
 @interface PeripheralsPopupView : UIView <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+
+@property(assign, nonatomic, nullable) id<PeripheralsPopupViewDelegate> delegate;
 
 @property (nonatomic, weak) IBOutlet UITableView *peripheralsTableView;
 

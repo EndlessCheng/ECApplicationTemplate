@@ -78,7 +78,8 @@
                     break;
                 }
                 case 2:
-                    // TODO: 检测到新版本，请升级
+//                    cell.infoLabel.text = @"检测到新固件";
+//                    cell.infoLabel.hidden = NO;
                     break;
             }
             break;
