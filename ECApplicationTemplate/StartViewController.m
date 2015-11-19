@@ -53,6 +53,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+// don't alert in this method!
 - (void)updateActionButtonState {
     if (!kPairedPeripheralUUIDString) {
         self.actionButtonState = ActionButtonStatePairPeripheral;

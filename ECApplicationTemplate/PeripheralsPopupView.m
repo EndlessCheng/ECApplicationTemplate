@@ -89,7 +89,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PeripheralsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralsTableViewCellIdentifier" forIndexPath:indexPath];
     
-    cell.manufacturerLabel.text = self.manufacturerStrings[indexPath.row]; // TODO: add prefix 0 when shown®
+    cell.manufacturerLabel.text = self.manufacturerStrings[indexPath.row]; // TODO: add prefix 0 when shown
     cell.pairingPeripheralIndicatorView.hidden = YES;
     cell.manufacturerString = self.manufacturerStrings[indexPath.row];
     

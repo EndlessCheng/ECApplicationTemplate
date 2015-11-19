@@ -148,6 +148,7 @@
         if ([peripheral.name isEqualToString:kOADStatePeripheralName]) {
             self.peripheralDictionary[RSSI] = peripheral;
             // 第一次扫描到目标机后，再扫描1.5秒，然后连接RSSI最大的
+            // must test if you wanna change this seconds!
             if (self.peripheralDictionary.count == 1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self stopScan];
