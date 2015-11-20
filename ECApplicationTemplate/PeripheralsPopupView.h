@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, PeripheralsPopupViewAlertTag) {
+typedef NS_ENUM(NSInteger, PeripheralsPopupViewAlertTag) {
     PeripheralsPopupViewAlertTagPairPeripheral = 1,
     PeripheralsPopupViewAlertTagUpdate,
 };

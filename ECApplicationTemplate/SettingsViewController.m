@@ -61,10 +61,10 @@
     [self.settingsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)updateUpdateProgressViewWithWrittenBytesLength:(long)writtenBytesLength {
+- (void)updateUpdateProgressViewWithWrittenBytesLength:(NSUInteger)writtenBytesLength {
     self.updateProgressView.progress = (float)writtenBytesLength / [AWFileUtil getLocalAPPServiceImageData].length;
     self.progressPercentLabel.text = [NSString stringWithFormat:@"%.1f%%", self.updateProgressView.progress * 100];
-    self.progressRateLabel.text = [NSString stringWithFormat:@"%ld/%ld", (long)(writtenBytesLength * UPDATE_PROGRESS_MAGIC), (long)([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC)];
+    self.progressRateLabel.text = [NSString stringWithFormat:@"%@/%@", @((NSUInteger)(writtenBytesLength * UPDATE_PROGRESS_MAGIC)), @((NSUInteger)([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC))];
 }
 
 /*
@@ -187,7 +187,7 @@
                 self.updateAPPServiceImageObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationOADServiceImageBlockNumber object:nil queue:nil usingBlock:^(NSNotification *n) {
                     NSDictionary *dict = (NSDictionary *)n.object;
                     NSNumber *OADServiceImageBlockNumber = dict[kOADServiceImageBlockNumber];
-                    long writtenBytesLength = (OADServiceImageBlockNumber.integerValue + 1) << 4;
+                    NSUInteger writtenBytesLength = (OADServiceImageBlockNumber.integerValue + 1) << 4;
                     
                     [self updateUpdateProgressViewWithWrittenBytesLength:writtenBytesLength];
                     

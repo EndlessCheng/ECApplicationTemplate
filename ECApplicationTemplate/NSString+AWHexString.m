@@ -13,7 +13,7 @@
 + (NSString *)hexStringWithData:(NSData *)data {
     NSMutableString *hexString = [[NSMutableString alloc] init];
     const Byte *bytes = data.bytes;
-    for (int i = 0; i < data.length; i++) {
+    for (NSUInteger i = 0; i < data.length; i++) {
         [hexString appendString:[NSString stringWithFormat:@"%02x", bytes[i]]];
     }
     return [NSString stringWithString:hexString];

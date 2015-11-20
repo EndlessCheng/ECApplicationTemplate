@@ -18,7 +18,7 @@
     return data;
 }
 
-+ (int)getLocalAPPServiceImageVersion {
++ (NSInteger)getLocalAPPServiceImageVersion {
     const Byte *bytes = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OADbin" ofType:@"bin"]].bytes;
     
     // for test

@@ -11,7 +11,7 @@
 
 #import "PeripheralsPopupView.h"
 
-typedef NS_ENUM(NSUInteger, SettingsAlertTag) {
+typedef NS_ENUM(NSInteger, SettingsAlertTag) {
     SettingsAlertTagDisPair = 1,
     SettingsAlertTagUpdate,
     SettingsAlertTagLogOut,

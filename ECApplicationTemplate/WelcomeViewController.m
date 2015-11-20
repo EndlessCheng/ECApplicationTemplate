@@ -46,8 +46,9 @@
 #pragma mark - User Methods
 
 - (void)setScrollGuideView {
-    for (int i = 0; i < GUIDE_PICTURE_NUMBER; i++) {
-        NSString *imageName = [NSString stringWithFormat:@"welcome_guide%d_%d.png", (int)SCREEN_HEIGHT, i + 1];
+    // use GUIDE_PICTURE_NUMBER for multiple APPs
+    for (NSUInteger i = 0; i < GUIDE_PICTURE_NUMBER; i++) {
+        NSString *imageName = [NSString stringWithFormat:@"welcome_guide_%@_%@.png", @((NSInteger)(SCREEN_HEIGHT + 0.5)), @(i + 1)];
         UIImage *image = [UIImage imageNamed:imageName];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = CGRectMake(i * SCREEN_WIDTH, 0, image.size.width, image.size.height);

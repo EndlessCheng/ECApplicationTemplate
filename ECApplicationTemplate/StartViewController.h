@@ -10,7 +10,7 @@
 
 #import "PeripheralsPopupView.h"
 
-typedef NS_ENUM(NSUInteger, ActionButtonState) {
+typedef NS_ENUM(NSInteger, ActionButtonState) {
     ActionButtonStatePairPeripheral,
     ActionButtonStateSearchingPairedPeripheral,
     ActionButtonStatePreparing,
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, ActionButtonState) {
     ActionButtonStateStart,
 };
 
-typedef NS_ENUM(NSUInteger, StartAlertTag) {
+typedef NS_ENUM(NSInteger, StartAlertTag) {
     StartAlertTagUpdate = 1,
 };
 

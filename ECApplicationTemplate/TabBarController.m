@@ -27,7 +27,7 @@
     
     NSArray *imageName = @[@"tabbar_start.png", @"tabbar_user.png"];
     NSArray *selectedImageName = @[@"tabbar_start_selected.png", @"tabbar_user_selected.png"];
-    for (int i = 0; i < TAB_BAR_NUMBER; i++) {
+    for (NSUInteger i = 0; i < TAB_BAR_NUMBER; i++) {
         UITabBarItem *tabBarItem = self.viewControllers[i].tabBarItem;
         tabBarItem.image = [[UIImage imageNamed:imageName[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
