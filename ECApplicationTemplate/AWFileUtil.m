@@ -20,7 +20,7 @@
 
 + (NSInteger)getLocalAPPServiceImageVersion {
     const Byte *bytes = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OADbin" ofType:@"bin"]].bytes;
-    
+
     // for test
 //    return 1000;
     return (bytes[5] << 8 | bytes[4]) >> 1;

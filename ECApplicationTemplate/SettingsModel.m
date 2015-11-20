@@ -21,11 +21,11 @@
     self = [super init];
     if (self) {
         self.settingTitlesGroup = @[
-                                    @[@"个人信息", @"修改密码"],
-                                    @[@"消息通知", @"设备绑定", @"固件升级"],
-                                    @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
-                                    @[@"注销登录"],
-                                    ];
+                @[@"个人信息", @"修改密码"],
+                @[@"消息通知", @"设备绑定", @"固件升级"],
+                @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
+                @[@"注销登录"],
+        ];
     }
     return self;
 }
@@ -42,8 +42,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCellIndetifier" forIndexPath:indexPath];
-    
+    SettingsTableViewCell *cell = (SettingsTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCellIndetifier" forIndexPath:indexPath];
+
     // round corner of group
     // TODO: this part can refactor to parent class
     UIRectCorner rectCorner = 0UL;
@@ -61,11 +61,11 @@
         maskLayer.path = maskPath.CGPath;
         cell.layer.mask = maskLayer;
     }
-    
+
     cell.titleLabel.text = self.settingTitlesGroup[indexPath.section][indexPath.row];
     cell.redPoint.hidden = YES;
     cell.infoLabel.hidden = YES;
-    
+
     switch (indexPath.section) {
         case 1:
             switch (indexPath.row) {
@@ -86,7 +86,7 @@
         default:
             break;
     }
-    
+
     return cell;
 }
 

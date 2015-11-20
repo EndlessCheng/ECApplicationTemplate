@@ -11,6 +11,7 @@
 @interface AWBluetooth : NSObject <CBCentralManagerDelegate>
 
 + (AWBluetooth *)sharedBluetooth;
+
 - (void)createCentralManager;
 
 
@@ -20,15 +21,17 @@
 - (BOOL)isPoweredOn;
 
 - (void)scanAllPeripherals;
+
 - (void)scanOADPeripherals;
+
 - (void)stopScan;
 
 - (void)connectToPeripheralWithUUIDString:(NSString *)UUIDString;
+
 - (void)connectToPairedPeripheral;
+
 - (void)cancelPeripheralConnection;
 
-
-@property (nonatomic) BOOL needUpdate;
 
 - (void)updatePeripheralAPPServiceImage;
 

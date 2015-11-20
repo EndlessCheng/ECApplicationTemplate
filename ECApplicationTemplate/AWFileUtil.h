@@ -11,6 +11,7 @@
 @interface AWFileUtil : NSObject
 
 + (NSData *)getLocalAPPServiceImageData;
+
 + (NSInteger)getLocalAPPServiceImageVersion;
 
 @end

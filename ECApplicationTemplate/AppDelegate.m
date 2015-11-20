@@ -22,7 +22,7 @@
     // Override point for customization after application launch.
     [self setBlueTooth];
     [self setSiri];
-    
+
     return YES;
 }
 
@@ -53,7 +53,7 @@
 
 #pragma mark - After Application Launch
 
-- (void)setBlueTooth {    
+- (void)setBlueTooth {
     [[AWBluetooth sharedBluetooth] createCentralManager];
 }
 
@@ -89,9 +89,9 @@
     if (_persistentStoreCoordinator) {
         return _persistentStoreCoordinator;
     }
-    
+
     // Create the coordinator and store
-    
+
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ECApplicationTemplate.sqlite"];
     NSError *error = nil;
@@ -108,7 +108,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+
     return _persistentStoreCoordinator;
 }
 
@@ -117,7 +117,7 @@
     if (_managedObjectContext) {
         return _managedObjectContext;
     }
-    
+
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
         return nil;

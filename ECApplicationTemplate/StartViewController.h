@@ -22,13 +22,15 @@ typedef NS_ENUM(NSInteger, StartAlertTag) {
     StartAlertTagUpdate = 1,
 };
 
-@interface StartViewController : UIViewController <PeripheralsPopupViewDelegate,  UIAlertViewDelegate>
+@interface StartViewController : UIViewController <PeripheralsPopupViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *actionButton;
 @property (nonatomic) ActionButtonState actionButtonState;
+
 - (IBAction)clickedActionButton:(id)sender;
 
 @property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
+
 - (IBAction)cancelPairPeripheral:(id)sender;
 
 @property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;
