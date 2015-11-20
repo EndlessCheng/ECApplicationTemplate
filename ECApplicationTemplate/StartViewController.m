@@ -180,6 +180,7 @@
             if (buttonIndex == 1) {
                 // TODO: 提取模块+delegate
                 self.tabBarController.tabBar.userInteractionEnabled = NO;
+                
                 self.updateProgressView.progress = 0.0;
                 self.progressPercentLabel.text = @"0.0%";
                 self.progressRateLabel.text = @"加载数据...";
