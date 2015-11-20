@@ -6,6 +6,8 @@
 //  Copyright © 2015年 jianyan. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "AWBluetooth.h"
 
 #import "AppDelegate.h"
@@ -19,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setBlueTooth];
+    [self setSiri];
     
     return YES;
 }
@@ -52,6 +55,11 @@
 
 - (void)setBlueTooth {    
     [[AWBluetooth sharedBluetooth] createCentralManager];
+}
+
+- (void)setSiri {
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
 }
 
 

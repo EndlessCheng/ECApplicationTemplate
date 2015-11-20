@@ -178,7 +178,7 @@
     switch (alertView.tag) {
         case StartAlertTagUpdate:
             if (buttonIndex == 1) {
-                // TODO: 提取模块
+                // TODO: 提取模块+delegate
                 self.tabBarController.tabBar.userInteractionEnabled = NO;
                 
                 self.updateProgressView.progress = 0.0;
