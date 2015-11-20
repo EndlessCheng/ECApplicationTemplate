@@ -33,6 +33,8 @@
 - (void)cancelPeripheralConnection;
 
 
+@property (nonatomic) BOOL needUpdate;
+
 - (void)updatePeripheralAPPServiceImage;
 
 @end

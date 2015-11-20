@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WelcomeViewController : UIViewController
+@interface WelcomeViewController : UIViewController <UIScrollViewDelegate>
+// in fact, you needn't add <UIScrollViewDelegate> if you set guideScrollView's delegate in storyboard
 
 @property (nonatomic, weak) IBOutlet UIScrollView *guideScrollView;
 @property (nonatomic, weak) IBOutlet UIPageControl *guidePageControl;

@@ -71,6 +71,7 @@
         [self.guideScrollView addSubview:imageView];
     }
     [self.guideScrollView setContentSize:CGSizeMake(GUIDE_PICTURE_NUMBER * SCREEN_WIDTH, SCREEN_HEIGHT)];
+    
     self.guidePageControl.numberOfPages = GUIDE_PICTURE_NUMBER;
 }
 
