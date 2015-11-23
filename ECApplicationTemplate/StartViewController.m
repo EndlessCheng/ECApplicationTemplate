@@ -100,6 +100,10 @@
             [self.actionButton setTitle:@"开始运动" forState:UIControlStateNormal];
             self.actionButton.enabled = YES;
             break;
+        case ActionButtonStateRunning:
+            [self.actionButton setTitle:@"运动中，点击结束" forState:UIControlStateNormal];
+            self.actionButton.enabled = YES;
+            break;
     }
 }
 
@@ -141,8 +145,10 @@
             alertView.tag = StartAlertTagUpdate;
             [alertView show];
             break;
-        }
-        case ActionButtonStateStart:
+        } case ActionButtonStateStart:
+            self.actionButtonState = ActionButtonStateRunning;
+            break;
+        case ActionButtonStateRunning:
             [self performSegueWithIdentifier:@"StartToFinish" sender:self];
             break;
     }

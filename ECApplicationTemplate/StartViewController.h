@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, ActionButtonState) {
     ActionButtonStatePreparing,
     ActionButtonStatePleaseUpdate,
     ActionButtonStateStart,
+    ActionButtonStateRunning,
 };
 
 typedef NS_ENUM(NSInteger, StartAlertTag) {
