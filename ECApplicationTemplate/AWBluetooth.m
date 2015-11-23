@@ -170,6 +170,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"!!!didFailToConnectPeripheral");
+    
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
@@ -183,7 +184,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
     }
 
-    NSArray *services = [peripheral.name isEqualToString:kNormalStatePeripheralName] ? @[[CBUUID UUIDWithString:kAServiceUUIDString], [CBUUID UUIDWithString:kBServiceUUIDString]] : @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
+    NSArray *services = [peripheral.name isEqualToString:kNormalStatePeripheralName] ? @[[CBUUID UUIDWithString:kWeCoachCoreServiceUUIDString], [CBUUID UUIDWithString:kWeCoachExtendedServiceUUIDString]] : @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
     [peripheral discoverServices:services];
 }
 
@@ -193,7 +194,7 @@
         return;
     }
 
-    // 重启（含连接充电座）或距离过远
+    // 重启（含连接充电座）、距离过远或没电等
     NSLog(@"*** didDisconnectPeripheral");
     [AWPeripheral sharedPeripheral].peripheralState &= 254; // 11111110
     if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 1) {

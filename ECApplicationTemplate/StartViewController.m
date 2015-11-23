@@ -85,7 +85,7 @@
             self.actionButton.enabled = YES;
             break;
         case ActionButtonStateSearchingPairedPeripheral:
-            [self.actionButton setTitle:@"请晃动WeCoach" forState:UIControlStateNormal];
+            [self.actionButton setTitle:@"请晃动设备" forState:UIControlStateNormal];
             self.actionButton.enabled = NO;
             break;
         case ActionButtonStatePreparing:
