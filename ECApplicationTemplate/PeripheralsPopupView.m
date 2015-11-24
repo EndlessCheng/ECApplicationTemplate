@@ -154,18 +154,25 @@
                 [userDefaults setObject:self.pairedPeripheralUUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
                 [userDefaults synchronize];
                 
-                self.getAPPServiceImageVersionObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationGetAPPServiceImageVersion object:nil queue:nil usingBlock:^(NSNotification *n) {
-                    [[NSNotificationCenter defaultCenter] removeObserver:self.getAPPServiceImageVersionObserver];
-                    
-                    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                    [userDefaults setObject:n.object forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
-                    [userDefaults synchronize];
-                    
-                    [self.delegate peripheralsPopupView:self didGetAPPServiceImageVersion:((NSNumber *) n.object).integerValue];
+                
+                
+                if (kPairedPeripheralAPPServiceImageVersion) {
+                    [self.delegate peripheralsPopupView:self didGetAPPServiceImageVersion:kPairedPeripheralAPPServiceImageVersion];
                     
                     self.hidden = YES;
-                }];
-                [[AWPeripheral sharedPeripheral] enableNotificationWithCharacteristicUUIDString:kGetAPPServiceImageVersionCharacteristicUUIDString];
+                } else {
+                    self.getAPPServiceImageVersionObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationGetAPPServiceImageVersion object:nil queue:nil usingBlock:^(NSNotification *n) {
+                        [[NSNotificationCenter defaultCenter] removeObserver:self.getAPPServiceImageVersionObserver];
+                        
+                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                        [userDefaults setObject:n.object forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
+                        [userDefaults synchronize];
+                        
+                        [self.delegate peripheralsPopupView:self didGetAPPServiceImageVersion:((NSNumber *) n.object).integerValue];
+                        
+                        self.hidden = YES;
+                    }];
+                }
             }
             break;
         case PeripheralsPopupViewAlertTagConnectionTimeOut:

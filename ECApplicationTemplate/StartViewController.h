@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, ActionButtonState) {
     ActionButtonStateSearchingPairedPeripheral,
     ActionButtonStatePreparing,
     ActionButtonStatePleaseUpdate,
-    ActionButtonStateStart, // 点击后才清空蓝牙算法数据
+    ActionButtonStateStart,
+    ActionButtonStateContinue,
     ActionButtonStateRunning,
 };
 
@@ -30,9 +31,16 @@ typedef NS_ENUM(NSInteger, StartAlertTag) {
 
 - (IBAction)clickedActionButton:(id)sender;
 
+
+@property (nonatomic, weak) IBOutlet UIButton *restartButton;
+
+- (IBAction)clickedRestartButton:(id)sender;
+
+
 @property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
 
 - (IBAction)cancelPairPeripheral:(id)sender;
+
 
 @property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;
 @property (nonatomic, weak) IBOutlet UIProgressView *updateProgressView;

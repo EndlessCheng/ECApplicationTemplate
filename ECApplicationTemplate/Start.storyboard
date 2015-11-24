@@ -50,6 +50,23 @@
                                     <action selector="clickedActionButton:" destination="2VW-1y-KBr" eventType="touchUpInside" id="OWY-jI-HNN"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uX-Ms-LMn">
+                                <rect key="frame" x="240" y="232" width="120" height="28"/>
+                                <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Jbu-EJ-4Yy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="重新开始">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickedRestartButton:" destination="2VW-1y-KBr" eventType="touchUpInside" id="IEl-U9-1yz"/>
+                                </connections>
+                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOQ-R8-gCZ" customClass="PeripheralsPopupView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
@@ -278,11 +295,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IOQ-R8-gCZ" secondAttribute="trailing" id="0Bp-h0-geR"/>
+                            <constraint firstItem="1uX-Ms-LMn" firstAttribute="top" secondItem="vvt-i4-EaI" secondAttribute="bottom" constant="71" id="1cg-Au-daf"/>
                             <constraint firstItem="aSo-JI-awS" firstAttribute="leading" secondItem="wIp-uw-xRl" secondAttribute="leading" id="Dnk-It-fhj"/>
                             <constraint firstItem="Q1x-fl-TJq" firstAttribute="top" secondItem="IOQ-R8-gCZ" secondAttribute="bottom" id="Sy3-0k-cid"/>
                             <constraint firstItem="vvt-i4-EaI" firstAttribute="top" secondItem="6BW-cn-x4a" secondAttribute="bottom" constant="69" id="ZUa-Lv-Vhd"/>
                             <constraint firstItem="IOQ-R8-gCZ" firstAttribute="top" secondItem="6BW-cn-x4a" secondAttribute="bottom" id="Zxl-IJ-CMK"/>
                             <constraint firstAttribute="trailing" secondItem="aSo-JI-awS" secondAttribute="trailing" id="Zz8-5H-38S"/>
+                            <constraint firstItem="1uX-Ms-LMn" firstAttribute="centerX" secondItem="wIp-uw-xRl" secondAttribute="centerX" id="aPP-Kb-pEY"/>
                             <constraint firstItem="IOQ-R8-gCZ" firstAttribute="leading" secondItem="wIp-uw-xRl" secondAttribute="leading" id="cVM-qD-VPG"/>
                             <constraint firstAttribute="bottom" secondItem="IOQ-R8-gCZ" secondAttribute="bottom" id="gq9-zz-bNL"/>
                             <constraint firstItem="aSo-JI-awS" firstAttribute="top" secondItem="wIp-uw-xRl" secondAttribute="top" id="h6B-Qh-CwB"/>
@@ -303,6 +322,7 @@
                         <outlet property="peripheralsPopupView" destination="IOQ-R8-gCZ" id="48a-Jg-Aaa"/>
                         <outlet property="progressPercentLabel" destination="nG9-uK-cEr" id="zBT-H4-Tpx"/>
                         <outlet property="progressRateLabel" destination="BdT-YY-Nbh" id="hcN-bP-wxD"/>
+                        <outlet property="restartButton" destination="1uX-Ms-LMn" id="jJl-Jg-0gd"/>
                         <outlet property="updateProgressBackgroundView" destination="aSo-JI-awS" id="HBa-jQ-7cv"/>
                         <outlet property="updateProgressView" destination="f4N-op-BaL" id="Wqf-m7-58K"/>
                         <segue destination="UlS-3B-fgn" kind="show" identifier="StartToFinish" id="23R-Jg-ksD"/>

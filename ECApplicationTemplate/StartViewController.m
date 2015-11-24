@@ -54,6 +54,10 @@
 
 // don't alert in this method!
 - (void)updateActionButtonState {
+    if (self.actionButtonState == ActionButtonStateRunning) {
+        return;
+    }
+    
     if (!kPairedPeripheralUUIDString) {
         self.actionButtonState = ActionButtonStatePairPeripheral;
     } else if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
@@ -68,8 +72,11 @@
         [[AWBluetooth sharedBluetooth] connectToPairedPeripheral];
     } else if (kPairedPeripheralAPPServiceImageVersion < [AWFileUtil getLocalAPPServiceImageVersion]) {
         self.actionButtonState = ActionButtonStatePleaseUpdate;
-    } else {
+    } else if (YES) { // if userDefaults previous did end
         self.actionButtonState = ActionButtonStateStart;
+    } else { // if userDefaults previous did not end
+        self.actionButtonState = ActionButtonStateContinue;
+        self.restartButton.hidden = NO;
     }
 }
 
@@ -96,6 +103,10 @@
             break;
         case ActionButtonStateStart:
             [self.actionButton setTitle:@"开始运动" forState:UIControlStateNormal];
+            self.actionButton.enabled = YES;
+            break;
+        case ActionButtonStateContinue:
+            [self.actionButton setTitle:@"继续运动" forState:UIControlStateNormal];
             self.actionButton.enabled = YES;
             break;
         case ActionButtonStateRunning:
@@ -156,7 +167,9 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
             });
-            
+            // notice there not break
+        case ActionButtonStateContinue:
+            self.restartButton.hidden = YES;
             self.actionButtonState = ActionButtonStateRunning;
             break;
         case ActionButtonStateRunning:
@@ -171,8 +184,20 @@
             });
             
             [self performSegueWithIdentifier:@"StartToFinish" sender:self];
+            
+            self.actionButtonState = ActionButtonStateStart;
             break;
     }
+}
+
+- (IBAction)clickedRestartButton:(id)sender {
+    self.restartButton.hidden = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
+    });
+    
+    self.actionButtonState = ActionButtonStateRunning;
 }
 
 

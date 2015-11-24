@@ -43,7 +43,7 @@
 
 // TODO: test if close bluetooth after launched
 - (void)scanAllPeripherals {
-    NSLog(@"scanPeripherals self.centralManager.state: %@", @(self.centralManager.state));
+    NSLog(@"\nscanPeripherals self.centralManager.state: %@\n\n", @(self.centralManager.state));
     if (![self isPoweredOn]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self scanAllPeripherals];
@@ -206,14 +206,16 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    if (error) {
-        [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
-        return;
-    }
-    
     // 目前只有解除绑定这一种情况
     if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
         return;
+    }
+    
+    if (error) {
+        [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
+        if (error.code != 6) {
+            return;
+        }
     }
 
     /*

@@ -50,6 +50,9 @@
     if (indexPath.row == 0) {
         rectCorner |= UIRectCornerTopLeft | UIRectCornerTopRight;
     }
+    
+    // sometimes unexpected cornor drawed
+//    NSLog(@"[tableView numberOfRowsInSection:indexPath.section] - 1: %@", @([tableView numberOfRowsInSection:indexPath.section] - 1));
     if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
         rectCorner |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
     }
