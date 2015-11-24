@@ -9,6 +9,9 @@
 #ifndef ECNotificationNames_h
 #define ECNotificationNames_h
 
+#define kNotificationDidDiscoverAllCharacteristics @"didDiscoverAllCharacteristics"
+
+
 #pragma mark - Peripheral Service A (AA50)
 
 #define kNotificationGetSensorData @"getSensorData" // AA51
@@ -16,9 +19,10 @@
 
 #pragma mark - Peripheral Service B (AB50)
 
-#define kNotificationGetAPPServiceImageVersion @"getAPPServiceImageVersion" // AB56
-
+#define kNotificationGetSwimData @"getSwimData" // AB51
 #define kNotificationIsReadyForOAD @"isReadyForOAD" // AB55
+#define kNotificationGetAPPServiceImageVersion @"getAPPServiceImageVersion" // AB56
+#define kNotificationSwimDataDidClear @"swimDataDidClear" // AB57
 
 
 #pragma mark - Peripheral Service OAD (FFC0)
@@ -29,9 +33,12 @@
 
 #pragma mark - Bluetooth Scan / Connection
 
+#define kNotificationCentralManagerDidUpdateState @"centralManagerDidUpdateState"
+
 #define kNotificationFindNewPeripheral @"findNewPeripheral"
 #define kFindNewPeripheralManufacturer @"findNewPeripheralManufacturer"
 
+#define kNotificationConnectionTimeOut @"connectionTimeOut"
 #define kNotificationConnectionFailed @"connectionFailed"
 
 #define kNotificationDidConnectPairedPeripheral @"DidConnectPairedPeripheral"

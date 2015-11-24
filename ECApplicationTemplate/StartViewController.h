@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, ActionButtonState) {
     ActionButtonStateSearchingPairedPeripheral,
     ActionButtonStatePreparing,
     ActionButtonStatePleaseUpdate,
-    ActionButtonStateStart,
+    ActionButtonStateStart, // 点击后才清空蓝牙算法数据
     ActionButtonStateRunning,
 };
 

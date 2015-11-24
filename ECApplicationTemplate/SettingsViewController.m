@@ -18,7 +18,6 @@
 
 @property (nonatomic) SettingsModel *settingsModel;
 
-@property (nonatomic) id<NSObject> getAPPServiceImageVersionObserver;
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;
 
 @end
@@ -142,24 +141,9 @@
 
 #pragma mark - Peripherals Popup View Delegate
 
-- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didPairPeripheralWithUUIDString:(NSString *)UUIDString {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:UUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
-    [userDefaults synchronize];
-
-    // 在用户绑定后还会等待一会表示“准备数据”
-    self.getAPPServiceImageVersionObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationGetAPPServiceImageVersion object:nil queue:nil usingBlock:^(NSNotification *n) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self.getAPPServiceImageVersionObserver];
-
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:n.object forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
-        [userDefaults synchronize];
-
-        [self reloadPairPeripheralCell];
-
-        peripheralsPopupView.hidden = YES;
-        self.tabBarController.tabBar.userInteractionEnabled = YES;
-    }];
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion {
+    [self reloadPairPeripheralCell];
+    self.tabBarController.tabBar.userInteractionEnabled = YES;
 }
 
 
@@ -211,7 +195,6 @@
                     }
                 }];
 
-                [AWPeripheral sharedPeripheral].needUpdate = YES;
                 [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImage];
             }
             break;

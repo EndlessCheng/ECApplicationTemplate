@@ -29,3 +29,7 @@ DerivedData
 #Pods/
 
 *.png
+
+ECApplicationTemplate/AWSwimAlgorithm.h
+
+ECApplicationTemplate/libAWSwimAlgorithm.a

@@ -15,7 +15,6 @@
 @interface StartViewController ()
 
 @property (nonatomic) id<NSObject> didConnectPairedPeripheral;
-@property (nonatomic) id<NSObject> getAPPServiceImageVersionObserver;
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;
 
 @end
@@ -63,7 +62,6 @@
         self.didConnectPairedPeripheral = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDidConnectPairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
             [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectPairedPeripheral];
 
-            // 注意，在这里得知绑定了设备，等同于（马上）获取到了APPServiceImageVersion
             [self updateActionButtonState];
         }];
 
@@ -136,8 +134,7 @@
             self.tabBarController.tabBar.userInteractionEnabled = NO;
             self.peripheralsPopupView.hidden = NO;
             break;
-        }
-        case ActionButtonStateSearchingPairedPeripheral:
+        } case ActionButtonStateSearchingPairedPeripheral:
         case ActionButtonStatePreparing:
             break;
         case ActionButtonStatePleaseUpdate: {
@@ -146,9 +143,33 @@
             [alertView show];
             break;
         } case ActionButtonStateStart:
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            // TODO: if isConnected [change] else wait notification [change]
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
+            });
+            
             self.actionButtonState = ActionButtonStateRunning;
             break;
         case ActionButtonStateRunning:
+            [[AWBluetooth sharedBluetooth] connectToPairedPeripheral];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[AWPeripheral sharedPeripheral] enableNotificationWithCharacteristicUUIDString:kSwimDataBlockNumberCharacteristicUUIDString];
+                [[AWPeripheral sharedPeripheral] enableNotificationWithCharacteristicUUIDString:kGetSwimDataCharacteristicUUIDString];
+                
+                [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateStop];
+                [[AWPeripheral sharedPeripheral] readSwimDataBlock];
+            });
+            
             [self performSegueWithIdentifier:@"StartToFinish" sender:self];
             break;
     }
@@ -157,25 +178,9 @@
 
 #pragma mark - Peripherals Popup View Delegate
 
-- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didPairPeripheralWithUUIDString:(NSString *)UUIDString {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:UUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
-    [userDefaults synchronize];
-
-    self.actionButtonState = ActionButtonStatePreparing;
-
-    // 在用户绑定后还会等待一会表示“准备数据”
-    self.getAPPServiceImageVersionObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationGetAPPServiceImageVersion object:nil queue:nil usingBlock:^(NSNotification *n) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self.getAPPServiceImageVersionObserver];
-
-        [userDefaults setObject:n.object forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
-        [userDefaults synchronize];
-
-        [self updateActionButtonState];
-
-        peripheralsPopupView.hidden = YES;
-        self.tabBarController.tabBar.userInteractionEnabled = YES;
-    }];
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion {
+    [self updateActionButtonState];
+    self.tabBarController.tabBar.userInteractionEnabled = YES;
 }
 
 
@@ -218,7 +223,6 @@
                     }
                 }];
 
-                [AWPeripheral sharedPeripheral].needUpdate = YES;
                 [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImage];
             }
             break;

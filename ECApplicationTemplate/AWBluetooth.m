@@ -52,7 +52,8 @@
     }
 
     self.peripheralUUIDStringDictionary = [[NSMutableDictionary alloc] init];
-    NSArray *scanServices = @[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString], [CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]]; // and scan FFC0 ???
+    // TODO: try scan FFC0 ???
+    NSArray *scanServices = @[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString], [CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]];
     NSLog(@"1. scanForPeripheralsWithServices: %@", scanServices);
     [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
 }
@@ -66,7 +67,7 @@
     }
 
     self.peripheralDictionary = [[NSMutableDictionary alloc] init];
-    // TODO: try kOADServiceUUIDString ???
+    // TODO: try scan FFC0 ???
     NSArray *scanServices = @[[CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]];
     NSLog(@"1. scanForPeripheralsWithOADServices: %@", scanServices);
     [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
@@ -86,7 +87,7 @@
         return;
     }
 
-    NSLog(@"connectToPeripheralWithUUIDString self.centralManager.state: %@", @(self.centralManager.state));
+    NSLog(@"\nconnectToPeripheralWithUUIDString self.centralManager.state: %@\n\n", @(self.centralManager.state));
     if (![self isPoweredOn]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self connectToPeripheralWithUUIDString:UUIDString];
@@ -116,7 +117,7 @@
         // 一定要先断开再释放
         [self.centralManager cancelPeripheralConnection:[AWPeripheral sharedPeripheral].pairedPeripheral];
         [AWPeripheral sharedPeripheral].pairedPeripheral = nil;
-        // now [AWPeripheral sharedPeripheral].isConnected == NO
+        // now [AWPeripheral sharedPeripheral].isConnected is NO
     }
 }
 
@@ -129,7 +130,9 @@
         [AWPeripheral sharedPeripheral].peripheralState = AWPeripheralStateOADDisconnection;
         [self scanOADPeripherals];
     } else {
+        // TODO: change to set notify YES if isConnected else connect
         [self connectToPairedPeripheral];
+        [AWPeripheral sharedPeripheral].needUpdate = YES; // HACK: may error when update just after connect
     }
 }
 
@@ -137,6 +140,7 @@
 #pragma mark - Central Manager Delegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCentralManagerDidUpdateState object:@(central.state)];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
@@ -145,6 +149,7 @@
     NSLog(@"RSSI: %@", RSSI);
 
     if ([AWPeripheral sharedPeripheral].peripheralState == AWPeripheralStateOADDisconnection) {
+        // 此时设备已OAD
         if ([peripheral.name isEqualToString:kOADStatePeripheralName]) {
             self.peripheralDictionary[RSSI] = peripheral;
             // 第一次扫描到目标机后，再扫描1.5秒，然后连接RSSI最大的
@@ -156,10 +161,12 @@
                     NSNumber *maxRSSI = [[self.peripheralDictionary allKeys] valueForKeyPath:@"@max.self"];
                     NSLog(@"maxRSSI: %@", maxRSSI);
                     [self saveAndConnectPeripheral:self.peripheralDictionary[maxRSSI]];
+                    [AWPeripheral sharedPeripheral].needUpdate = YES;
                 });
             }
         }
     } else {
+        // 绑定
         if ([peripheral.name isEqualToString:kNormalStatePeripheralName] || [peripheral.name isEqualToString:kOADStatePeripheralName]) {
             NSString *manufacturerString = [NSString hexStringWithData:advertisementData[@"kCBAdvDataManufacturerData"]];
             self.peripheralUUIDStringDictionary[manufacturerString] = peripheral.identifier.UUIDString;
@@ -169,8 +176,12 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    NSLog(@"!!!didFailToConnectPeripheral");
+    if (error) {
+        [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
+//        return;
+    }
     
+    NSLog(@"!!!didFailToConnectPeripheral");
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
@@ -179,22 +190,38 @@
     [self stopScan];
 
     [AWPeripheral sharedPeripheral].peripheralState |= 1;
-
-    if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 0) { // OAD 则跳过 post notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
-    }
-
-    NSArray *services = [peripheral.name isEqualToString:kNormalStatePeripheralName] ? @[[CBUUID UUIDWithString:kWeCoachCoreServiceUUIDString], [CBUUID UUIDWithString:kWeCoachExtendedServiceUUIDString]] : @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
-    [peripheral discoverServices:services];
+    // 蓝牙可能马上断开，等待0.6秒再连
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
+            return;
+        }
+        
+        if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 0) { // OAD 则跳过 post notification
+            [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
+        }
+        
+        NSArray *services = [peripheral.name isEqualToString:kNormalStatePeripheralName] ? @[[CBUUID UUIDWithString:kWeCoachCoreServiceUUIDString], [CBUUID UUIDWithString:kWeCoachExtendedServiceUUIDString]] : @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
+        [peripheral discoverServices:services];
+    });
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    // 人为cancelPeripheralConnection
+    if (error) {
+        [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
+        return;
+    }
+    
+    // 目前只有解除绑定这一种情况
     if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
         return;
     }
 
-    // 重启（含连接充电座）、距离过远或没电等
+    /*
+     1. 自动重启，如OAD化，OAD结束
+     2. 手动重启，如连接充电座
+     3. 距离过远
+     4. 没电
+     */
     NSLog(@"*** didDisconnectPeripheral");
     [AWPeripheral sharedPeripheral].peripheralState &= 254; // 11111110
     if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 1) {

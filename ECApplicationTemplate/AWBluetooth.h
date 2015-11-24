@@ -33,6 +33,7 @@
 - (void)cancelPeripheralConnection;
 
 
+// TODO: change to set notify YES if isConnected else connect
 @property (nonatomic) BOOL needUpdate;
 
 - (void)updatePeripheralAPPServiceImage;

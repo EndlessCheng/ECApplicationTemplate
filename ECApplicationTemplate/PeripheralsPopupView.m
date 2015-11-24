@@ -18,8 +18,11 @@
 
 @property (nonatomic) id<NSObject> findNewPeripheralObserver;
 @property (nonatomic) id<NSObject> didConnectUnpairedPeripheralObserver;
+@property (nonatomic) id<NSObject> connectionTimeOutObserver;
 
 @property (nonatomic, copy) NSString *pairedPeripheralUUIDString;
+
+@property (nonatomic) id<NSObject> getAPPServiceImageVersionObserver;
 
 @end
 
@@ -44,6 +47,7 @@
 
     if (hidden) {
         [[NSNotificationCenter defaultCenter] removeObserver:self.findNewPeripheralObserver];
+        [[NSNotificationCenter defaultCenter] removeObserver:self.connectionTimeOutObserver];
         [self clearTableView];
     } else {
         self.userInteractionEnabled = YES;
@@ -62,9 +66,23 @@
                 [self.peripheralsTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.manufacturerStrings.count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
             }
         }];
+        
+        self.connectionTimeOutObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationConnectionTimeOut object:nil queue:nil usingBlock:^(NSNotification *n) {
+            // notification may from didDisconnectPeripheral
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接超时" message:@"请将设备靠近手机后重试" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+            alertView.tag = PeripheralsPopupViewAlertTagConnectionTimeOut;
+            [alertView show];
+        }];
 
         [[AWBluetooth sharedBluetooth] scanAllPeripherals];
     }
+}
+
+- (void)rescanPeripherals {
+    [[AWBluetooth sharedBluetooth] cancelPeripheralConnection];
+    [self clearTableView];
+    
+    [[AWBluetooth sharedBluetooth] scanAllPeripherals];
 }
 
 
@@ -128,17 +146,33 @@
     switch (alertView.tag) {
         case PeripheralsPopupViewAlertTagPairPeripheral:
             if (buttonIndex == 0) {
-                [[AWBluetooth sharedBluetooth] cancelPeripheralConnection];
-                [self clearTableView];
-
-                [[AWBluetooth sharedBluetooth] scanAllPeripherals];
+                [self rescanPeripherals];
             } else if (buttonIndex == 1) {
                 self.userInteractionEnabled = NO;
 
-                [self.delegate peripheralsPopupView:self didPairPeripheralWithUUIDString:self.pairedPeripheralUUIDString];
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:self.pairedPeripheralUUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
+                [userDefaults synchronize];
+                
+                self.getAPPServiceImageVersionObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationGetAPPServiceImageVersion object:nil queue:nil usingBlock:^(NSNotification *n) {
+                    [[NSNotificationCenter defaultCenter] removeObserver:self.getAPPServiceImageVersionObserver];
+                    
+                    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                    [userDefaults setObject:n.object forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
+                    [userDefaults synchronize];
+                    
+                    [self.delegate peripheralsPopupView:self didGetAPPServiceImageVersion:((NSNumber *) n.object).integerValue];
+                    
+                    self.hidden = YES;
+                }];
+                [[AWPeripheral sharedPeripheral] enableNotificationWithCharacteristicUUIDString:kGetAPPServiceImageVersionCharacteristicUUIDString];
             }
             break;
-        default:
+        case PeripheralsPopupViewAlertTagConnectionTimeOut:
+        case PeripheralsPopupViewAlertTagConnectionFailed:
+            if (buttonIndex == 0) {
+                [self rescanPeripherals];
+            }
             break;
     }
 }

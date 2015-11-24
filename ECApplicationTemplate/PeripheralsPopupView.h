@@ -10,6 +10,8 @@
 
 typedef NS_ENUM(NSInteger, PeripheralsPopupViewAlertTag) {
     PeripheralsPopupViewAlertTagPairPeripheral = 1,
+    PeripheralsPopupViewAlertTagConnectionTimeOut,
+    PeripheralsPopupViewAlertTagConnectionFailed,
 };
 
 @class PeripheralsPopupView;
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSInteger, PeripheralsPopupViewAlertTag) {
 
 @required
 
-- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didPairPeripheralWithUUIDString:(NSString *)UUIDString;
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion;
 
 @end
 
