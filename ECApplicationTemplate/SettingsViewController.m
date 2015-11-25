@@ -10,11 +10,14 @@
 #import "AWPeripheral.h"
 #import "AWFileUtil.h"
 
-#import "SettingsViewController.h"
-#import "SettingsTableViewCell.h"
 #import "SettingsModel.h"
 
-@interface SettingsViewController ()
+#import "SettingsTableViewCell.h"
+#import "PeripheralsPopupView.h"
+
+#import "SettingsViewController.h"
+
+@interface SettingsViewController () <PeripheralsPopupViewDelegate, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) SettingsModel *settingsModel;
 

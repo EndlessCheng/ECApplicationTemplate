@@ -10,9 +10,11 @@
 #import "AWBluetooth.h"
 #import "AWPeripheral.h"
 
+#import "PeripheralsPopupView.h"
+
 #import "StartViewController.h"
 
-@interface StartViewController ()
+@interface StartViewController () <PeripheralsPopupViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) id<NSObject> didConnectPairedPeripheral;
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;

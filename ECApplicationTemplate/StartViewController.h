@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PeripheralsPopupView.h"
-
 typedef NS_ENUM(NSInteger, ActionButtonState) {
     ActionButtonStatePairPeripheral,
     ActionButtonStateSearchingPairedPeripheral,
@@ -24,7 +22,9 @@ typedef NS_ENUM(NSInteger, StartAlertTag) {
     StartAlertTagUpdate = 1,
 };
 
-@interface StartViewController : UIViewController <PeripheralsPopupViewDelegate, UIAlertViewDelegate>
+@class PeripheralsPopupView;
+
+@interface StartViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIButton *actionButton;
 @property (nonatomic) ActionButtonState actionButtonState;
