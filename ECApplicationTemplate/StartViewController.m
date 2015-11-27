@@ -178,9 +178,7 @@
             [[AWBluetooth sharedBluetooth] connectToPairedPeripheral];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[AWPeripheral sharedPeripheral] enableNotificationWithCharacteristicUUIDString:kSwimDataBlockNumberCharacteristicUUIDString];
-                [[AWPeripheral sharedPeripheral] enableNotificationWithCharacteristicUUIDString:kGetSwimDataCharacteristicUUIDString];
-                
+                // 先停止算法运行，再读数据
                 [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateStop];
                 [[AWPeripheral sharedPeripheral] readSwimDataBlock];
             });
