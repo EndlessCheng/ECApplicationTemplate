@@ -16,7 +16,7 @@
 
 @interface StartViewController () <PeripheralsPopupViewDelegate, UIAlertViewDelegate>
 
-@property (nonatomic) id<NSObject> didConnectPairedPeripheral;
+@property (nonatomic) id<NSObject> didConnectPairedPeripheralObserver;
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;
 
 @end
@@ -65,8 +65,8 @@
     } else if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
         self.actionButtonState = ActionButtonStateSearchingPairedPeripheral;
 
-        self.didConnectPairedPeripheral = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDidConnectPairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectPairedPeripheral];
+        self.didConnectPairedPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDidConnectPairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectPairedPeripheralObserver];
 
             [self updateActionButtonState];
         }];
