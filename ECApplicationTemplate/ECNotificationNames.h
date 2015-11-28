@@ -12,20 +12,19 @@
 #define kNotificationDidDiscoverAllCharacteristics @"didDiscoverAllCharacteristics"
 
 
-#pragma mark - Peripheral Service A (AA50)
+#pragma mark - Peripheral Core Service (AA50)
 
 #define kNotificationGetSensorData @"getSensorData" // AA51
 
 
-#pragma mark - Peripheral Service B (AB50)
+#pragma mark - Peripheral Extended Service (AB50)
 
 #define kNotificationGetSwimData @"getSwimData" // AB51
 #define kNotificationIsReadyForOAD @"isReadyForOAD" // AB55
 #define kNotificationGetAPPServiceImageVersion @"getAPPServiceImageVersion" // AB56
-#define kNotificationSwimDataDidClear @"swimDataDidClear" // AB57
 
 
-#pragma mark - Peripheral Service OAD (FFC0)
+#pragma mark - Peripheral OAD Service (FFC0)
 
 #define kNotificationOADServiceImageBlockNumber @"OADServiceImageBlockNumber" // FFC2
 #define kOADServiceImageBlockNumber @"OADServiceImageBlockNumber"

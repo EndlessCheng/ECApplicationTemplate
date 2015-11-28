@@ -52,7 +52,7 @@
 		E529DC161BE07C0100F4E0E7 /* tabbar_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC061BE07C0100F4E0E7 /* tabbar_user@2x.png */; };
 		E529DC171BE07C0100F4E0E7 /* tabbar_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */; };
 		E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */; };
-		E53CF3341C09BBD200BF72F8 /* libAWSwimAlgorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */; };
+		E53CF3361C09C92600BF72F8 /* libAWSwimAlgorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */; };
 		E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */ = {isa = PBXBuildFile; fileRef = E55178B91C0433770010C25D /* NSError+AWHardwareError.m */; };
 		E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */; };
 		E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */; };
@@ -150,7 +150,7 @@
 		E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECHTTPUtil.h; sourceTree = "<group>"; };
 		E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECHTTPUtil.m; sourceTree = "<group>"; };
 		E53CF3321C09BBD200BF72F8 /* AWSwimAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSwimAlgorithm.h; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWSwimAlgorithm.h; sourceTree = "<group>"; };
-		E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAWSwimAlgorithm.a; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/libAWSwimAlgorithm.a; sourceTree = "<group>"; };
+		E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAWSwimAlgorithm.a; path = ../../../WeCoachSrc/wecoach_public_class/Resources/lib/libAWSwimAlgorithm.a; sourceTree = "<group>"; };
 		E55178B81C0433770010C25D /* NSError+AWHardwareError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+AWHardwareError.h"; sourceTree = "<group>"; };
 		E55178B91C0433770010C25D /* NSError+AWHardwareError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+AWHardwareError.m"; sourceTree = "<group>"; };
 		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E53CF3341C09BBD200BF72F8 /* libAWSwimAlgorithm.a in Frameworks */,
+				E53CF3361C09C92600BF72F8 /* libAWSwimAlgorithm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +857,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECApplicationTemplate",
+					/Users/chengyh/Documents/WeCoachSrc/wecoach_public_class/Resources/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianyan.ECApplicationTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -875,6 +876,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECApplicationTemplate",
+					/Users/chengyh/Documents/WeCoachSrc/wecoach_public_class/Resources/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianyan.ECApplicationTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
