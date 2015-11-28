@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// 与用户信息，绑定MAC地址号有关的存储至此，不要存储至NSUserDefaults
 @interface AWUserInfo : NSObject
 
 @end

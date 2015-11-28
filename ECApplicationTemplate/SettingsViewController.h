@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, SettingsAlertTag) {
 
 @property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
 
-- (IBAction)cancelPairPeripheral:(id)sender;
+- (IBAction)cancelPairPeripheral:(UIButton *)sender;
 
 
 @property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;

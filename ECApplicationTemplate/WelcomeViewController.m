@@ -25,21 +25,24 @@
     self.navigationController.navigationBar.hidden = YES;
     
     [self setScrollGuideView];
+    
+    self.launchImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome_background_%@x%@.png", @((NSInteger) SCREEN_PIXEL_WIDTH), @((NSInteger) SCREEN_PIXEL_HEIGHT)]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     
-    [self autoLogin];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
+        self.launchImageView.hidden = NO;
+        
+        [self hiddenScrollView];
+        
+//    [[AWUserInfo sharedUserInfo] fetchUserInfo];
+        
+        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+    } else {
+        self.launchImageView.hidden = YES;
+    }
 }
 
 
@@ -48,7 +51,7 @@
 - (void)setScrollGuideView {
     // use GUIDE_PICTURE_NUMBER for multiple APPs
     for (NSUInteger i = 0; i < GUIDE_PICTURE_NUMBER; i++) {
-        NSString *imageName = [NSString stringWithFormat:@"welcome_guide_%@_%@.png", @((NSInteger)(SCREEN_HEIGHT + 0.5)), @(i + 1)];
+        NSString *imageName = [NSString stringWithFormat:@"welcome_guide_%@_%@.png", @((NSInteger) (SCREEN_HEIGHT + 0.5)), @(i + 1)];
         UIImage *image = [UIImage imageNamed:imageName];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = CGRectMake(i * SCREEN_WIDTH, 0, image.size.width, image.size.height);
@@ -79,25 +82,10 @@
     self.guideScrollView.hidden = YES;
     self.guidePageControl.hidden = YES;
     [UIApplication sharedApplication].statusBarHidden = NO;
-    self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)autoLogin {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([[userDefaults objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
-        [self hiddenScrollView];
 
-        [self setUserInfo:[ECHTTPUtil fetchUserInfo]];
-        
-        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
-    }
-}
-
-- (void)setUserInfo:(AWUserInfo *)userInfo {
-    // change NSUserDefaults
-}
-
-- (IBAction)loginButtonClicked:(id)sender {
+- (IBAction)loginButtonClicked:(UIButton *)sender {
     [self performSegueWithIdentifier:@"WelcomeToLogin" sender:self];
 }
 
@@ -107,14 +95,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetx = scrollView.contentOffset.x;
     self.guidePageControl.currentPage = (NSInteger)(offsetx / SCREEN_WIDTH + 0.5);
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 @end

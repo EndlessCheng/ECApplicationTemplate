@@ -132,7 +132,8 @@
     } else {
         // TODO: change to set notify YES if isConnected else connect
         [self connectToPairedPeripheral];
-        [AWPeripheral sharedPeripheral].needUpdate = YES; // HACK: may error when update just after connect
+        [AWPeripheral sharedPeripheral].needUpdate = YES;
+        // HACK: may error when update just after connect
     }
 }
 

@@ -8,7 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="leM-ja-MAa">
             <objects>
-                <navigationController id="XyU-UI-GPQ" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="XyU-UI-GPQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="is2-ct-YAR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="\(^o^)/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xu-HB-qfM">
-                                <rect key="frame" x="266" y="184" width="69" height="30"/>
+                                <rect key="frame" x="266" y="140" width="69" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-Xb-1mc">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <outlet property="delegate" destination="PcM-kr-vFv" id="WAJ-fE-Nxf"/>
                                 </connections>
@@ -91,27 +91,45 @@
                                     </mask>
                                 </variation>
                             </pageControl>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VDG-Ps-hkA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CAA-Xb-1mc" firstAttribute="top" secondItem="Jje-tl-652" secondAttribute="bottom" id="1i0-08-AXj"/>
                             <constraint firstItem="rZH-hP-e20" firstAttribute="centerX" secondItem="PDZ-h2-0hz" secondAttribute="centerX" id="332-F0-aqM"/>
                             <constraint firstItem="Csf-0t-Jsy" firstAttribute="centerX" secondItem="PDZ-h2-0hz" secondAttribute="centerX" id="3Je-np-7df"/>
                             <constraint firstAttribute="trailing" secondItem="CAA-Xb-1mc" secondAttribute="trailing" id="Mba-FV-Drc"/>
                             <constraint firstItem="9Xu-HB-qfM" firstAttribute="top" secondItem="Jje-tl-652" secondAttribute="bottom" constant="120" id="TZf-ta-7Td"/>
+                            <constraint firstItem="VDG-Ps-hkA" firstAttribute="top" secondItem="PDZ-h2-0hz" secondAttribute="top" id="TxM-zx-dWA"/>
                             <constraint firstItem="DaH-By-nHX" firstAttribute="centerX" secondItem="PDZ-h2-0hz" secondAttribute="centerX" id="V3u-JY-1eV"/>
+                            <constraint firstAttribute="trailing" secondItem="VDG-Ps-hkA" secondAttribute="trailing" id="VOv-dz-map"/>
+                            <constraint firstItem="VDG-Ps-hkA" firstAttribute="top" secondItem="Jje-tl-652" secondAttribute="bottom" id="WNy-mX-f0c"/>
                             <constraint firstItem="Csf-0t-Jsy" firstAttribute="top" secondItem="rZH-hP-e20" secondAttribute="bottom" constant="25" id="Wrl-xW-ygW"/>
                             <constraint firstItem="pRo-oX-fGX" firstAttribute="top" secondItem="DaH-By-nHX" secondAttribute="bottom" constant="15" id="YEw-SX-jsd"/>
                             <constraint firstItem="pRo-oX-fGX" firstAttribute="top" secondItem="Csf-0t-Jsy" secondAttribute="bottom" constant="100" id="Z1v-3n-S0i"/>
+                            <constraint firstItem="CAA-Xb-1mc" firstAttribute="top" secondItem="PDZ-h2-0hz" secondAttribute="top" id="b4V-YM-077"/>
                             <constraint firstItem="pRo-oX-fGX" firstAttribute="top" secondItem="CAA-Xb-1mc" secondAttribute="bottom" id="cf5-lj-4eD"/>
+                            <constraint firstItem="VDG-Ps-hkA" firstAttribute="leading" secondItem="PDZ-h2-0hz" secondAttribute="leading" id="gBb-G4-ujk"/>
                             <constraint firstItem="9Xu-HB-qfM" firstAttribute="centerX" secondItem="PDZ-h2-0hz" secondAttribute="centerX" id="iC3-Af-gmg"/>
                             <constraint firstItem="CAA-Xb-1mc" firstAttribute="leading" secondItem="PDZ-h2-0hz" secondAttribute="leading" id="iRF-JH-6eN"/>
                             <constraint firstItem="CAA-Xb-1mc" firstAttribute="top" secondItem="Jje-tl-652" secondAttribute="bottom" id="qQG-xb-zYL"/>
+                            <constraint firstItem="pRo-oX-fGX" firstAttribute="top" secondItem="VDG-Ps-hkA" secondAttribute="bottom" id="xAR-lW-3in"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="WNy-mX-f0c"/>
+                                <exclude reference="1i0-08-AXj"/>
+                                <exclude reference="qQG-xb-zYL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="欢迎" id="Mod-xF-IUl"/>
                     <connections>
                         <outlet property="guidePageControl" destination="DaH-By-nHX" id="QWi-zN-47n"/>
                         <outlet property="guideScrollView" destination="CAA-Xb-1mc" id="7Su-g7-EJE"/>
+                        <outlet property="launchImageView" destination="VDG-Ps-hkA" id="SPD-rX-bIP"/>
                         <outlet property="loginButton" destination="rZH-hP-e20" id="pzH-gb-i2s"/>
                         <outlet property="registerButton" destination="Csf-0t-Jsy" id="aPd-Vi-X1n"/>
                         <segue destination="VAJ-Xi-wc4" kind="presentation" identifier="WelcomeToTabBar" animates="NO" id="eyb-hH-XMr"/>

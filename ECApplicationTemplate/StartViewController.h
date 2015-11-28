@@ -29,17 +29,17 @@ typedef NS_ENUM(NSInteger, StartAlertTag) {
 @property (nonatomic, weak) IBOutlet UIButton *actionButton;
 @property (nonatomic) ActionButtonState actionButtonState;
 
-- (IBAction)clickedActionButton:(id)sender;
+- (IBAction)clickedActionButton:(UIButton *)sender;
 
 
 @property (nonatomic, weak) IBOutlet UIButton *restartButton;
 
-- (IBAction)clickedRestartButton:(id)sender;
+- (IBAction)clickedRestartButton:(UIButton *)sender;
 
 
 @property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
 
-- (IBAction)cancelPairPeripheral:(id)sender;
+- (IBAction)cancelPairPeripheral:(UIButton *)sender;
 
 
 @property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;

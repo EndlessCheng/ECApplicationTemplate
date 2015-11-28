@@ -17,6 +17,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
 
-- (IBAction)loginButtonClicked:(id)sender;
+- (IBAction)loginButtonClicked:(UIButton *)sender;
+
+
+@property (nonatomic, weak) IBOutlet UIImageView *launchImageView;
 
 @end

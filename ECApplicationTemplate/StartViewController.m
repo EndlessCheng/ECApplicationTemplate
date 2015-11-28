@@ -45,15 +45,6 @@
     [self updateActionButtonState];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 // don't alert in this method!
 - (void)updateActionButtonState {
     if (self.actionButtonState == ActionButtonStateRunning) {
@@ -124,24 +115,14 @@
     self.progressRateLabel.text = [NSString stringWithFormat:@"%@/%@", @((NSUInteger) (writtenBytesLength * UPDATE_PROGRESS_MAGIC)), @((NSUInteger) ([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC))];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 // 注意“取消绑定”和“断开绑定”是两码事
-- (IBAction)cancelPairPeripheral:(id)sender {
+- (IBAction)cancelPairPeripheral:(UIButton *)sender {
     [[AWBluetooth sharedBluetooth] stopScan];
     self.peripheralsPopupView.hidden = YES;
     self.tabBarController.tabBar.userInteractionEnabled = YES;
 }
 
-- (IBAction)clickedActionButton:(id)sender {
+- (IBAction)clickedActionButton:(UIButton *)sender {
     switch (self.actionButtonState) {
         case ActionButtonStatePairPeripheral: {
             self.tabBarController.tabBar.userInteractionEnabled = NO;
@@ -190,7 +171,7 @@
     }
 }
 
-- (IBAction)clickedRestartButton:(id)sender {
+- (IBAction)clickedRestartButton:(UIButton *)sender {
     self.restartButton.hidden = YES;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

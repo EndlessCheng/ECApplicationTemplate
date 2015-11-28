@@ -47,15 +47,6 @@
     [self.settingsTableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)reloadPairPeripheralCell {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     SettingsTableViewCell *cell = (SettingsTableViewCell *) [self.settingsTableView cellForRowAtIndexPath:indexPath];
@@ -69,15 +60,6 @@
     self.progressRateLabel.text = [NSString stringWithFormat:@"%@/%@", @((NSUInteger) (writtenBytesLength * UPDATE_PROGRESS_MAGIC)), @((NSUInteger) ([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC))];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 #pragma mark - Table View Delegate
 
@@ -220,7 +202,7 @@
 #pragma mark - IBAction
 
 // 注意“取消绑定”和“断开绑定”是两码事
-- (IBAction)cancelPairPeripheral:(id)sender {
+- (IBAction)cancelPairPeripheral:(UIButton *)sender {
     [[AWBluetooth sharedBluetooth] stopScan];
     self.peripheralsPopupView.hidden = YES;
     self.tabBarController.tabBar.userInteractionEnabled = YES;
