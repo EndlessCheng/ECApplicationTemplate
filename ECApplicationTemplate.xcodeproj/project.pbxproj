@@ -11,9 +11,7 @@
 		E505425B1BF5B0D700B66F1F /* PeripheralsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E505425A1BF5B0D700B66F1F /* PeripheralsTableViewCell.m */; };
 		E50542641BF5B2C300B66F1F /* AWBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = E50542611BF5B2C300B66F1F /* AWBluetooth.m */; };
 		E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */; };
-		E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */; };
 		E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */; };
-		E5176ACB1BFAD41100E0A679 /* OADbin.bin in Resources */ = {isa = PBXBuildFile; fileRef = E5176ACA1BFAD41100E0A679 /* OADbin.bin */; };
 		E5176AD31BFC650700E0A679 /* AWUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5176AD21BFC650700E0A679 /* AWUserInfo.m */; };
 		E5246F391BFEF6D000F92968 /* welcome_background_640x960@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5246F351BFEF6D000F92968 /* welcome_background_640x960@2x.png */; };
 		E5246F3A1BFEF6D000F92968 /* welcome_background_640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5246F361BFEF6D000F92968 /* welcome_background_640x1136@2x.png */; };
@@ -52,7 +50,9 @@
 		E529DC161BE07C0100F4E0E7 /* tabbar_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC061BE07C0100F4E0E7 /* tabbar_user@2x.png */; };
 		E529DC171BE07C0100F4E0E7 /* tabbar_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */; };
 		E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */; };
-		E53CF3361C09C92600BF72F8 /* libAWSwimAlgorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */; };
+		E53CF3381C09DB5700BF72F8 /* OADbin.bin in Resources */ = {isa = PBXBuildFile; fileRef = E53CF3371C09DB5700BF72F8 /* OADbin.bin */; };
+		E53CF33B1C09E58500BF72F8 /* libAWSwimAlgorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */; };
+		E53CF33F1C09E5BE00BF72F8 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */; };
 		E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */ = {isa = PBXBuildFile; fileRef = E55178B91C0433770010C25D /* NSError+AWHardwareError.m */; };
 		E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */; };
 		E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */; };
@@ -102,11 +102,8 @@
 		E5176AB81BF61A2600E0A679 /* ECNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECNotificationNames.h; sourceTree = "<group>"; };
 		E5176AB91BF62CAC00E0A679 /* SettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsModel.h; sourceTree = "<group>"; };
 		E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModel.m; sourceTree = "<group>"; };
-		E5176ABD1BF9849F00E0A679 /* AWPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPeripheral.h; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWPeripheral.h; sourceTree = "<group>"; };
-		E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPeripheral.m; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWPeripheral.m; sourceTree = "<group>"; };
 		E5176AC61BF9941100E0A679 /* NSString+AWHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AWHexString.h"; sourceTree = "<group>"; };
 		E5176AC71BF9941100E0A679 /* NSString+AWHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AWHexString.m"; sourceTree = "<group>"; };
-		E5176ACA1BFAD41100E0A679 /* OADbin.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = OADbin.bin; path = ../../../WeCoachSrc/wecoach_public_class/Resources/bin/OADbin.bin; sourceTree = "<group>"; };
 		E5176AD11BFC650700E0A679 /* AWUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWUserInfo.h; sourceTree = "<group>"; };
 		E5176AD21BFC650700E0A679 /* AWUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWUserInfo.m; sourceTree = "<group>"; };
 		E5246F351BFEF6D000F92968 /* welcome_background_640x960@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "welcome_background_640x960@2x.png"; path = "Assets.xcassets/LaunchImage.launchimage/welcome_background_640x960@2x.png"; sourceTree = "<group>"; };
@@ -149,8 +146,11 @@
 		E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_user@3x.png"; sourceTree = "<group>"; };
 		E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECHTTPUtil.h; sourceTree = "<group>"; };
 		E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECHTTPUtil.m; sourceTree = "<group>"; };
-		E53CF3321C09BBD200BF72F8 /* AWSwimAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSwimAlgorithm.h; path = ../../../WeCoachSrc/wecoach_public_class/Utils/AWHardwares/AWSwimAlgorithm.h; sourceTree = "<group>"; };
-		E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAWSwimAlgorithm.a; path = ../../../WeCoachSrc/wecoach_public_class/Resources/lib/libAWSwimAlgorithm.a; sourceTree = "<group>"; };
+		E53CF3371C09DB5700BF72F8 /* OADbin.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = OADbin.bin; path = ../../../WeCoachSrc/CommonLibraries/Resources/bin/OADbin.bin; sourceTree = "<group>"; };
+		E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAWSwimAlgorithm.a; path = ../../../WeCoachSrc/CommonLibraries/Resources/lib/libAWSwimAlgorithm.a; sourceTree = "<group>"; };
+		E53CF33C1C09E5BE00BF72F8 /* AWPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPeripheral.h; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWPeripheral.h; sourceTree = "<group>"; };
+		E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPeripheral.m; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWPeripheral.m; sourceTree = "<group>"; };
+		E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSwimAlgorithm.h; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWSwimAlgorithm.h; sourceTree = "<group>"; };
 		E55178B81C0433770010C25D /* NSError+AWHardwareError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+AWHardwareError.h"; sourceTree = "<group>"; };
 		E55178B91C0433770010C25D /* NSError+AWHardwareError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+AWHardwareError.m"; sourceTree = "<group>"; };
 		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E53CF3361C09C92600BF72F8 /* libAWSwimAlgorithm.a in Frameworks */,
+				E53CF33B1C09E58500BF72F8 /* libAWSwimAlgorithm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +261,9 @@
 			children = (
 				E55178B81C0433770010C25D /* NSError+AWHardwareError.h */,
 				E55178B91C0433770010C25D /* NSError+AWHardwareError.m */,
-				E53CF3321C09BBD200BF72F8 /* AWSwimAlgorithm.h */,
-				E53CF3331C09BBD200BF72F8 /* libAWSwimAlgorithm.a */,
-				E5176ABD1BF9849F00E0A679 /* AWPeripheral.h */,
-				E5176ABE1BF9849F00E0A679 /* AWPeripheral.m */,
+				E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */,
+				E53CF33C1C09E5BE00BF72F8 /* AWPeripheral.h */,
+				E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */,
 				E50542601BF5B2C300B66F1F /* AWBluetooth.h */,
 				E50542611BF5B2C300B66F1F /* AWBluetooth.m */,
 			);
@@ -285,7 +284,7 @@
 		E5176AC91BFAD40100E0A679 /* Bin */ = {
 			isa = PBXGroup;
 			children = (
-				E5176ACA1BFAD41100E0A679 /* OADbin.bin */,
+				E53CF3371C09DB5700BF72F8 /* OADbin.bin */,
 			);
 			name = Bin;
 			sourceTree = "<group>";
@@ -354,6 +353,14 @@
 				E529DC051BE07C0100F4E0E7 /* tabbar_user_selected@3x.png */,
 			);
 			name = TabBar;
+			sourceTree = "<group>";
+		};
+		E53CF3391C09E53600BF72F8 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		E577D9581BD73ED200C862E9 = {
@@ -499,6 +506,7 @@
 		E577D9C81BD8F88E00C862E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E53CF3391C09E53600BF72F8 /* Library */,
 				E5176AC91BFAD40100E0A679 /* Bin */,
 				E577D9C91BD8F8C500C862E9 /* Image */,
 			);
@@ -650,6 +658,7 @@
 				E5246F4D1BFEF71500F92968 /* welcome_guide_480_3@2x.png in Resources */,
 				E529DC161BE07C0100F4E0E7 /* tabbar_user@2x.png in Resources */,
 				E529DC0A1BE07C0100F4E0E7 /* tabbar_history@2x.png in Resources */,
+				E53CF3381C09DB5700BF72F8 /* OADbin.bin in Resources */,
 				E529DC0E1BE07C0100F4E0E7 /* tabbar_plan@2x.png in Resources */,
 				E5246F551BFEF71500F92968 /* welcome_guide_667_3@2x.png in Resources */,
 				E577D9741BD73ED200C862E9 /* Assets.xcassets in Resources */,
@@ -670,7 +679,6 @@
 				E529DC171BE07C0100F4E0E7 /* tabbar_user@3x.png in Resources */,
 				E577D9AA1BD749BD00C862E9 /* Settings.storyboard in Resources */,
 				E529DC131BE07C0100F4E0E7 /* tabbar_start@3x.png in Resources */,
-				E5176ACB1BFAD41100E0A679 /* OADbin.bin in Resources */,
 				E5246F541BFEF71500F92968 /* welcome_guide_667_2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -708,7 +716,7 @@
 				E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */,
 				E577D9A11BD7489900C862E9 /* StartViewController.m in Sources */,
 				E577D9721BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld in Sources */,
-				E5176ABF1BF9849F00E0A679 /* AWPeripheral.m in Sources */,
+				E53CF33F1C09E5BE00BF72F8 /* AWPeripheral.m in Sources */,
 				E577D9661BD73ED200C862E9 /* main.m in Sources */,
 				E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */,
 				E505425B1BF5B0D700B66F1F /* PeripheralsTableViewCell.m in Sources */,
@@ -857,7 +865,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECApplicationTemplate",
-					/Users/chengyh/Documents/WeCoachSrc/wecoach_public_class/Resources/lib,
+					/Users/chengyh/Documents/WeCoachSrc/CommonLibraries/Resources/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianyan.ECApplicationTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -876,7 +884,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECApplicationTemplate",
-					/Users/chengyh/Documents/WeCoachSrc/wecoach_public_class/Resources/lib,
+					/Users/chengyh/Documents/WeCoachSrc/CommonLibraries/Resources/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianyan.ECApplicationTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
