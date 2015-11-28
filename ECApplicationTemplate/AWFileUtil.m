@@ -8,10 +8,13 @@
 
 #import "AWFileUtil.h"
 
+NSString *const kAPPServiceImageFileName = @"OADbin";
+NSString *const kAPPServiceImageFileTypeName = @"bin";
+
 @implementation AWFileUtil
 
 + (NSData *)getLocalAPPServiceImageData {
-    NSString *binPath = [[NSBundle mainBundle] pathForResource:@"OADbin" ofType:@"bin"];
+    NSString *binPath = [[NSBundle mainBundle] pathForResource:kAPPServiceImageFileName ofType:kAPPServiceImageFileTypeName];
 //    NSLog(@"binPath: %@", binPath);
     NSData *data = [NSData dataWithContentsOfFile:binPath];
 //    NSLog(@"length: %@", @(data.length));
@@ -19,10 +22,8 @@
 }
 
 + (NSInteger)getLocalAPPServiceImageVersion {
-    const Byte *bytes = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OADbin" ofType:@"bin"]].bytes;
+    const Byte *bytes = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kAPPServiceImageFileName ofType:kAPPServiceImageFileTypeName]].bytes;
 
-    // for test
-//    return 1000;
     return (bytes[5] << 8 | bytes[4]) >> 1;
 }
 

@@ -14,4 +14,6 @@
 
 @implementation AWUserInfo
 
+// 单例模式
+
 @end
