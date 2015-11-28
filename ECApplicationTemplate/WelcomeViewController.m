@@ -11,8 +11,12 @@
 
 #import "WelcomeViewController.h"
 #import "TabBarController.h"
+#import "StartViewController.h"
 
 @interface WelcomeViewController ()
+
+@property (nonatomic) id<NSObject> findOADPeripheralObserver;
+@property (nonatomic) BOOL isFoundOADPeripheral;
 
 @end
 
@@ -39,7 +43,7 @@
         
 //    [[AWUserInfo sharedUserInfo] fetchUserInfo];
         
-        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+        [self jumpToTabBar];
     } else {
         self.launchImageView.hidden = YES;
     }
@@ -84,6 +88,25 @@
     [UIApplication sharedApplication].statusBarHidden = NO;
 }
 
+- (void)jumpToTabBar {
+    self.isFoundOADPeripheral = NO;
+    self.findOADPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationFindOADPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self.findOADPeripheralObserver];
+        
+        self.isFoundOADPeripheral = YES;
+        [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+    }];
+    [[AWBluetooth sharedBluetooth] scanOADPeripherals];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self.isFoundOADPeripheral) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self.findOADPeripheralObserver];
+            
+            [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
+        }
+    });
+}
+
 
 - (IBAction)loginButtonClicked:(UIButton *)sender {
     [self performSegueWithIdentifier:@"WelcomeToLogin" sender:self];
@@ -95,6 +118,16 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetx = scrollView.contentOffset.x;
     self.guidePageControl.currentPage = (NSInteger)(offsetx / SCREEN_WIDTH + 0.5);
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue destinationViewController] isKindOfClass:[TabBarController class]]) {
+        TabBarController *tabBarController = [segue destinationViewController];
+        tabBarController.isFoundOADPeripheral = self.isFoundOADPeripheral;
+    }
 }
 
 @end

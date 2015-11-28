@@ -180,7 +180,7 @@
                     }
                 }];
 
-                [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImage];
+                [[AWBluetooth sharedBluetooth] updatePairedPeripheral];
             }
             break;
         case SettingsAlertTagLogOut:

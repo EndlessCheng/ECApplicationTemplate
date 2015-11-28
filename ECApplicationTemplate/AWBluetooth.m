@@ -12,9 +12,17 @@
 #import "AWBluetooth.h"
 #import "AWPeripheral.h"
 
+typedef NS_ENUM(NSInteger, AWUpdateState) {
+    AWUpdateStateNormal, // 未OAD使能下的升级
+    AWUpdateStateFindOADWithConfirm, // 扫描到OAD后取消扫描，确认是否升级
+    AWUpdateStateFindOADWithoutConfirm, // 扫描到OAD后立刻升级
+};
+
 @interface AWBluetooth ()
 
 @property (nonatomic) CBCentralManager *centralManager;
+
+@property (nonatomic) AWUpdateState updateState;
 
 @end
 
@@ -42,35 +50,31 @@
 #pragma mark - Scan
 
 // TODO: test if close bluetooth after launched
-- (void)scanAllPeripherals {
+- (void)scanPeripheralsWithServices:(NSArray<CBUUID *> *)services {
     NSLog(@"\nscanPeripherals self.centralManager.state: %@\n\n", @(self.centralManager.state));
     if (![self isPoweredOn]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self scanAllPeripherals];
+            [self scanPeripheralsWithServices:services];
         });
         return;
     }
 
     self.peripheralUUIDStringDictionary = [[NSMutableDictionary alloc] init];
-    // TODO: try scan FFC0 ???
-    NSArray *scanServices = @[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString], [CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]];
-    NSLog(@"1. scanForPeripheralsWithServices: %@", scanServices);
-    [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
+    NSLog(@"1. scanForPeripheralsWithServices: %@", services);
+    [self.centralManager scanForPeripheralsWithServices:services options:nil];
+}
+
+- (void)scanNormalPeripherals {
+    [self scanPeripheralsWithServices:@[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString]]];
 }
 
 - (void)scanOADPeripherals {
-    if (![self isPoweredOn]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self scanOADPeripherals];
-        });
-        return;
-    }
+    self.updateState = AWUpdateStateFindOADWithConfirm;
+    [self scanPeripheralsWithServices:@[[CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]]];
+}
 
-    self.peripheralDictionary = [[NSMutableDictionary alloc] init];
-    // TODO: try scan FFC0 ???
-    NSArray *scanServices = @[[CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]];
-    NSLog(@"1. scanForPeripheralsWithOADServices: %@", scanServices);
-    [self.centralManager scanForPeripheralsWithServices:scanServices options:nil];
+- (void)scanAllPeripherals {
+    [self scanPeripheralsWithServices:@[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString], [CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]]];
 }
 
 - (void)stopScan {
@@ -124,17 +128,19 @@
 
 #pragma mark - Update Peripheral APPServiceImage
 
-- (void)updatePeripheralAPPServiceImage {
-    if (kFailedUpdateAPPServiceImage) {
-        // 默认是OAD状态
-        [AWPeripheral sharedPeripheral].peripheralState = AWPeripheralStateOADDisconnection;
-        [self scanOADPeripherals];
-    } else {
-        // TODO: change to set notify YES if isConnected else connect
-        [self connectToPairedPeripheral];
-        [AWPeripheral sharedPeripheral].needUpdate = YES;
-        // HACK: may error when update just after connect
-    }
+- (void)updatePairedPeripheral {
+    [self connectToPairedPeripheral];
+    
+    // TODO: 改成notification
+//    {
+//        NSLog(@"8. Disable APPServiceImage");
+//        [[AWPeripheral sharedPeripheral] disableAPPServiceImage];
+//    }
+}
+
+- (void)scanOADPeripheralsAndUpdate {
+    self.updateState = AWUpdateStateFindOADWithoutConfirm;
+    [self scanPeripheralsWithServices:@[[CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]]];
 }
 
 
@@ -144,34 +150,39 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCentralManagerDidUpdateState object:@(central.state)];
 }
 
+// OK
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSLog(@"2. didDiscoverPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
     NSLog(@"advertisementData: %@", advertisementData);
     NSLog(@"RSSI: %@", RSSI);
-
-    if ([AWPeripheral sharedPeripheral].peripheralState == AWPeripheralStateOADDisconnection) {
-        // 此时设备已OAD
-        if ([peripheral.name isEqualToString:kOADStatePeripheralName]) {
+    
+    // 第一层按设备名处理比updateState更好
+    if ([peripheral.name isEqualToString:kNormalStatePeripheralName]) {
+        // 绑定
+        NSString *manufacturerString = [NSString hexStringWithData:advertisementData[@"kCBAdvDataManufacturerData"]];
+        self.peripheralUUIDStringDictionary[manufacturerString] = peripheral.identifier.UUIDString;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindNewPeripheral object:@{kFindNewPeripheralManufacturer : manufacturerString}];
+    } else {
+        if (self.updateState == AWUpdateStateFindOADWithConfirm) {
+            [self stopScan];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindOADPeripheral object:nil];
+        } else if (self.updateState == AWUpdateStateFindOADWithoutConfirm) {
             self.peripheralDictionary[RSSI] = peripheral;
             // 第一次扫描到目标机后，再扫描1.5秒，然后连接RSSI最大的
             // must test if you wanna change this seconds!
             if (self.peripheralDictionary.count == 1) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindOADPeripheral object:nil];
+                
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self stopScan];
-
+                    
                     NSNumber *maxRSSI = [[self.peripheralDictionary allKeys] valueForKeyPath:@"@max.self"];
                     NSLog(@"maxRSSI: %@", maxRSSI);
                     [self saveAndConnectPeripheral:self.peripheralDictionary[maxRSSI]];
-                    [AWPeripheral sharedPeripheral].needUpdate = YES;
                 });
             }
-        }
-    } else {
-        // 绑定
-        if ([peripheral.name isEqualToString:kNormalStatePeripheralName] || [peripheral.name isEqualToString:kOADStatePeripheralName]) {
-            NSString *manufacturerString = [NSString hexStringWithData:advertisementData[@"kCBAdvDataManufacturerData"]];
-            self.peripheralUUIDStringDictionary[manufacturerString] = peripheral.identifier.UUIDString;
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindNewPeripheral object:@{kFindNewPeripheralManufacturer : manufacturerString}];
+        } else {
+            // TODO: pair 001122334455
         }
     }
 }
@@ -185,25 +196,27 @@
     NSLog(@"!!!didFailToConnectPeripheral");
 }
 
+// OK
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"3. didConnectPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
 
+    // 冗余
     [self stopScan];
 
     [AWPeripheral sharedPeripheral].peripheralState |= 1;
-    // 蓝牙可能马上断开，等待0.6秒再连
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
-            return;
-        }
-        
+//    // 蓝牙可能马上断开，等待0.6秒再连
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
+//            return;
+//        }
+    
         if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 0) { // OAD 则跳过 post notification
             [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
         }
         
         NSArray *services = [peripheral.name isEqualToString:kNormalStatePeripheralName] ? @[[CBUUID UUIDWithString:kWeCoachCoreServiceUUIDString], [CBUUID UUIDWithString:kWeCoachExtendedServiceUUIDString]] : @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
         [peripheral discoverServices:services];
-    });
+//    });
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -214,9 +227,9 @@
     
     if (error) {
         [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
-        if (error.code != 6) {
-            return;
-        }
+//        if (error.code != 6) {
+//            return;
+//        }
     }
 
     /*
@@ -228,7 +241,8 @@
     NSLog(@"*** didDisconnectPeripheral");
     [AWPeripheral sharedPeripheral].peripheralState &= 254; // 11111110
     if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 1) {
-        [self scanOADPeripherals];
+        // OAD即意味着升级
+        [self scanOADPeripheralsAndUpdate];
     } else if (kPairedPeripheralUUIDString) {
         [self connectToPairedPeripheral];
     }

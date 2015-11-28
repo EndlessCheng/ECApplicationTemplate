@@ -37,6 +37,8 @@
 #define kNotificationFindNewPeripheral @"findNewPeripheral"
 #define kFindNewPeripheralManufacturer @"findNewPeripheralManufacturer"
 
+#define kNotificationFindOADPeripheral @"findOADPeripheral"
+
 #define kNotificationConnectionTimeOut @"connectionTimeOut"
 #define kNotificationConnectionFailed @"connectionFailed"
 

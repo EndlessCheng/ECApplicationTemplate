@@ -10,4 +10,7 @@
 
 @interface TabBarController : UITabBarController
 
+// Tab bar的数据可作为子视图控制器的公共数据
+@property (nonatomic) BOOL isFoundOADPeripheral;
+
 @end

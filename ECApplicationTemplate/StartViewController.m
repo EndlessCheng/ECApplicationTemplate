@@ -12,6 +12,7 @@
 
 #import "PeripheralsPopupView.h"
 
+#import "TabBarController.h"
 #import "StartViewController.h"
 
 @interface StartViewController () <PeripheralsPopupViewDelegate, UIAlertViewDelegate>
@@ -28,11 +29,11 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = NSLocalizedString(@"开始",);
     self.peripheralsPopupView.delegate = self;
-
-    if (kFailedUpdateAPPServiceImage) {
-        // 默认为OAD状态
-        // 这句话仅出现一次
+    
+    if (((TabBarController *) self.tabBarController).isFoundOADPeripheral) {
         self.actionButtonState = ActionButtonStatePleaseUpdate;
+        
+        // 这句话仅出现一次
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"上次升级未成功，按确定开始升级。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = StartAlertTagUpdate;
         [alertView show];
@@ -229,7 +230,7 @@
                     }
                 }];
 
-                [[AWBluetooth sharedBluetooth] updatePeripheralAPPServiceImage];
+                [[AWBluetooth sharedBluetooth] updatePairedPeripheral];
             }
             break;
         default:
