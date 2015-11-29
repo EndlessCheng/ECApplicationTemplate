@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, ActionButtonState) {
 };
 
 typedef NS_ENUM(NSInteger, StartAlertTag) {
-    StartAlertTagUpdate = 1,
+    StartAlertTagUpdateNormalPeripheral = 1,
+    StartAlertTagUpdateOADPeripheral,
 };
 
 @class PeripheralsPopupView;

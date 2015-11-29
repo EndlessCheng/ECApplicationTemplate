@@ -180,7 +180,7 @@
                     }
                 }];
 
-                [[AWBluetooth sharedBluetooth] updatePairedPeripheral];
+                [[AWBluetooth sharedBluetooth] updateNormalPeripheral];
             }
             break;
         case SettingsAlertTagLogOut:

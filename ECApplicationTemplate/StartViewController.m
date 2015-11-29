@@ -31,11 +31,9 @@
     self.peripheralsPopupView.delegate = self;
     
     if (((TabBarController *) self.tabBarController).isFoundOADPeripheral) {
-        self.actionButtonState = ActionButtonStatePleaseUpdate;
-        
         // 这句话仅出现一次
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"上次升级未成功，按确定开始升级。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.tag = StartAlertTagUpdate;
+        alertView.tag = StartAlertTagUpdateOADPeripheral;
         [alertView show];
     }
 }
@@ -116,6 +114,41 @@
     self.progressRateLabel.text = [NSString stringWithFormat:@"%@/%@", @((NSUInteger) (writtenBytesLength * UPDATE_PROGRESS_MAGIC)), @((NSUInteger) ([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC))];
 }
 
+- (void)prepareForUpdatePeripheral {
+    // TODO: 提取模块+delegate
+    self.tabBarController.tabBar.userInteractionEnabled = NO;
+    
+    self.updateProgressView.progress = 0.0;
+    self.progressPercentLabel.text = @"0.0%";
+    self.progressRateLabel.text = @"加载数据...";
+    self.updateProgressBackgroundView.hidden = NO;
+    
+    self.updateAPPServiceImageObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationOADServiceImageBlockNumber object:nil queue:nil usingBlock:^(NSNotification *n) {
+        NSDictionary *dict = (NSDictionary *) n.object;
+        NSNumber *OADServiceImageBlockNumber = dict[kOADServiceImageBlockNumber];
+        NSUInteger writtenBytesLength = (OADServiceImageBlockNumber.unsignedIntegerValue + 1) << 4;
+        
+        [self updateUpdateProgressViewWithWrittenBytesLength:writtenBytesLength];
+        
+        if (writtenBytesLength == [AWFileUtil getLocalAPPServiceImageData].length) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self.updateAPPServiceImageObserver];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:@([AWFileUtil getLocalAPPServiceImageVersion]) forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
+            [userDefaults synchronize];
+            
+            // 若未连接会扫描
+            [self updateActionButtonState];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"升级成功" message:@"您的固件已升级到最新版本，赶快运动吧" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alertView show];
+            
+            self.updateProgressBackgroundView.hidden = YES;
+            self.tabBarController.tabBar.userInteractionEnabled = YES;
+        }
+    }];
+}
+
 // 注意“取消绑定”和“断开绑定”是两码事
 - (IBAction)cancelPairPeripheral:(UIButton *)sender {
     [[AWBluetooth sharedBluetooth] stopScan];
@@ -134,19 +167,10 @@
             break;
         case ActionButtonStatePleaseUpdate: {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:kPleaseUpdateAPPServiceImageMessage delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            alertView.tag = StartAlertTagUpdate;
+            alertView.tag = StartAlertTagUpdateNormalPeripheral;
             [alertView show];
             break;
         } case ActionButtonStateStart:
-            
-            
-            
-            
-            
-            
-            
-            
-            
             // TODO: if isConnected [change] else wait notification [change]
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
@@ -195,44 +219,17 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (alertView.tag) {
-        case StartAlertTagUpdate:
+        case StartAlertTagUpdateNormalPeripheral:
             if (buttonIndex == 1) {
-                // TODO: 提取模块+delegate
-                self.tabBarController.tabBar.userInteractionEnabled = NO;
-
-                self.updateProgressView.progress = 0.0;
-                self.progressPercentLabel.text = @"0.0%";
-                self.progressRateLabel.text = @"加载数据...";
-                self.updateProgressBackgroundView.hidden = NO;
-
-                self.updateAPPServiceImageObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationOADServiceImageBlockNumber object:nil queue:nil usingBlock:^(NSNotification *n) {
-                    NSDictionary *dict = (NSDictionary *) n.object;
-                    NSNumber *OADServiceImageBlockNumber = dict[kOADServiceImageBlockNumber];
-                    NSUInteger writtenBytesLength = (OADServiceImageBlockNumber.unsignedIntegerValue + 1) << 4;
-
-                    [self updateUpdateProgressViewWithWrittenBytesLength:writtenBytesLength];
-
-                    if (writtenBytesLength == [AWFileUtil getLocalAPPServiceImageData].length) {
-                        [[NSNotificationCenter defaultCenter] removeObserver:self.updateAPPServiceImageObserver];
-
-                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                        [userDefaults setObject:@([AWFileUtil getLocalAPPServiceImageVersion]) forKey:kUserDefaultsPairedPeripheralAPPServiceImageVersion];
-                        [userDefaults synchronize];
-
-                        // 若未连接会扫描
-                        [self updateActionButtonState];
-
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"升级成功" message:@"您的固件已升级到最新版本，赶快运动吧" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                        [alertView show];
-
-                        self.updateProgressBackgroundView.hidden = YES;
-                        self.tabBarController.tabBar.userInteractionEnabled = YES;
-                    }
-                }];
-
-                [[AWBluetooth sharedBluetooth] updatePairedPeripheral];
+                [self prepareForUpdatePeripheral];
+                [[AWBluetooth sharedBluetooth] updateNormalPeripheral];
             }
             break;
+        case StartAlertTagUpdateOADPeripheral:
+            if (buttonIndex == 1) {
+                [self prepareForUpdatePeripheral];
+                [[AWBluetooth sharedBluetooth] scanAndUpdateOADPeripheral];
+            }
         default:
             break;
     }

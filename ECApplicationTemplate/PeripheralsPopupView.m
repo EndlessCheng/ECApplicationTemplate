@@ -68,13 +68,13 @@
         }];
         
         self.connectionTimeOutObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationConnectionTimeOut object:nil queue:nil usingBlock:^(NSNotification *n) {
-            // notification may from didDisconnectPeripheral
+            // error most from didDisconnectPeripheral
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接超时" message:@"请将设备靠近手机后重试" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
             alertView.tag = PeripheralsPopupViewAlertTagConnectionTimeOut;
             [alertView show];
         }];
 
-        [[AWBluetooth sharedBluetooth] scanAllPeripherals];
+        [[AWBluetooth sharedBluetooth] scanNormalPeripherals];
     }
 }
 
