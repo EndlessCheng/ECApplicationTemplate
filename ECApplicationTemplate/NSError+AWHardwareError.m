@@ -26,9 +26,7 @@
     
     [AWPeripheral sharedPeripheral].peripheralState &= 254; // 11111110
     switch (self.code) {
-        case 6: // iOS 9: "The request is not supported."
-            NSLog(@"[不支持的请求]");
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionTimeOut object:nil];
+        case 6: // "The connection has timed out unexpectedly."
             break;
         case 10:
             NSLog(@"[蓝牙连接失败]");

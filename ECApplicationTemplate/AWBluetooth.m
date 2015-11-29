@@ -44,7 +44,6 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
 
 - (void)createCentralManager {
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    self.needUpdate = NO;
 }
 
 - (BOOL)isPoweredOn {

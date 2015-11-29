@@ -38,9 +38,6 @@
 - (void)cancelPeripheralConnection;
 
 
-// TODO: change to set notify YES if isConnected else connect
-@property (nonatomic) BOOL needUpdate;
-
 - (void)updateNormalPeripheral;
 
 // 登陆后、OAD使能后
