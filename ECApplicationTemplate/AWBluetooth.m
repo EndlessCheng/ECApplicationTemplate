@@ -159,10 +159,8 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCentralManagerDidUpdateState object:@(central.state)];
 }
 
-// OK
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSLog(@"2. didDiscoverPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
-//    NSLog(@"advertisementData: %@", advertisementData);
     NSLog(@"kCBAdvDataManufacturerData: %@", advertisementData[@"kCBAdvDataManufacturerData"]);
     NSLog(@"RSSI: %@", RSSI);
     
@@ -179,7 +177,6 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindNewPeripheral object:@{kFindNewPeripheralManufacturer : manufacturerString}];
     } else {
         // 对OAD设备不要筛选信号，因为升级中断开连接，就算是蓝牙信号弱也可以继续升级
-        
         [self stopScan];
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindOADPeripheral object:nil];
         
@@ -196,13 +193,11 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     if (error) {
         [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
-//        return;
     }
     
     NSLog(@"!!!didFailToConnectPeripheral");
 }
 
-// OK
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"3. didConnectPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
 
@@ -227,9 +222,6 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     
     if (error) {
         [error handleErrorWithUUIDString:peripheral.identifier.UUIDString];
-//        if (error.code != 6) {
-//            return;
-//        }
     }
 
     /*
