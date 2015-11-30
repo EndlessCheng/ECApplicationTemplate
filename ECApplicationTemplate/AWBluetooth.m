@@ -242,4 +242,8 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     // 断开发生在确认绑定之前的就不重连了，因为确认绑定后还会再重新连接一次
 }
 
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict {
+    NSLog(@"willRestoreState: %@", dict);
+}
+
 @end
