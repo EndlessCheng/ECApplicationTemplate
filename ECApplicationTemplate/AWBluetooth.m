@@ -12,8 +12,8 @@
 #import "AWBluetooth.h"
 #import "AWPeripheral.h"
 
-// 取-60 ~ -69都是合适的
-const float_t MIN_CONNECT_RSSI = -61.0;
+// -65 may be the best value
+const float_t MIN_CONNECT_RSSI = -65.0;
 
 typedef NS_ENUM(NSInteger, AWUpdateState) {
     AWUpdateStateNormal, // 未OAD使能下的升级
@@ -167,7 +167,9 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     if ([peripheral.name isEqualToString:kNormalStatePeripheralName]) {
         // 绑定
         // 由于信号弱的设备在连接后会由于不稳定而断开连接，所以直接不处理信号弱的设备
-        if (RSSI.floatValue < MIN_CONNECT_RSSI) {
+        // "If the value cannot be read (e.g. the device is disconnected) or is not available on a module, a value of +127 will be returned."
+        // "A value of 127 is reserved and indicates the RSSI was not available."
+        if (RSSI.integerValue == 127 || RSSI.floatValue < MIN_CONNECT_RSSI) {
             return;
         }
         
