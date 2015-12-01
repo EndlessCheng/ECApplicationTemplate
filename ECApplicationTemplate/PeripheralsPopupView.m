@@ -50,7 +50,7 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self.connectionTimeOutObserver];
         [self clearTableView];
     } else {
-        self.userInteractionEnabled = YES;
+        self.peripheralsTableView.userInteractionEnabled = YES;
 
         self.findNewPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationFindNewPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
             NSDictionary *dict = (NSDictionary *) n.object;
@@ -148,7 +148,7 @@
             if (buttonIndex == 0) {
                 [self rescanPeripherals];
             } else if (buttonIndex == 1) {
-                self.userInteractionEnabled = NO;
+                self.peripheralsTableView.userInteractionEnabled = NO;
 
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setObject:self.pairedPeripheralUUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
