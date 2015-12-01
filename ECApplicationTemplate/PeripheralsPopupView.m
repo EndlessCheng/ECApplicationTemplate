@@ -45,13 +45,14 @@
 - (void)setHidden:(BOOL)hidden {
     [super setHidden:hidden];
 
+    self.peripheralsTableView.userInteractionEnabled = YES;
+    
     if (hidden) {
         [[NSNotificationCenter defaultCenter] removeObserver:self.findNewPeripheralObserver];
         [[NSNotificationCenter defaultCenter] removeObserver:self.connectionTimeOutObserver];
+        [[NSNotificationCenter defaultCenter] removeObserver:self.didConnectUnpairedPeripheralObserver];
         [self clearTableView];
     } else {
-        self.peripheralsTableView.userInteractionEnabled = YES;
-
         self.findNewPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationFindNewPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {
             NSDictionary *dict = (NSDictionary *) n.object;
             NSString *manufacturerString = dict[kFindNewPeripheralManufacturer];
@@ -153,8 +154,6 @@
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setObject:self.pairedPeripheralUUIDString forKey:kUserDefaultsPairedPeripheralUUIDString];
                 [userDefaults synchronize];
-                
-                
                 
                 if (kPairedPeripheralAPPServiceImageVersion) {
                     [self.delegate peripheralsPopupView:self didGetAPPServiceImageVersion:kPairedPeripheralAPPServiceImageVersion];
