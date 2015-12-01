@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     NSLog(@"!!!didFailToConnectPeripheral");
 }
 
-// 注意，由于要让用户确认是否绑定所选设备，要让用户看到外设灯亮，即进到保护模式。
+// 注意，由于要让用户看到外设灯亮，从而确认是否绑定所选设备，这里不要直接return
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     NSLog(@"3. didConnectPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
 
