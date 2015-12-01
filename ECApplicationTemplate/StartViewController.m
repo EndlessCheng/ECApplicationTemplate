@@ -46,13 +46,15 @@
 
 // don't alert in this method!
 - (void)updateActionButtonState {
+    if (!kPairedPeripheralUUIDString) {
+        self.actionButtonState = ActionButtonStatePairPeripheral;
+        return;
+    }
     if (self.actionButtonState == ActionButtonStateRunning) {
         return;
     }
     
-    if (!kPairedPeripheralUUIDString) {
-        self.actionButtonState = ActionButtonStatePairPeripheral;
-    } else if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
+    if (([AWPeripheral sharedPeripheral].peripheralState & 1) == 0) {
         self.actionButtonState = ActionButtonStateSearchingPairedPeripheral;
 
         self.didConnectPairedPeripheralObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kNotificationDidConnectPairedPeripheral object:nil queue:nil usingBlock:^(NSNotification *n) {

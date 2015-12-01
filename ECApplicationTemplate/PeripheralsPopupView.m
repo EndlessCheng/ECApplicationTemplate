@@ -115,7 +115,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.userInteractionEnabled = NO;
+    tableView.userInteractionEnabled = NO;
 
     NSString *manufacturerString = self.manufacturerStrings[indexPath.row];
     PeripheralsTableViewCell *cell = (PeripheralsTableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
@@ -133,7 +133,7 @@
             // ???如果响应很慢，该次连接失败
         }
 
-        self.userInteractionEnabled = YES;
+        tableView.userInteractionEnabled = YES;
     }];
 
     [[AWBluetooth sharedBluetooth] connectToPeripheralWithUUIDString:[AWBluetooth sharedBluetooth].peripheralUUIDStringDictionary[cell.manufacturerString]];
