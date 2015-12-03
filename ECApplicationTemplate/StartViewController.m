@@ -227,6 +227,11 @@
     switch (alertView.tag) {
         case StartAlertTagUpdateNormalPeripheral:
             if (buttonIndex == 1) {
+                if ([AWPeripheral sharedPeripheral].batteryPowerLevel == AWBatteryPowerLevelLow) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"电量不足" message:@"请充电后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alertView show];
+                    return;
+                }
                 [self prepareForUpdatePeripheral];
                 [[AWBluetooth sharedBluetooth] updateNormalPeripheral];
             }

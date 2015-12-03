@@ -88,10 +88,7 @@
                 }
                 case 2: {
                     UIAlertView *alertView;
-                    if (kFailedUpdateAPPServiceImage) {
-                        alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"上次升级未成功，按确定开始升级" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                        alertView.tag = SettingsAlertTagUpdate;
-                    } else if (!kPairedPeripheralUUIDString) {
+                    if (!kPairedPeripheralUUIDString) {
                         alertView = [[UIAlertView alloc] initWithTitle:@"未绑定设备" message:@"请先绑定设备后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     } else if (kPairedPeripheralAPPServiceImageVersion < [AWFileUtil getLocalAPPServiceImageVersion]) {
                         alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:@"升级耗时约2分钟，按确定开始升级" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -148,6 +145,11 @@
             break;
         case SettingsAlertTagUpdate:
             if (buttonIndex == 1) {
+                if ([AWPeripheral sharedPeripheral].batteryPowerLevel == AWBatteryPowerLevelLow) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"电量不足" message:@"请充电后再升级" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alertView show];
+                    return;
+                }
                 // TODO: 提取模块
                 self.tabBarController.tabBar.userInteractionEnabled = NO;
 

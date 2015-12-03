@@ -235,14 +235,14 @@
 			name = Finish;
 			sourceTree = "<group>";
 		};
-		E50542511BF59F9300B66F1F /* CommonModule */ = {
+		E50542511BF59F9300B66F1F /* Common Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				E5176ACD1BFC64D700E0A679 /* Models */,
 				E577D9AB1BD74ACC00C862E9 /* Utils */,
 				E50542521BF59FAA00B66F1F /* Views */,
 			);
-			name = CommonModule;
+			name = "Common Libraries";
 			sourceTree = "<group>";
 		};
 		E50542521BF59FAA00B66F1F /* Views */ = {
@@ -388,7 +388,7 @@
 			children = (
 				E577D9C81BD8F88E00C862E9 /* Resources */,
 				E577D9641BD73ED200C862E9 /* Supporting Files */,
-				E50542511BF59F9300B66F1F /* CommonModule */,
+				E50542511BF59F9300B66F1F /* Common Libraries */,
 				E577D9671BD73ED200C862E9 /* AppDelegate.h */,
 				E577D9681BD73ED200C862E9 /* AppDelegate.m */,
 				E50542661BF5B4D200B66F1F /* ViewControllers */,
