@@ -75,6 +75,7 @@
 		E577D9DA1BD8F8D100C862E9 /* welcome_guide_480_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E577D9CA1BD8F8D100C862E9 /* welcome_guide_480_1@2x.png */; };
 		E5F232251C115D9800DE09A6 /* back_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5F232231C115D9800DE09A6 /* back_red@2x.png */; };
 		E5F232261C115D9800DE09A6 /* back_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5F232241C115D9800DE09A6 /* back_red@3x.png */; };
+		E5F2322B1C11934B00DE09A6 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F2322A1C11934B00DE09A6 /* AboutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,8 @@
 		E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUserDefaults.h; sourceTree = "<group>"; };
 		E5F232231C115D9800DE09A6 /* back_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_red@2x.png"; sourceTree = "<group>"; };
 		E5F232241C115D9800DE09A6 /* back_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_red@3x.png"; sourceTree = "<group>"; };
+		E5F232291C11934B00DE09A6 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		E5F2322A1C11934B00DE09A6 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,12 +461,8 @@
 			isa = PBXGroup;
 			children = (
 				E577D9A91BD749BD00C862E9 /* Settings.storyboard */,
-				E577D9A61BD749B300C862E9 /* SettingsViewController.h */,
-				E577D9A71BD749B300C862E9 /* SettingsViewController.m */,
-				E577D9BB1BD7904800C862E9 /* SettingsTableViewCell.h */,
-				E577D9BC1BD7904800C862E9 /* SettingsTableViewCell.m */,
-				E5176AB91BF62CAC00E0A679 /* SettingsModel.h */,
-				E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */,
+				E5F232271C117D9700DE09A6 /* SettingsMain */,
+				E5F232281C117DA500DE09A6 /* About */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -547,6 +546,28 @@
 				E5F232241C115D9800DE09A6 /* back_red@3x.png */,
 			);
 			name = NavigationBar;
+			sourceTree = "<group>";
+		};
+		E5F232271C117D9700DE09A6 /* SettingsMain */ = {
+			isa = PBXGroup;
+			children = (
+				E577D9A61BD749B300C862E9 /* SettingsViewController.h */,
+				E577D9A71BD749B300C862E9 /* SettingsViewController.m */,
+				E577D9BB1BD7904800C862E9 /* SettingsTableViewCell.h */,
+				E577D9BC1BD7904800C862E9 /* SettingsTableViewCell.m */,
+				E5176AB91BF62CAC00E0A679 /* SettingsModel.h */,
+				E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */,
+			);
+			name = SettingsMain;
+			sourceTree = "<group>";
+		};
+		E5F232281C117DA500DE09A6 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				E5F232291C11934B00DE09A6 /* AboutViewController.h */,
+				E5F2322A1C11934B00DE09A6 /* AboutViewController.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -728,6 +749,7 @@
 				E577D9B41BD74C1B00C862E9 /* TabBarController.m in Sources */,
 				E577D9BE1BD7904800C862E9 /* SettingsTableViewCell.m in Sources */,
 				E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */,
+				E5F2322B1C11934B00DE09A6 /* AboutViewController.m in Sources */,
 				E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */,
 				E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */,
 				E577D9A11BD7489900C862E9 /* StartViewController.m in Sources */,

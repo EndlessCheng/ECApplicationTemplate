@@ -24,7 +24,7 @@
         <!--开始-->
         <scene sceneID="Etz-Yn-gRg">
             <objects>
-                <viewController id="2VW-1y-KBr" customClass="StartViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="2VW-1y-KBr" customClass="StartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6BW-cn-x4a"/>
                         <viewControllerLayoutGuide type="bottom" id="Q1x-fl-TJq"/>
@@ -357,13 +357,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="完成" id="kD0-XB-nrD">
-                        <barButtonItem key="leftBarButtonItem" image="back_red.png" id="BI6-4y-xjF">
+                        <barButtonItem key="leftBarButtonItem" title="保存" id="BI6-4y-xjF">
                             <color key="tintColor" red="0.0" green="0.3921568627" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="backToStartViewController:" destination="UlS-3B-fgn" id="tQ8-ls-OSS"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="完成" id="Ucr-Y3-smB"/>
+                        <barButtonItem key="rightBarButtonItem" title="分享" id="Ucr-Y3-smB"/>
                     </navigationItem>
                     <connections>
                         <outlet property="resultLabel" destination="79v-KK-nEY" id="Mnu-Ef-U8I"/>
@@ -374,7 +374,4 @@
             <point key="canvasLocation" x="1630" y="460"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="back_red.png" width="10" height="15"/>
-    </resources>
 </document>

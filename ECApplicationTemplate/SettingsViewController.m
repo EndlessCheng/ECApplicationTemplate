@@ -103,6 +103,14 @@
                     break;
             }
             break;
+        case 2:
+            switch (indexPath.row) {
+                case 2:
+                    [self performSegueWithIdentifier:@"SettingsToAbout" sender:self];
+                    break;
+                default:
+                    break;
+            }
         case 3:
             switch (indexPath.row) {
                 case 0: {

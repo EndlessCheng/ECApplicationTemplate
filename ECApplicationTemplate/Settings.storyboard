@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="phb-MN-1kZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-382" y="444"/>
+            <point key="canvasLocation" x="-1205" y="500"/>
         </scene>
         <!--设置-->
         <scene sceneID="eqR-Ng-unP">
@@ -162,6 +162,7 @@
                                                         <connections>
                                                             <outlet property="manufacturerLabel" destination="9bx-iW-lV0" id="BPo-tl-7SO"/>
                                                             <outlet property="pairingPeripheralIndicatorView" destination="TIy-Az-Oe3" id="3ND-2v-sDi"/>
+                                                            <segue destination="U5l-72-c7u" kind="show" identifier="SettingsToAbout" id="S5K-mr-KIA"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -345,7 +346,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8W-h4-e9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="444"/>
+            <point key="canvasLocation" x="-422" y="500"/>
+        </scene>
+        <!--关于-->
+        <scene sceneID="6hi-xg-9fF">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="U5l-72-c7u" userLabel="关于" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K4B-1C-vGN"/>
+                        <viewControllerLayoutGuide type="bottom" id="EDI-5Z-ogl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T0g-6M-Pb7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="关于" id="A6j-Es-SfB">
+                        <barButtonItem key="leftBarButtonItem" image="back_red.png" id="0sp-FI-miE">
+                            <connections>
+                                <action selector="backToSettingsViewController:" destination="U5l-72-c7u" id="pb4-HO-Jsv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1j9-IJ-TY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="389" y="500"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back_red.png" width="10" height="15"/>
+    </resources>
 </document>
