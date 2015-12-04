@@ -356,7 +356,15 @@
                             <constraint firstItem="79v-KK-nEY" firstAttribute="centerX" secondItem="rf0-qZ-IZ8" secondAttribute="centerX" id="Qr0-0o-fbw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="完成" id="kD0-XB-nrD"/>
+                    <navigationItem key="navigationItem" title="完成" id="kD0-XB-nrD">
+                        <barButtonItem key="leftBarButtonItem" image="back_red.png" id="BI6-4y-xjF">
+                            <color key="tintColor" red="0.0" green="0.3921568627" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backToStartViewController:" destination="UlS-3B-fgn" id="tQ8-ls-OSS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="Ucr-Y3-smB"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="resultLabel" destination="79v-KK-nEY" id="Mnu-Ef-U8I"/>
                     </connections>
@@ -366,4 +374,7 @@
             <point key="canvasLocation" x="1630" y="460"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back_red.png" width="10" height="15"/>
+    </resources>
 </document>

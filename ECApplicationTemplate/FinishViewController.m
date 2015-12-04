@@ -29,4 +29,7 @@
     self.resultLabel.text = self.resultInfoString;
 }
 
+- (IBAction)backToStartViewController:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
