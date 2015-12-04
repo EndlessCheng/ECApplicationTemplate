@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(2, -2, -2, 2);
     self.navigationItem.title = NSLocalizedString(@"完成",);
     self.resultInfoString = @"70000";
 }
