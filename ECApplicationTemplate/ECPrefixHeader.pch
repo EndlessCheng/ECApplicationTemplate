@@ -23,6 +23,8 @@
 #import "ECNotificationNames.h"
 
 
+#define D(arg) NSLog(@""#arg": %@", arg)
+
 #define isNilOrNull(_ref) ((_ref) == nil || [(_ref) isEqual:[NSNull null]])
 #define isEmptyString(_ref) (isNilOrNull(_ref) || [(_ref) isEqualToString:@""])
 

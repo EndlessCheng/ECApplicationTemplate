@@ -160,8 +160,8 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSLog(@"2. didDiscoverPeripheral: %@(%@)", peripheral.name, peripheral.identifier.UUIDString);
-    NSLog(@"kCBAdvDataManufacturerData: %@", advertisementData[@"kCBAdvDataManufacturerData"]);
-    NSLog(@"RSSI: %@", RSSI);
+    D(advertisementData[@"kCBAdvDataManufacturerData"]);
+    D(RSSI);
     
     // 第一层按设备名处理比updateState更好
     if ([peripheral.name isEqualToString:kNormalStatePeripheralName]) {

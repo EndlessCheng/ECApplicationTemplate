@@ -16,8 +16,8 @@
     // 多次断开待绑定设备后无法连接：CBErrorDomain Code=0 "Unknown error."
     // 连上设备后刚好设备没电：CBErrorDomain Code=3 "The specified device is not connected."
     NSLog(@"[ERROR at %@]", [[NSThread callStackSymbols][1] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"[]"]][1]);
-    NSLog(@"%@", UUIDString);
-    NSLog(@"%@", self.description);
+    D(UUIDString);
+    D(self.description);
     
     // 跳过OAD的error
     if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 1) {

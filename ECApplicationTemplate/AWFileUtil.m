@@ -15,9 +15,9 @@ NSString *const kAPPServiceImageFileTypeName = @"bin";
 
 + (NSData *)getLocalAPPServiceImageData {
     NSString *binPath = [[NSBundle mainBundle] pathForResource:kAPPServiceImageFileName ofType:kAPPServiceImageFileTypeName];
-//    NSLog(@"binPath: %@", binPath);
+//    D(binPath);
     NSData *data = [NSData dataWithContentsOfFile:binPath];
-//    NSLog(@"length: %@", @(data.length));
+//    D(@(data.length));
     return data;
 }
 
