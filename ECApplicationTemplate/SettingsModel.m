@@ -24,7 +24,7 @@
                 @[@"个人信息", @"修改密码"],
                 @[@"消息通知", @"设备绑定", @"固件升级"],
                 @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
-                @[@"注销登录"],
+                @[@"注销登录", @"注销登录", @"注销登录", @"注销登录", @"注销登录", @"注销登录",],
         ];
     }
     return self;
@@ -44,27 +44,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = (SettingsTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCellIndetifier" forIndexPath:indexPath];
 
-    // round corner of group
     // TODO: this part can refactor to parent class
-    UIRectCorner rectCorner = 0UL;
+    UIRectCorner rectCorner = 0;
     if (indexPath.row == 0) {
         rectCorner |= UIRectCornerTopLeft | UIRectCornerTopRight;
     }
-    
-    // sometimes unexpected cornor drawed
-//    NSLog(@"[tableView numberOfRowsInSection:indexPath.section] - 1: %@", @([tableView numberOfRowsInSection:indexPath.section] - 1));
     if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
         rectCorner |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
     }
-    if (rectCorner != 0UL) {
-        CGFloat cornerRadius = 10.0;
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:rectCorner cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
-        CAShapeLayer *maskLayer = [CAShapeLayer layer];
-        maskLayer.frame = cell.bounds;
-        maskLayer.path = maskPath.CGPath;
-        cell.layer.mask = maskLayer;
-    }
 
+    CGFloat cornerRadius = rectCorner != 0 ? 10.0 : 0.0;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:rectCorner cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = cell.bounds;
+    maskLayer.path = maskPath.CGPath;
+    cell.layer.mask = maskLayer;
+
+    
     cell.titleLabel.text = self.settingTitlesGroup[indexPath.section][indexPath.row];
     cell.redPoint.hidden = YES;
     cell.infoLabel.hidden = YES;

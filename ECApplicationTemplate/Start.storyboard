@@ -24,7 +24,7 @@
         <!--开始-->
         <scene sceneID="Etz-Yn-gRg">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="2VW-1y-KBr" customClass="StartViewController" sceneMemberID="viewController">
+                <viewController id="2VW-1y-KBr" customClass="StartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6BW-cn-x4a"/>
                         <viewControllerLayoutGuide type="bottom" id="Q1x-fl-TJq"/>
@@ -87,13 +87,13 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="晃动设备以激活，点击设备码以绑定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFj-J3-xW7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="晃动设备以激活，点击设备码以绑定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFj-J3-xW7">
                                                 <rect key="frame" x="0.0" y="39" width="220" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.4549019608" green="0.54901960780000003" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="35" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cxl-LY-Rrt">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="35" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cxl-LY-Rrt">
                                                 <rect key="frame" x="0.0" y="55" width="220" height="124"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="separatorColor" red="0.52549019610000003" green="0.56862745100000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -103,7 +103,7 @@
                                                         <rect key="frame" x="0.0" y="50" width="220" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ddO-QQ-6oq" id="KXe-Df-xaN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="220" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="220" height="34"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3a4f0d72" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pR9-2i-Gxu">

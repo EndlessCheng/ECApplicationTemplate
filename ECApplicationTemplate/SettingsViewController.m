@@ -16,12 +16,15 @@
 #import "PeripheralsPopupView.h"
 
 #import "SettingsViewController.h"
+#import "ShareViewController.h"
 
 @interface SettingsViewController () <PeripheralsPopupViewDelegate, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) SettingsModel *settingsModel;
 
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;
+
+@property (nonatomic) UIImage *sharedImage;
 
 @end
 
@@ -220,6 +223,54 @@
     [[AWBluetooth sharedBluetooth] stopScan];
     self.peripheralsPopupView.hidden = YES;
     self.tabBarController.tabBar.userInteractionEnabled = YES;
+}
+
+- (UIImage *)imageWithScrollView:(UIScrollView *)view {
+    UIImage *image = nil;
+    
+    UIGraphicsBeginImageContextWithOptions(view.contentSize, view.opaque, 0.0); {
+        CGPoint savedContentOffset = view.contentOffset;
+        CGRect savedFrame = view.frame;
+        CGFloat savedCornerRadius = view.layer.cornerRadius;
+
+        view.contentOffset = CGPointZero;
+        view.frame = CGRectMake(0, 0, view.contentSize.width, view.contentSize.height);
+        view.layer.cornerRadius = 0.0;
+
+        // this method is really slow, but where is the different?
+//        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        [view drawViewHierarchyInRect:view.frame afterScreenUpdates:YES];
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+
+        D(@(image.size.width));
+        D(@(image.size.height));
+
+        view.contentOffset = savedContentOffset;
+        view.frame = savedFrame;
+        view.layer.cornerRadius = savedCornerRadius;
+    } UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+- (IBAction)shareScrollView:(UIBarButtonItem *)sender {
+    self.sharedImage = [self imageWithScrollView:self.settingsTableView];
+    
+    [self performSegueWithIdentifier:@"SettingsToShare" sender:self];
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.destinationViewController isKindOfClass:[ShareViewController class]]) {
+        ShareViewController *vc = segue.destinationViewController;
+        vc.sharedImage = self.sharedImage;
+    }
 }
 
 @end

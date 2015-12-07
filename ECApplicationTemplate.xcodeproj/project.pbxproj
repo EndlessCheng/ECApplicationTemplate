@@ -54,6 +54,7 @@
 		E53CF33B1C09E58500BF72F8 /* libAWSwimAlgorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */; };
 		E53CF33F1C09E5BE00BF72F8 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */; };
 		E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */ = {isa = PBXBuildFile; fileRef = E55178B91C0433770010C25D /* NSError+AWHardwareError.m */; };
+		E55258C01C1534E700CA0F7E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258BF1C1534E700CA0F7E /* ShareViewController.m */; };
 		E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */; };
 		E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */; };
 		E577D9661BD73ED200C862E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9651BD73ED200C862E9 /* main.m */; };
@@ -156,6 +157,8 @@
 		E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSwimAlgorithm.h; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWSwimAlgorithm.h; sourceTree = "<group>"; };
 		E55178B81C0433770010C25D /* NSError+AWHardwareError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+AWHardwareError.h"; sourceTree = "<group>"; };
 		E55178B91C0433770010C25D /* NSError+AWHardwareError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+AWHardwareError.m"; sourceTree = "<group>"; };
+		E55258BE1C1534E700CA0F7E /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		E55258BF1C1534E700CA0F7E /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
 		E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWFileUtil.m; sourceTree = "<group>"; };
 		E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -370,6 +373,15 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		E55258BD1C1534CC00CA0F7E /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				E55258BE1C1534E700CA0F7E /* ShareViewController.h */,
+				E55258BF1C1534E700CA0F7E /* ShareViewController.m */,
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
 		E577D9581BD73ED200C862E9 = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +475,7 @@
 				E577D9A91BD749BD00C862E9 /* Settings.storyboard */,
 				E5F232271C117D9700DE09A6 /* SettingsMain */,
 				E5F232281C117DA500DE09A6 /* About */,
+				E55258BD1C1534CC00CA0F7E /* Share */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -750,6 +763,7 @@
 				E577D9BE1BD7904800C862E9 /* SettingsTableViewCell.m in Sources */,
 				E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */,
 				E5F2322B1C11934B00DE09A6 /* AboutViewController.m in Sources */,
+				E55258C01C1534E700CA0F7E /* ShareViewController.m in Sources */,
 				E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */,
 				E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */,
 				E577D9A11BD7489900C862E9 /* StartViewController.m in Sources */,

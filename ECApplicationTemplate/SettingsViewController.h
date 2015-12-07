@@ -31,4 +31,6 @@ typedef NS_ENUM(NSInteger, SettingsAlertTag) {
 @property (nonatomic, weak) IBOutlet UILabel *progressPercentLabel;
 @property (nonatomic, weak) IBOutlet UILabel *progressRateLabel;
 
+- (IBAction)shareScrollView:(UIBarButtonItem *)sender;
+
 @end
