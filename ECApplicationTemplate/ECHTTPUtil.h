@@ -14,7 +14,7 @@
 
 + (BOOL)requestVerificationCodeWithAccount:(NSString *)account error:(NSString **)errorString;
 
-+ (BOOL)login;
++ (BOOL)loginWithUsername:(NSString *)username password:(NSString *)password;
 
 + (AWUserInfo *)fetchUserInfo;
 

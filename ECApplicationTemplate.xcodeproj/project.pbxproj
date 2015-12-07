@@ -159,6 +159,7 @@
 		E55178B91C0433770010C25D /* NSError+AWHardwareError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+AWHardwareError.m"; sourceTree = "<group>"; };
 		E55258BE1C1534E700CA0F7E /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		E55258BF1C1534E700CA0F7E /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		E55258C11C15570500CA0F7E /* ECPrivateNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECPrivateNumbers.h; sourceTree = "<group>"; };
 		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
 		E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWFileUtil.m; sourceTree = "<group>"; };
 		E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -548,6 +549,7 @@
 				E529DBF51BE0766100F4E0E7 /* ECNumbers.h */,
 				E577D9EB1BD9019300C862E9 /* ECUserDefaults.h */,
 				E5176AB81BF61A2600E0A679 /* ECNotificationNames.h */,
+				E55258C11C15570500CA0F7E /* ECPrivateNumbers.h */,
 			);
 			name = ECPrefixHeaders;
 			sourceTree = "<group>";

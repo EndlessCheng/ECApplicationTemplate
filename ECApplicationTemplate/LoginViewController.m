@@ -20,7 +20,7 @@
 }
 
 - (IBAction)loginButtonClicked:(UIButton *)sender {
-    if ([ECHTTPUtil login]) {
+    if ([ECHTTPUtil loginWithUsername:TEST_USERNAME password:TEST_PASSWORD]) {
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
 }

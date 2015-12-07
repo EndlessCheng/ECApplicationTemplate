@@ -22,6 +22,8 @@
 #import "ECNumbers.h"
 #import "ECNotificationNames.h"
 
+#import "ECPrivateNumbers.h"
+
 
 #define D(arg) NSLog(@""#arg": %@", arg)
 
