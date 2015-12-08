@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="60u-ZI-Lzm">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="1gI-XF-UH3">
+            <objects>
+                <navigationController id="60u-ZI-Lzm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jtu-2b-zwV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.23137254900000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="f96-k8-pl7" kind="relationship" relationship="rootViewController" id="gqB-Za-N9c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wV8-Hv-pem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-478" y="340"/>
+        </scene>
+        <!--训练库-->
+        <scene sceneID="5nM-Ft-qH9">
+            <objects>
+                <viewController id="f96-k8-pl7" customClass="PlanViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4bH-wd-ZzO"/>
+                        <viewControllerLayoutGuide type="bottom" id="jR5-b2-Yma"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IdX-kK-N29">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AR5-ug-jzS">
+                                <rect key="frame" x="234" y="95" width="133" height="29"/>
+                                <segments>
+                                    <segment title="当前计划"/>
+                                    <segment title="训练组"/>
+                                </segments>
+                                <connections>
+                                    <action selector="planSegmentedControlChanged:" destination="f96-k8-pl7" eventType="valueChanged" id="gFZ-6e-nPb"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHO-7v-ADj">
+                                <rect key="frame" x="0.0" y="138" width="600" height="462"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0A-Fg-K0I">
+                                        <rect key="frame" x="260" y="392" width="80" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="4Kt-PU-Vgp"/>
+                                        </constraints>
+                                        <state key="normal" title="添加计划">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10.0"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="mainPlanToAddPlan:" destination="f96-k8-pl7" eventType="touchUpInside" id="2Rv-Y1-Z1h"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.23137254901960785" blue="0.13725490196078433" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="K0A-Fg-K0I" firstAttribute="centerX" secondItem="GHO-7v-ADj" secondAttribute="centerX" id="O0K-UH-pjm"/>
+                                    <constraint firstAttribute="bottom" secondItem="K0A-Fg-K0I" secondAttribute="bottom" constant="40" id="t6d-ed-RyR"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4E-vc-ReP">
+                                <rect key="frame" x="0.0" y="138" width="600" height="462"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="g4E-vc-ReP" secondAttribute="trailing" id="2rR-X7-Eo8"/>
+                            <constraint firstItem="jR5-b2-Yma" firstAttribute="top" secondItem="g4E-vc-ReP" secondAttribute="bottom" id="7LU-lU-Pvn"/>
+                            <constraint firstItem="g4E-vc-ReP" firstAttribute="leading" secondItem="IdX-kK-N29" secondAttribute="leading" id="80j-2K-vym"/>
+                            <constraint firstItem="AR5-ug-jzS" firstAttribute="centerX" secondItem="IdX-kK-N29" secondAttribute="centerX" id="CS4-zh-Nrv"/>
+                            <constraint firstItem="g4E-vc-ReP" firstAttribute="top" secondItem="AR5-ug-jzS" secondAttribute="bottom" constant="15" id="DmL-bC-LSv"/>
+                            <constraint firstItem="AR5-ug-jzS" firstAttribute="top" secondItem="4bH-wd-ZzO" secondAttribute="bottom" constant="31" id="QmA-7N-TLt"/>
+                            <constraint firstItem="GHO-7v-ADj" firstAttribute="leading" secondItem="IdX-kK-N29" secondAttribute="leading" id="S0q-ad-sqW"/>
+                            <constraint firstAttribute="trailing" secondItem="GHO-7v-ADj" secondAttribute="trailing" id="e7O-Wh-uZG"/>
+                            <constraint firstItem="jR5-b2-Yma" firstAttribute="top" secondItem="GHO-7v-ADj" secondAttribute="bottom" id="eKk-HU-CNY"/>
+                            <constraint firstItem="GHO-7v-ADj" firstAttribute="top" secondItem="AR5-ug-jzS" secondAttribute="bottom" constant="15" id="jdc-1T-BPP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="训练库" id="q8a-9t-tFI"/>
+                    <connections>
+                        <outlet property="nowPlan" destination="GHO-7v-ADj" id="cc2-DQ-do1"/>
+                        <outlet property="planGroups" destination="g4E-vc-ReP" id="W8Q-Mh-kKk"/>
+                        <segue destination="YI6-IR-02b" kind="show" identifier="MainPlanToAddPlan" id="Bnm-rr-h47"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTE-eb-TjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="298" y="340"/>
+        </scene>
+        <!--添加计划-->
+        <scene sceneID="VRJ-bT-Xks">
+            <objects>
+                <viewController id="YI6-IR-02b" customClass="AddPlanViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dzn-FS-C4R"/>
+                        <viewControllerLayoutGuide type="bottom" id="kaE-KM-Xhs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S9c-XM-P2h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="添加计划" id="eup-zm-fAB">
+                        <barButtonItem key="leftBarButtonItem" image="back_red.png" id="H0z-Gc-KdV">
+                            <connections>
+                                <action selector="back:" destination="YI6-IR-02b" id="sEy-b9-EmU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PI6-cp-ica" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089" y="340"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back_red.png" width="10" height="15"/>
+    </resources>
+</document>

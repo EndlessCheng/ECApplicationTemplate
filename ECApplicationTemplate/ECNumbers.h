@@ -19,6 +19,6 @@
 
 #define GUIDE_PICTURE_NUMBER 4
 
-#define TAB_BAR_NUMBER 2
+#define TAB_BAR_NUMBER 3
 
 #endif /* ECNumbers_h */

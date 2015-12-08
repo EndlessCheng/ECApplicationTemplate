@@ -55,6 +55,9 @@
 		E53CF33F1C09E5BE00BF72F8 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */; };
 		E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */ = {isa = PBXBuildFile; fileRef = E55178B91C0433770010C25D /* NSError+AWHardwareError.m */; };
 		E55258C01C1534E700CA0F7E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258BF1C1534E700CA0F7E /* ShareViewController.m */; };
+		E55258E31C1690D000CA0F7E /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258E21C1690D000CA0F7E /* PlanViewController.m */; };
+		E55258E51C1690F000CA0F7E /* Plan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55258E41C1690F000CA0F7E /* Plan.storyboard */; };
+		E55258E91C16AB4B00CA0F7E /* AddPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258E81C16AB4A00CA0F7E /* AddPlanViewController.m */; };
 		E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */; };
 		E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */; };
 		E577D9661BD73ED200C862E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9651BD73ED200C862E9 /* main.m */; };
@@ -150,16 +153,21 @@
 		E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_user@3x.png"; sourceTree = "<group>"; };
 		E529DC181BE09F6800F4E0E7 /* ECHTTPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECHTTPUtil.h; sourceTree = "<group>"; };
 		E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECHTTPUtil.m; sourceTree = "<group>"; };
-		E53CF3371C09DB5700BF72F8 /* OADbin.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = OADbin.bin; path = ../../../WeCoachSrc/CommonLibraries/Resources/bin/OADbin.bin; sourceTree = "<group>"; };
-		E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAWSwimAlgorithm.a; path = ../../../WeCoachSrc/CommonLibraries/Resources/lib/libAWSwimAlgorithm.a; sourceTree = "<group>"; };
-		E53CF33C1C09E5BE00BF72F8 /* AWPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPeripheral.h; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWPeripheral.h; sourceTree = "<group>"; };
-		E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPeripheral.m; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWPeripheral.m; sourceTree = "<group>"; };
-		E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSwimAlgorithm.h; path = ../../../WeCoachSrc/CommonLibraries/Utils/AWHardwares/AWSwimAlgorithm.h; sourceTree = "<group>"; };
+		E53CF3371C09DB5700BF72F8 /* OADbin.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = OADbin.bin; path = ../../../WeCoachSrc/CommonModules/Resources/bin/OADbin.bin; sourceTree = "<group>"; };
+		E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAWSwimAlgorithm.a; path = ../../../WeCoachSrc/CommonModules/Resources/lib/libAWSwimAlgorithm.a; sourceTree = "<group>"; };
+		E53CF33C1C09E5BE00BF72F8 /* AWPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPeripheral.h; path = ../../../WeCoachSrc/CommonModules/Utils/AWHardwares/AWPeripheral.h; sourceTree = "<group>"; };
+		E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPeripheral.m; path = ../../../WeCoachSrc/CommonModules/Utils/AWHardwares/AWPeripheral.m; sourceTree = "<group>"; };
+		E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSwimAlgorithm.h; path = ../../../WeCoachSrc/CommonModules/Utils/AWHardwares/AWSwimAlgorithm.h; sourceTree = "<group>"; };
 		E55178B81C0433770010C25D /* NSError+AWHardwareError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+AWHardwareError.h"; sourceTree = "<group>"; };
 		E55178B91C0433770010C25D /* NSError+AWHardwareError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+AWHardwareError.m"; sourceTree = "<group>"; };
 		E55258BE1C1534E700CA0F7E /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		E55258BF1C1534E700CA0F7E /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		E55258C11C15570500CA0F7E /* ECPrivateNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECPrivateNumbers.h; sourceTree = "<group>"; };
+		E55258E11C1690D000CA0F7E /* PlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
+		E55258E21C1690D000CA0F7E /* PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
+		E55258E41C1690F000CA0F7E /* Plan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plan.storyboard; sourceTree = "<group>"; };
+		E55258E71C16AB4A00CA0F7E /* AddPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlanViewController.h; sourceTree = "<group>"; };
+		E55258E81C16AB4A00CA0F7E /* AddPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlanViewController.m; sourceTree = "<group>"; };
 		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
 		E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWFileUtil.m; sourceTree = "<group>"; };
 		E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -246,14 +254,14 @@
 			name = Finish;
 			sourceTree = "<group>";
 		};
-		E50542511BF59F9300B66F1F /* Common Libraries */ = {
+		E50542511BF59F9300B66F1F /* Common Modules */ = {
 			isa = PBXGroup;
 			children = (
 				E5176ACD1BFC64D700E0A679 /* Models */,
 				E577D9AB1BD74ACC00C862E9 /* Utils */,
 				E50542521BF59FAA00B66F1F /* Views */,
 			);
-			name = "Common Libraries";
+			name = "Common Modules";
 			sourceTree = "<group>";
 		};
 		E50542521BF59FAA00B66F1F /* Views */ = {
@@ -281,15 +289,16 @@
 			name = AWHardwares;
 			sourceTree = "<group>";
 		};
-		E50542661BF5B4D200B66F1F /* ViewControllers */ = {
+		E50542661BF5B4D200B66F1F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */,
 				E577D99A1BD7421E00C862E9 /* Welcome */,
 				E577D99C1BD747F500C862E9 /* Home */,
+				E55258E01C1690A200CA0F7E /* Plan */,
 				E577D9A51BD7499000C862E9 /* Settings */,
 			);
-			name = ViewControllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		E5176AC91BFAD40100E0A679 /* Bin */ = {
@@ -383,6 +392,26 @@
 			name = Share;
 			sourceTree = "<group>";
 		};
+		E55258E01C1690A200CA0F7E /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				E55258E41C1690F000CA0F7E /* Plan.storyboard */,
+				E55258E11C1690D000CA0F7E /* PlanViewController.h */,
+				E55258E21C1690D000CA0F7E /* PlanViewController.m */,
+				E55258E61C16AB2E00CA0F7E /* Add Plan */,
+			);
+			name = Plan;
+			sourceTree = "<group>";
+		};
+		E55258E61C16AB2E00CA0F7E /* Add Plan */ = {
+			isa = PBXGroup;
+			children = (
+				E55258E71C16AB4A00CA0F7E /* AddPlanViewController.h */,
+				E55258E81C16AB4A00CA0F7E /* AddPlanViewController.m */,
+			);
+			name = "Add Plan";
+			sourceTree = "<group>";
+		};
 		E577D9581BD73ED200C862E9 = {
 			isa = PBXGroup;
 			children = (
@@ -408,10 +437,10 @@
 			children = (
 				E577D9C81BD8F88E00C862E9 /* Resources */,
 				E577D9641BD73ED200C862E9 /* Supporting Files */,
-				E50542511BF59F9300B66F1F /* Common Libraries */,
+				E50542511BF59F9300B66F1F /* Common Modules */,
 				E577D9671BD73ED200C862E9 /* AppDelegate.h */,
 				E577D9681BD73ED200C862E9 /* AppDelegate.m */,
-				E50542661BF5B4D200B66F1F /* ViewControllers */,
+				E50542661BF5B4D200B66F1F /* View Controllers */,
 			);
 			path = ECApplicationTemplate;
 			sourceTree = "<group>";
@@ -453,7 +482,7 @@
 				E577D96B1BD73ED200C862E9 /* WelcomeViewController.m */,
 				E577D9C31BD8EF7C00C862E9 /* Login */,
 				E577D9C41BD8EF8300C862E9 /* Register */,
-				E577D9C51BD8EF8F00C862E9 /* ForgotPassword */,
+				E577D9C51BD8EF8F00C862E9 /* Forgot Password */,
 				E577D9B21BD74C1B00C862E9 /* TabBarController.h */,
 				E577D9B31BD74C1B00C862E9 /* TabBarController.m */,
 			);
@@ -474,7 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				E577D9A91BD749BD00C862E9 /* Settings.storyboard */,
-				E5F232271C117D9700DE09A6 /* SettingsMain */,
+				E5F232271C117D9700DE09A6 /* Settings Main */,
 				E5F232281C117DA500DE09A6 /* About */,
 				E55258BD1C1534CC00CA0F7E /* Share */,
 			);
@@ -513,11 +542,11 @@
 			name = Register;
 			sourceTree = "<group>";
 		};
-		E577D9C51BD8EF8F00C862E9 /* ForgotPassword */ = {
+		E577D9C51BD8EF8F00C862E9 /* Forgot Password */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = ForgotPassword;
+			name = "Forgot Password";
 			sourceTree = "<group>";
 		};
 		E577D9C81BD8F88E00C862E9 /* Resources */ = {
@@ -563,7 +592,7 @@
 			name = NavigationBar;
 			sourceTree = "<group>";
 		};
-		E5F232271C117D9700DE09A6 /* SettingsMain */ = {
+		E5F232271C117D9700DE09A6 /* Settings Main */ = {
 			isa = PBXGroup;
 			children = (
 				E577D9A61BD749B300C862E9 /* SettingsViewController.h */,
@@ -573,7 +602,7 @@
 				E5176AB91BF62CAC00E0A679 /* SettingsModel.h */,
 				E5176ABA1BF62CAC00E0A679 /* SettingsModel.m */,
 			);
-			name = SettingsMain;
+			name = "Settings Main";
 			sourceTree = "<group>";
 		};
 		E5F232281C117DA500DE09A6 /* About */ = {
@@ -706,6 +735,7 @@
 				E529DC091BE07C0100F4E0E7 /* tabbar_history_selected@3x.png in Resources */,
 				E577D99E1BD7480600C862E9 /* Start.storyboard in Resources */,
 				E5246F3A1BFEF6D000F92968 /* welcome_background_640x1136@2x.png in Resources */,
+				E55258E51C1690F000CA0F7E /* Plan.storyboard in Resources */,
 				E529DC0F1BE07C0100F4E0E7 /* tabbar_plan@3x.png in Resources */,
 				E5246F4D1BFEF71500F92968 /* welcome_guide_480_3@2x.png in Resources */,
 				E529DC161BE07C0100F4E0E7 /* tabbar_user@2x.png in Resources */,
@@ -757,6 +787,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */,
+				E55258E31C1690D000CA0F7E /* PlanViewController.m in Sources */,
 				E5176AD31BFC650700E0A679 /* AWUserInfo.m in Sources */,
 				E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */,
 				E577D9A41BD748D600C862E9 /* FinishViewController.m in Sources */,
@@ -777,6 +808,7 @@
 				E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */,
 				E529DBC11BDA31C900F4E0E7 /* LoginViewController.m in Sources */,
 				E50542641BF5B2C300B66F1F /* AWBluetooth.m in Sources */,
+				E55258E91C16AB4B00CA0F7E /* AddPlanViewController.m in Sources */,
 				E577D9A81BD749B300C862E9 /* SettingsViewController.m in Sources */,
 				E50542581BF59FE300B66F1F /* PeripheralsPopupView.m in Sources */,
 			);
@@ -919,7 +951,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECApplicationTemplate",
-					/Users/chengyh/Documents/WeCoachSrc/CommonLibraries/Resources/lib,
+					/Users/chengyh/Documents/WeCoachSrc/CommonModules/Resources/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianyan.ECApplicationTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -938,7 +970,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECApplicationTemplate",
-					/Users/chengyh/Documents/WeCoachSrc/CommonLibraries/Resources/lib,
+					/Users/chengyh/Documents/WeCoachSrc/CommonModules/Resources/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianyan.ECApplicationTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
