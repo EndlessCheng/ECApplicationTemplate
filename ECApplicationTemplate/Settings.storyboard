@@ -63,8 +63,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJD-i5-uFB">
-                                                    <rect key="frame" x="535" y="13" width="25" height="17"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJD-i5-uFB">
+                                                    <rect key="frame" x="555" y="13" width="25" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.52549019610000003" green="0.56862745100000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -367,7 +367,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1JV-hS-0O3">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1JV-hS-0O3">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DoB-D1-wAV">
@@ -379,10 +379,19 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="DoB-D1-wAV" firstAttribute="leading" secondItem="1JV-hS-0O3" secondAttribute="leading" constant="150" id="Cdj-ks-WUS"/>
                                     <constraint firstAttribute="bottom" secondItem="DoB-D1-wAV" secondAttribute="bottom" id="F8S-aH-tWB"/>
                                     <constraint firstItem="DoB-D1-wAV" firstAttribute="top" secondItem="1JV-hS-0O3" secondAttribute="top" id="ROU-Oe-GGi"/>
+                                    <constraint firstAttribute="trailing" secondItem="DoB-D1-wAV" secondAttribute="trailing" id="fef-BM-N11"/>
                                     <constraint firstItem="DoB-D1-wAV" firstAttribute="centerX" secondItem="1JV-hS-0O3" secondAttribute="centerX" id="g2e-ht-Dv2"/>
+                                    <constraint firstAttribute="trailing" secondItem="DoB-D1-wAV" secondAttribute="trailing" id="lFj-fi-ek4"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Cdj-ks-WUS"/>
+                                        <exclude reference="lFj-fi-ek4"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
