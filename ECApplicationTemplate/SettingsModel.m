@@ -24,7 +24,7 @@
                 @[@"个人信息", @"修改密码"],
                 @[@"消息通知", @"设备绑定", @"固件升级"],
                 @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
-                @[@"注销登录", @"注销登录", @"注销登录", @"注销登录", @"注销登录", @"注销登录",],
+                @[@"注销登录", @"注销登录", @"注销登录",],
         ];
     }
     return self;
@@ -45,20 +45,21 @@
     SettingsTableViewCell *cell = (SettingsTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCellIndetifier" forIndexPath:indexPath];
 
     // TODO: this part can refactor to parent class
-    UIRectCorner rectCorner = 0;
-    if (indexPath.row == 0) {
-        rectCorner |= UIRectCornerTopLeft | UIRectCornerTopRight;
-    }
-    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
-        rectCorner |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
-    }
-
-    CGFloat cornerRadius = rectCorner != 0 ? 10.0 : 0.0;
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:rectCorner cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = cell.bounds;
-    maskLayer.path = maskPath.CGPath;
-    cell.layer.mask = maskLayer;
+//    UIRectCorner rectCorner = 0;
+//    if (indexPath.row == 0) {
+//        rectCorner |= UIRectCornerTopLeft | UIRectCornerTopRight;
+//    }
+//    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+//        rectCorner |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
+//    }
+//
+    // Send these messages frequency may consume more CPU cycles, which will decrease UI refresh time
+//    CGFloat cornerRadius = rectCorner != 0 ? 10.0 : 0.0;
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:rectCorner cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+//    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+//    maskLayer.frame = cell.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    cell.layer.mask = maskLayer;
 
     
     cell.titleLabel.text = self.settingTitlesGroup[indexPath.section][indexPath.row];
