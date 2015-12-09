@@ -10,10 +10,11 @@
 
 @interface PlanViewController ()
 
-@property (nonatomic, copy) NSArray<UIView *> *planViews;
-
 @property (weak, nonatomic) IBOutlet UIView *nowPlan;
 @property (weak, nonatomic) IBOutlet UIView *planGroups;
+
+
+@property (nonatomic, copy) NSArray<UIView *> *planViews;
 
 @end
 

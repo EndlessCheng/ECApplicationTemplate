@@ -370,31 +370,33 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1JV-hS-0O3">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DoB-D1-wAV">
-                                        <rect key="frame" x="150" y="0.0" width="300" height="800"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-wS-V8z" userLabel="Support Line">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="800" id="6DX-AJ-G9w"/>
-                                            <constraint firstAttribute="width" constant="300" id="J0b-05-QUa"/>
+                                            <constraint firstAttribute="height" id="U20-K6-ICv"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85u-lr-WDp">
+                                        <rect key="frame" x="250" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="lDr-Bq-wJK"/>
+                                            <constraint firstAttribute="width" constant="100" id="whH-o9-DD5"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="DoB-D1-wAV" firstAttribute="leading" secondItem="1JV-hS-0O3" secondAttribute="leading" constant="150" id="Cdj-ks-WUS"/>
-                                    <constraint firstAttribute="bottom" secondItem="DoB-D1-wAV" secondAttribute="bottom" id="F8S-aH-tWB"/>
-                                    <constraint firstItem="DoB-D1-wAV" firstAttribute="top" secondItem="1JV-hS-0O3" secondAttribute="top" id="ROU-Oe-GGi"/>
-                                    <constraint firstAttribute="trailing" secondItem="DoB-D1-wAV" secondAttribute="trailing" id="fef-BM-N11"/>
-                                    <constraint firstItem="DoB-D1-wAV" firstAttribute="centerX" secondItem="1JV-hS-0O3" secondAttribute="centerX" id="g2e-ht-Dv2"/>
-                                    <constraint firstAttribute="trailing" secondItem="DoB-D1-wAV" secondAttribute="trailing" id="lFj-fi-ek4"/>
+                                    <constraint firstItem="85u-lr-WDp" firstAttribute="centerX" secondItem="1JV-hS-0O3" secondAttribute="centerX" id="Ajp-an-yHQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="85u-lr-WDp" secondAttribute="bottom" id="ViG-bH-Rvi"/>
+                                    <constraint firstItem="85u-lr-WDp" firstAttribute="top" secondItem="nZk-wS-V8z" secondAttribute="bottom" id="WFj-P6-ddz"/>
+                                    <constraint firstItem="nZk-wS-V8z" firstAttribute="leading" secondItem="1JV-hS-0O3" secondAttribute="leading" id="a8f-Vt-qFf"/>
+                                    <constraint firstItem="nZk-wS-V8z" firstAttribute="centerX" secondItem="1JV-hS-0O3" secondAttribute="centerX" id="tHT-wx-yHK"/>
+                                    <constraint firstItem="nZk-wS-V8z" firstAttribute="top" secondItem="1JV-hS-0O3" secondAttribute="top" id="vJJ-de-aVe"/>
+                                    <constraint firstAttribute="trailing" secondItem="nZk-wS-V8z" secondAttribute="trailing" id="zlP-o6-tTJ"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Cdj-ks-WUS"/>
-                                        <exclude reference="lFj-fi-ek4"/>
-                                    </mask>
-                                </variation>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1JV-hS-0O3" secondAttribute="trailing" id="RKX-7b-Ldz"/>
                             <constraint firstItem="1JV-hS-0O3" firstAttribute="top" secondItem="0Am-OI-Xr8" secondAttribute="bottom" id="XBB-pe-EK9"/>
@@ -410,9 +412,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="sharedImageView" destination="DoB-D1-wAV" id="0kA-iD-NhD"/>
-                        <outlet property="sharedImageViewHeight" destination="6DX-AJ-G9w" id="VPL-tj-71C"/>
-                        <outlet property="sharedImageViewWidth" destination="J0b-05-QUa" id="nXL-CU-wOX"/>
+                        <outlet property="sharedImageView" destination="85u-lr-WDp" id="dfH-ej-hQZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwO-I5-vRb" userLabel="First Responder" sceneMemberID="firstResponder"/>

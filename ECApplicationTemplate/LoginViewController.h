@@ -10,6 +10,4 @@
 
 @interface LoginViewController : UIViewController
 
-- (IBAction)loginButtonClicked:(UIButton *)sender;
-
 @end

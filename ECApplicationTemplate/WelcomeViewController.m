@@ -13,7 +13,17 @@
 #import "TabBarController.h"
 #import "StartViewController.h"
 
-@interface WelcomeViewController ()
+@interface WelcomeViewController () <UIScrollViewDelegate>
+// FIXME: in fact, you needn't add <UIScrollViewDelegate> if you set guideScrollView's delegate in storyboard
+
+@property (nonatomic, weak) IBOutlet UIScrollView *guideScrollView;
+@property (nonatomic, weak) IBOutlet UIPageControl *guidePageControl;
+
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (nonatomic, weak) IBOutlet UIButton *registerButton;
+
+@property (nonatomic, weak) IBOutlet UIImageView *launchImageView;
+
 
 @property (nonatomic) id<NSObject> findOADPeripheralObserver;
 @property (nonatomic) BOOL isFoundOADPeripheral;
@@ -39,9 +49,9 @@
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsLoginState] isEqual:@(ECUserDefaultsLoginStateIsLogin)]) {
         self.launchImageView.hidden = NO;
         
-        [self hiddenScrollView];
+        [self hiddenScrollView]; // Once login, scroll view doesn't show any more.
         
-//    [[AWUserInfo sharedUserInfo] fetchUserInfo];
+//        [[AWUserInfo sharedUserInfo] fetchUserInfo];
         
         [self jumpToTabBar];
     } else {
@@ -49,8 +59,10 @@
     }
 }
 
+- (IBAction)loginButtonClicked:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"WelcomeToLogin" sender:self];
+}
 
-#pragma mark - User Methods
 
 - (void)setScrollGuideView {
     // use GUIDE_PICTURE_NUMBER for multiple APPs
@@ -105,11 +117,6 @@
             [self performSegueWithIdentifier:@"WelcomeToTabBar" sender:self];
         }
     });
-}
-
-
-- (IBAction)loginButtonClicked:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"WelcomeToLogin" sender:self];
 }
 
 

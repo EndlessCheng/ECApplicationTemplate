@@ -11,11 +11,5 @@
 @interface ShareViewController : UIViewController
 
 @property (nonatomic) UIImage *sharedImage;
-@property (weak, nonatomic) IBOutlet UIImageView *sharedImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sharedImageViewWidth;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sharedImageViewHeight;
-
-
-- (IBAction)back:(UIBarButtonItem *)sender;
 
 @end

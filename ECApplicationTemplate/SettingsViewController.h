@@ -19,18 +19,8 @@ typedef NS_ENUM(NSInteger, SettingsAlertTag) {
 
 @interface SettingsViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UITableView *settingsTableView;
-
-@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
-
-- (IBAction)cancelPairPeripheral:(UIButton *)sender;
 
 
-@property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;
-@property (nonatomic, weak) IBOutlet UIProgressView *updateProgressView;
-@property (nonatomic, weak) IBOutlet UILabel *progressPercentLabel;
-@property (nonatomic, weak) IBOutlet UILabel *progressRateLabel;
 
-- (IBAction)shareScrollView:(UIBarButtonItem *)sender;
 
 @end

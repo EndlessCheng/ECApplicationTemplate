@@ -18,7 +18,17 @@
 #import "SettingsViewController.h"
 #import "ShareViewController.h"
 
-@interface SettingsViewController () <PeripheralsPopupViewDelegate, UITableViewDelegate, UIAlertViewDelegate>
+@interface SettingsViewController () <UITableViewDelegate, UIAlertViewDelegate, PeripheralsPopupViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *settingsTableView;
+
+@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
+
+@property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;
+@property (nonatomic, weak) IBOutlet UIProgressView *updateProgressView;
+@property (nonatomic, weak) IBOutlet UILabel *progressPercentLabel;
+@property (nonatomic, weak) IBOutlet UILabel *progressRateLabel;
+
 
 @property (nonatomic) SettingsModel *settingsModel;
 
@@ -50,6 +60,20 @@
     [self.settingsTableView reloadData];
 }
 
+// 注意“取消绑定”和“断开绑定”是两码事
+- (IBAction)cancelPairPeripheral:(UIButton *)sender {
+    [[AWBluetooth sharedBluetooth] stopScan];
+    self.peripheralsPopupView.hidden = YES;
+    self.tabBarController.tabBar.userInteractionEnabled = YES;
+}
+
+- (IBAction)shareScrollView:(UIBarButtonItem *)sender {
+    self.sharedImage = [self imageWithScrollView:self.settingsTableView];
+    
+    [self performSegueWithIdentifier:@"SettingsToShare" sender:self];
+}
+
+
 - (void)reloadPairPeripheralCell {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     SettingsTableViewCell *cell = (SettingsTableViewCell *) [self.settingsTableView cellForRowAtIndexPath:indexPath];
@@ -61,6 +85,35 @@
     self.updateProgressView.progress = (float) writtenBytesLength / [AWFileUtil getLocalAPPServiceImageData].length;
     self.progressPercentLabel.text = [NSString stringWithFormat:@"%.1f%%", self.updateProgressView.progress * 100];
     self.progressRateLabel.text = [NSString stringWithFormat:@"%@/%@", @((NSUInteger) (writtenBytesLength * UPDATE_PROGRESS_MAGIC)), @((NSUInteger) ([AWFileUtil getLocalAPPServiceImageData].length * UPDATE_PROGRESS_MAGIC))];
+}
+
+- (UIImage *)imageWithScrollView:(UIScrollView *)view {
+    UIImage *image = nil;
+    
+    UIGraphicsBeginImageContextWithOptions(view.contentSize, view.opaque, 0.0); {
+        CGPoint savedContentOffset = view.contentOffset;
+        CGRect savedFrame = view.frame;
+        CGFloat savedCornerRadius = view.layer.cornerRadius;
+        
+        view.contentOffset = CGPointZero;
+        view.frame = CGRectMake(0, 0, view.contentSize.width, view.contentSize.height);
+        view.layer.cornerRadius = 0.0;
+        
+        // this method is really slow, but where is the different?
+        //        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        [view drawViewHierarchyInRect:view.frame afterScreenUpdates:YES];
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        D(@(image.size.width));
+        D(@(image.size.height));
+        
+        view.contentOffset = savedContentOffset;
+        view.frame = savedFrame;
+        view.layer.cornerRadius = savedCornerRadius;
+    } UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 
@@ -130,14 +183,6 @@
         default:
             break;
     }
-}
-
-
-#pragma mark - Peripherals Popup View Delegate
-
-- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion {
-    [self reloadPairPeripheralCell];
-    self.tabBarController.tabBar.userInteractionEnabled = YES;
 }
 
 
@@ -217,48 +262,11 @@
 }
 
 
-#pragma mark - IBAction
+#pragma mark - Peripherals Popup View Delegate
 
-// 注意“取消绑定”和“断开绑定”是两码事
-- (IBAction)cancelPairPeripheral:(UIButton *)sender {
-    [[AWBluetooth sharedBluetooth] stopScan];
-    self.peripheralsPopupView.hidden = YES;
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion {
+    [self reloadPairPeripheralCell];
     self.tabBarController.tabBar.userInteractionEnabled = YES;
-}
-
-- (UIImage *)imageWithScrollView:(UIScrollView *)view {
-    UIImage *image = nil;
-    
-    UIGraphicsBeginImageContextWithOptions(view.contentSize, view.opaque, 0.0); {
-        CGPoint savedContentOffset = view.contentOffset;
-        CGRect savedFrame = view.frame;
-        CGFloat savedCornerRadius = view.layer.cornerRadius;
-
-        view.contentOffset = CGPointZero;
-        view.frame = CGRectMake(0, 0, view.contentSize.width, view.contentSize.height);
-        view.layer.cornerRadius = 0.0;
-
-        // this method is really slow, but where is the different?
-//        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        [view drawViewHierarchyInRect:view.frame afterScreenUpdates:YES];
-        
-        image = UIGraphicsGetImageFromCurrentImageContext();
-
-        D(@(image.size.width));
-        D(@(image.size.height));
-
-        view.contentOffset = savedContentOffset;
-        view.frame = savedFrame;
-        view.layer.cornerRadius = savedCornerRadius;
-    } UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-- (IBAction)shareScrollView:(UIBarButtonItem *)sender {
-    self.sharedImage = [self imageWithScrollView:self.settingsTableView];
-    
-    [self performSegueWithIdentifier:@"SettingsToShare" sender:self];
 }
 
 

@@ -15,7 +15,35 @@
 #import "TabBarController.h"
 #import "StartViewController.h"
 
-@interface StartViewController () <PeripheralsPopupViewDelegate, UIAlertViewDelegate>
+typedef NS_ENUM(NSInteger, ActionButtonState) {
+    ActionButtonStatePairPeripheral,
+    ActionButtonStateSearchingPairedPeripheral,
+    ActionButtonStatePreparing,
+    ActionButtonStatePleaseUpdate,
+    ActionButtonStateStart,
+    ActionButtonStateContinue,
+    ActionButtonStateRunning,
+};
+
+typedef NS_ENUM(NSInteger, StartAlertTag) {
+    StartAlertTagUpdateNormalPeripheral = 1,
+    StartAlertTagUpdateOADPeripheral,
+};
+
+@interface StartViewController () <UIAlertViewDelegate, PeripheralsPopupViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UIButton *actionButton;
+@property (nonatomic) ActionButtonState actionButtonState;
+
+@property (nonatomic, weak) IBOutlet UIButton *restartButton;
+
+@property (nonatomic, weak) IBOutlet PeripheralsPopupView *peripheralsPopupView;
+
+@property (nonatomic, weak) IBOutlet UIView *updateProgressBackgroundView;
+@property (nonatomic, weak) IBOutlet UIProgressView *updateProgressView;
+@property (nonatomic, weak) IBOutlet UILabel *progressPercentLabel;
+@property (nonatomic, weak) IBOutlet UILabel *progressRateLabel;
+
 
 @property (nonatomic) id<NSObject> didConnectPairedPeripheralObserver;
 @property (nonatomic) id<NSObject> updateAPPServiceImageObserver;
@@ -43,6 +71,64 @@
     
     [self updateActionButtonState];
 }
+
+// 注意“取消绑定”和“断开绑定”是两码事
+- (IBAction)cancelPairPeripheral:(UIButton *)sender {
+    [[AWBluetooth sharedBluetooth] stopScan];
+    self.peripheralsPopupView.hidden = YES;
+    self.tabBarController.tabBar.userInteractionEnabled = YES;
+}
+
+- (IBAction)clickedActionButton:(UIButton *)sender {
+    switch (self.actionButtonState) {
+        case ActionButtonStatePairPeripheral: {
+            self.tabBarController.tabBar.userInteractionEnabled = NO;
+            self.peripheralsPopupView.hidden = NO;
+            break;
+        } case ActionButtonStateSearchingPairedPeripheral:
+        case ActionButtonStatePreparing:
+            break;
+        case ActionButtonStatePleaseUpdate: {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:kPleaseUpdateAPPServiceImageMessage delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag = StartAlertTagUpdateNormalPeripheral;
+            [alertView show];
+            break;
+        } case ActionButtonStateStart:
+            // TODO: if isConnected [change] else wait notification [change]
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
+            });
+            // notice there not break
+        case ActionButtonStateContinue:
+            self.restartButton.hidden = YES;
+            self.actionButtonState = ActionButtonStateRunning;
+            break;
+        case ActionButtonStateRunning:
+            [[AWBluetooth sharedBluetooth] connectToPairedPeripheral];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                // 先停止算法运行，再读数据
+                [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateStop];
+                [[AWPeripheral sharedPeripheral] readSwimDataBlock];
+            });
+            
+            [self performSegueWithIdentifier:@"StartToFinish" sender:self];
+            
+            self.actionButtonState = ActionButtonStateStart;
+            break;
+    }
+}
+
+- (IBAction)clickedRestartButton:(UIButton *)sender {
+    self.restartButton.hidden = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
+    });
+    
+    self.actionButtonState = ActionButtonStateRunning;
+}
+
 
 // don't alert in this method!
 - (void)updateActionButtonState {
@@ -155,71 +241,6 @@
     }];
 }
 
-// 注意“取消绑定”和“断开绑定”是两码事
-- (IBAction)cancelPairPeripheral:(UIButton *)sender {
-    [[AWBluetooth sharedBluetooth] stopScan];
-    self.peripheralsPopupView.hidden = YES;
-    self.tabBarController.tabBar.userInteractionEnabled = YES;
-}
-
-- (IBAction)clickedActionButton:(UIButton *)sender {
-    switch (self.actionButtonState) {
-        case ActionButtonStatePairPeripheral: {
-            self.tabBarController.tabBar.userInteractionEnabled = NO;
-            self.peripheralsPopupView.hidden = NO;
-            break;
-        } case ActionButtonStateSearchingPairedPeripheral:
-        case ActionButtonStatePreparing:
-            break;
-        case ActionButtonStatePleaseUpdate: {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"固件升级" message:kPleaseUpdateAPPServiceImageMessage delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            alertView.tag = StartAlertTagUpdateNormalPeripheral;
-            [alertView show];
-            break;
-        } case ActionButtonStateStart:
-            // TODO: if isConnected [change] else wait notification [change]
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
-            });
-            // notice there not break
-        case ActionButtonStateContinue:
-            self.restartButton.hidden = YES;
-            self.actionButtonState = ActionButtonStateRunning;
-            break;
-        case ActionButtonStateRunning:
-            [[AWBluetooth sharedBluetooth] connectToPairedPeripheral];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                // 先停止算法运行，再读数据
-                [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateStop];
-                [[AWPeripheral sharedPeripheral] readSwimDataBlock];
-            });
-            
-            [self performSegueWithIdentifier:@"StartToFinish" sender:self];
-            
-            self.actionButtonState = ActionButtonStateStart;
-            break;
-    }
-}
-
-- (IBAction)clickedRestartButton:(UIButton *)sender {
-    self.restartButton.hidden = YES;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[AWPeripheral sharedPeripheral] writeSwimAlgorithmState:AWSwimAlgorithmStateRunning];
-    });
-    
-    self.actionButtonState = ActionButtonStateRunning;
-}
-
-
-#pragma mark - Peripherals Popup View Delegate
-
-- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion {
-    [self updateActionButtonState];
-    self.tabBarController.tabBar.userInteractionEnabled = YES;
-}
-
 
 #pragma mark - Alert View Delegate
 
@@ -244,6 +265,14 @@
         default:
             break;
     }
+}
+
+
+#pragma mark - Peripherals Popup View Delegate
+
+- (void)peripheralsPopupView:(PeripheralsPopupView *)peripheralsPopupView didGetAPPServiceImageVersion:(NSInteger)APPServiceImageVersion {
+    [self updateActionButtonState];
+    self.tabBarController.tabBar.userInteractionEnabled = YES;
 }
 
 @end

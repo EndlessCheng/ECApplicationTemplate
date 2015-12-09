@@ -10,8 +10,4 @@
 
 @interface FinishViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UILabel *resultLabel;
-
-- (IBAction)backToStartViewController:(UIBarButtonItem *)sender;
-
 @end

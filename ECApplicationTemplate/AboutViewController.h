@@ -10,6 +10,4 @@
 
 @interface AboutViewController : UIViewController
 
-- (IBAction)backToSettingsViewController:(UIBarButtonItem *)sender;
-
 @end

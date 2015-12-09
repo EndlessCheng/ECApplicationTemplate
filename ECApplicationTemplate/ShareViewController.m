@@ -10,6 +10,10 @@
 
 @interface ShareViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *sharedImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sharedImageViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sharedImageViewHeight;
+
 @end
 
 @implementation ShareViewController
@@ -17,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.sharedImageView.frame = CGRectMake(0, 0, self.sharedImage.size.width, self.sharedImage.size.height);
     self.sharedImageView.image = self.sharedImage;
 }
 

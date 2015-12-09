@@ -10,6 +10,9 @@
 
 @interface FinishViewController ()
 
+@property (nonatomic, weak) IBOutlet UILabel *resultLabel;
+
+
 @property (nonatomic, copy) NSString *resultInfoString;
 
 @end
@@ -32,4 +35,5 @@
 - (IBAction)backToStartViewController:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end
