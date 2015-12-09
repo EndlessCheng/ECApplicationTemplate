@@ -377,10 +377,10 @@
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85u-lr-WDp">
-                                        <rect key="frame" x="250" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="150" y="0.0" width="300" height="800"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="lDr-Bq-wJK"/>
-                                            <constraint firstAttribute="width" constant="100" id="whH-o9-DD5"/>
+                                            <constraint firstAttribute="height" constant="800" id="lDr-Bq-wJK"/>
+                                            <constraint firstAttribute="width" constant="300" id="whH-o9-DD5"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -413,6 +413,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="sharedImageView" destination="85u-lr-WDp" id="dfH-ej-hQZ"/>
+                        <outlet property="sharedImageViewHeight" destination="lDr-Bq-wJK" id="4Kz-oi-ql9"/>
+                        <outlet property="sharedImageViewWidth" destination="whH-o9-DD5" id="Yrh-KA-D3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwO-I5-vRb" userLabel="First Responder" sceneMemberID="firstResponder"/>

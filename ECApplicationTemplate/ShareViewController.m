@@ -21,12 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.sharedImageView.frame = CGRectMake(0, 0, self.sharedImage.size.width, self.sharedImage.size.height);
     self.sharedImageView.image = self.sharedImage;
-}
-
-- (IBAction)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateViewConstraints {
@@ -34,6 +29,10 @@
     
     self.sharedImageViewWidth.constant = self.sharedImage.size.width;
     self.sharedImageViewHeight.constant = self.sharedImage.size.height;
+}
+
+- (IBAction)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
