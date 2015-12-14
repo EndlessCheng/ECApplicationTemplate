@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIView *nowPlan;
 @property (weak, nonatomic) IBOutlet UIView *planGroups;
 
-
 @property (nonatomic, copy) NSArray<UIView *> *planViews;
 
 @end
