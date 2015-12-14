@@ -26,6 +26,8 @@
 
 - (void)scanAllPeripherals;
 
+- (void)scanTreadmills;
+
 // 取消绑定、未找到OAD外设
 - (void)stopScan;
 

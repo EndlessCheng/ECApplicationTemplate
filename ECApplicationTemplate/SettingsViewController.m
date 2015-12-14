@@ -8,6 +8,8 @@
 
 #import "AWBluetooth.h"
 #import "AWPeripheral.h"
+#import "AWTreadmill.h"
+
 #import "AWFileUtil.h"
 
 #import "SettingsModel.h"
@@ -156,6 +158,12 @@
                     break;
                 }
                 case 3:
+                    [[AWBluetooth sharedBluetooth] scanTreadmills];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[AWPeripheral sharedPeripheral] notifySensor];
+                        [[AWPeripheral sharedPeripheral] notifyMagneticCompassAndHeartRate];
+                    });
                     break;
                 default:
                     break;

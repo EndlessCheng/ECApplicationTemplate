@@ -9,8 +9,12 @@
 
 #import "NSString+AWHexString.h"
 
-#import "AWBluetooth.h"
 #import "AWPeripheral.h"
+#import "AWTreadmill.h"
+#import "TDUserDefaults.h"
+
+#import "AWBluetooth.h"
+
 
 // -65 may be the best value
 const float_t MIN_CONNECT_RSSI = -65.0;
@@ -81,6 +85,10 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     [self scanPeripheralsWithServices:@[[CBUUID UUIDWithString:kNormalStateAdvertisingServiceUUIDString], [CBUUID UUIDWithString:kOADStateAdvertisingServiceUUIDString]]];
 }
 
+- (void)scanTreadmills {
+    [self scanPeripheralsWithServices:@[[CBUUID UUIDWithString:kTDCoreServiceUUIDString]]];
+}
+
 - (void)stopScan {
     [self.centralManager stopScan];
 }
@@ -114,7 +122,12 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
 
 - (void)saveAndConnectPeripheral:(CBPeripheral *)peripheral {
     // must save peripheral before connect
-    [AWPeripheral sharedPeripheral].pairedPeripheral = peripheral;
+    if ([peripheral.name isEqualToString:kTDDeviceIdentify]) {
+        [AWTreadmill sharedPeripheral].pairedPeripheral = peripheral; // TODO: use NSClassFromString()?
+    } else {
+        [AWPeripheral sharedPeripheral].pairedPeripheral = peripheral;
+    }
+    
     // now [AWPeripheral sharedPeripheral].peripheralState is disconnection
 
     [self.centralManager connectPeripheral:peripheral options:nil];
@@ -176,7 +189,7 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
         NSString *manufacturerString = [NSString hexStringWithData:advertisementData[@"kCBAdvDataManufacturerData"]];
         self.peripheralUUIDStringDictionary[manufacturerString] = peripheral.identifier.UUIDString;
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindNewPeripheral object:@{kFindNewPeripheralManufacturer : manufacturerString}];
-    } else {
+    } else if ([peripheral.name isEqualToString:kOADStatePeripheralName]) {
         // 对OAD设备不要筛选信号，因为升级中断开连接，就算是蓝牙信号弱也可以继续升级
         [self stopScan];
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationFindOADPeripheral object:nil];
@@ -188,6 +201,15 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
         } else {
             // TODO: pair 001122334455
         }
+    }
+    
+    else if ([peripheral.name isEqualToString:kTDDeviceIdentify]) {
+        if (RSSI.integerValue == 127) {
+            return;
+        }
+        [self stopScan];
+        
+        [self saveAndConnectPeripheral:peripheral];
     }
 }
 
@@ -206,13 +228,23 @@ typedef NS_ENUM(NSInteger, AWUpdateState) {
     // 冗余
     [self stopScan];
     
-    [AWPeripheral sharedPeripheral].peripheralState |= 1;
+    NSArray *services = @[];
     
-    if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 0) { // OAD 则跳过 post notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
+    if ([peripheral.name isEqualToString:kNormalStatePeripheralName]) {
+        [AWPeripheral sharedPeripheral].peripheralState |= 1;
+        if (([AWPeripheral sharedPeripheral].peripheralState >> 1 & 1) == 0) { // 升级 OAD 则跳过 post notification
+            [[NSNotificationCenter defaultCenter] postNotificationName:(kPairedPeripheralUUIDString ? kNotificationDidConnectPairedPeripheral : kNotificationDidConnectUnpairedPeripheral) object:nil];
+        }
+        services = @[[CBUUID UUIDWithString:kWeCoachCoreServiceUUIDString], [CBUUID UUIDWithString:kWeCoachExtendedServiceUUIDString]];
+    } else if ([peripheral.name isEqualToString:kOADStatePeripheralName]) {
+        [AWPeripheral sharedPeripheral].peripheralState |= 1;
+        services = @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
     }
     
-    NSArray *services = [peripheral.name isEqualToString:kNormalStatePeripheralName] ? @[[CBUUID UUIDWithString:kWeCoachCoreServiceUUIDString], [CBUUID UUIDWithString:kWeCoachExtendedServiceUUIDString]] : @[[CBUUID UUIDWithString:kOADServiceUUIDString]];
+    else if ([peripheral.name isEqualToString:kTDDeviceIdentify]) {
+        services = @[[CBUUID UUIDWithString:kTDCoreServiceUUIDString]];
+    }
+    
     [peripheral discoverServices:services];
 }
 

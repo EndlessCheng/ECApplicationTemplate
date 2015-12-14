@@ -51,13 +51,16 @@
 		E529DC171BE07C0100F4E0E7 /* tabbar_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E529DC071BE07C0100F4E0E7 /* tabbar_user@3x.png */; };
 		E529DC1A1BE09F6800F4E0E7 /* ECHTTPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E529DC191BE09F6800F4E0E7 /* ECHTTPUtil.m */; };
 		E53CF3381C09DB5700BF72F8 /* OADbin.bin in Resources */ = {isa = PBXBuildFile; fileRef = E53CF3371C09DB5700BF72F8 /* OADbin.bin */; };
-		E53CF33B1C09E58500BF72F8 /* libAWSwimAlgorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */; };
 		E53CF33F1C09E5BE00BF72F8 /* AWPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */; };
 		E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */ = {isa = PBXBuildFile; fileRef = E55178B91C0433770010C25D /* NSError+AWHardwareError.m */; };
 		E55258C01C1534E700CA0F7E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258BF1C1534E700CA0F7E /* ShareViewController.m */; };
 		E55258E31C1690D000CA0F7E /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258E21C1690D000CA0F7E /* PlanViewController.m */; };
 		E55258E51C1690F000CA0F7E /* Plan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55258E41C1690F000CA0F7E /* Plan.storyboard */; };
 		E55258E91C16AB4B00CA0F7E /* AddPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55258E81C16AB4A00CA0F7E /* AddPlanViewController.m */; };
+		E55259CE1C1B055E00CA0F7E /* AlgManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E55259CD1C1B055E00CA0F7E /* AlgManager.mm */; };
+		E55259FD1C1B089000CA0F7E /* libWeCoachGesture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E55259FC1C1B089000CA0F7E /* libWeCoachGesture.a */; };
+		E5525A001C1B155F00CA0F7E /* AWTreadmill.m in Sources */ = {isa = PBXBuildFile; fileRef = E55259FF1C1B155F00CA0F7E /* AWTreadmill.m */; };
+		E5525A041C1B157D00CA0F7E /* TDOperationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5525A021C1B157D00CA0F7E /* TDOperationHelper.m */; };
 		E55E2E5B1BFCEBDB00446221 /* AWFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */; };
 		E55E2E5D1BFD76C000446221 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */; };
 		E577D9661BD73ED200C862E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E577D9651BD73ED200C862E9 /* main.m */; };
@@ -168,6 +171,15 @@
 		E55258E41C1690F000CA0F7E /* Plan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plan.storyboard; sourceTree = "<group>"; };
 		E55258E71C16AB4A00CA0F7E /* AddPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlanViewController.h; sourceTree = "<group>"; };
 		E55258E81C16AB4A00CA0F7E /* AddPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlanViewController.m; sourceTree = "<group>"; };
+		E55259CC1C1B055E00CA0F7E /* AlgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgManager.h; sourceTree = "<group>"; };
+		E55259CD1C1B055E00CA0F7E /* AlgManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlgManager.mm; sourceTree = "<group>"; };
+		E55259FB1C1B088500CA0F7E /* WeCoachGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeCoachGesture.h; sourceTree = "<group>"; };
+		E55259FC1C1B089000CA0F7E /* libWeCoachGesture.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeCoachGesture.a; sourceTree = "<group>"; };
+		E55259FE1C1B155F00CA0F7E /* AWTreadmill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWTreadmill.h; sourceTree = "<group>"; };
+		E55259FF1C1B155F00CA0F7E /* AWTreadmill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWTreadmill.m; sourceTree = "<group>"; };
+		E5525A011C1B157D00CA0F7E /* TDOperationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOperationHelper.h; sourceTree = "<group>"; };
+		E5525A021C1B157D00CA0F7E /* TDOperationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDOperationHelper.m; sourceTree = "<group>"; };
+		E5525A031C1B157D00CA0F7E /* TDUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUserDefaults.h; sourceTree = "<group>"; };
 		E55E2E591BFCEBDB00446221 /* AWFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWFileUtil.h; sourceTree = "<group>"; };
 		E55E2E5A1BFCEBDB00446221 /* AWFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWFileUtil.m; sourceTree = "<group>"; };
 		E55E2E5C1BFD76C000446221 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -215,7 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E53CF33B1C09E58500BF72F8 /* libAWSwimAlgorithm.a in Frameworks */,
+				E55259FD1C1B089000CA0F7E /* libWeCoachGesture.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,9 +292,9 @@
 			children = (
 				E55178B81C0433770010C25D /* NSError+AWHardwareError.h */,
 				E55178B91C0433770010C25D /* NSError+AWHardwareError.m */,
-				E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */,
-				E53CF33C1C09E5BE00BF72F8 /* AWPeripheral.h */,
-				E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */,
+				E55259CC1C1B055E00CA0F7E /* AlgManager.h */,
+				E5525A061C1B159B00CA0F7E /* AWPeripheral */,
+				E5525A051C1B158100CA0F7E /* AWTreadmill */,
 				E50542601BF5B2C300B66F1F /* AWBluetooth.h */,
 				E50542611BF5B2C300B66F1F /* AWBluetooth.m */,
 			);
@@ -378,6 +390,7 @@
 		E53CF3391C09E53600BF72F8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E55259FC1C1B089000CA0F7E /* libWeCoachGesture.a */,
 				E53CF33A1C09E58500BF72F8 /* libAWSwimAlgorithm.a */,
 			);
 			name = Library;
@@ -410,6 +423,30 @@
 				E55258E81C16AB4A00CA0F7E /* AddPlanViewController.m */,
 			);
 			name = "Add Plan";
+			sourceTree = "<group>";
+		};
+		E5525A051C1B158100CA0F7E /* AWTreadmill */ = {
+			isa = PBXGroup;
+			children = (
+				E55259FB1C1B088500CA0F7E /* WeCoachGesture.h */,
+				E55259CD1C1B055E00CA0F7E /* AlgManager.mm */,
+				E55259FE1C1B155F00CA0F7E /* AWTreadmill.h */,
+				E55259FF1C1B155F00CA0F7E /* AWTreadmill.m */,
+				E5525A031C1B157D00CA0F7E /* TDUserDefaults.h */,
+				E5525A011C1B157D00CA0F7E /* TDOperationHelper.h */,
+				E5525A021C1B157D00CA0F7E /* TDOperationHelper.m */,
+			);
+			name = AWTreadmill;
+			sourceTree = "<group>";
+		};
+		E5525A061C1B159B00CA0F7E /* AWPeripheral */ = {
+			isa = PBXGroup;
+			children = (
+				E53CF33E1C09E5BE00BF72F8 /* AWSwimAlgorithm.h */,
+				E53CF33C1C09E5BE00BF72F8 /* AWPeripheral.h */,
+				E53CF33D1C09E5BE00BF72F8 /* AWPeripheral.m */,
+			);
+			name = AWPeripheral;
 			sourceTree = "<group>";
 		};
 		E577D9581BD73ED200C862E9 = {
@@ -788,6 +825,7 @@
 			files = (
 				E577D96C1BD73ED200C862E9 /* WelcomeViewController.m in Sources */,
 				E55258E31C1690D000CA0F7E /* PlanViewController.m in Sources */,
+				E55259CE1C1B055E00CA0F7E /* AlgManager.mm in Sources */,
 				E5176AD31BFC650700E0A679 /* AWUserInfo.m in Sources */,
 				E5176ABB1BF62CAC00E0A679 /* SettingsModel.m in Sources */,
 				E577D9A41BD748D600C862E9 /* FinishViewController.m in Sources */,
@@ -796,10 +834,12 @@
 				E577D9BE1BD7904800C862E9 /* SettingsTableViewCell.m in Sources */,
 				E55178BA1C0433770010C25D /* NSError+AWHardwareError.m in Sources */,
 				E5F2322B1C11934B00DE09A6 /* AboutViewController.m in Sources */,
+				E5525A041C1B157D00CA0F7E /* TDOperationHelper.m in Sources */,
 				E55258C01C1534E700CA0F7E /* ShareViewController.m in Sources */,
 				E5176AC81BF9941100E0A679 /* NSString+AWHexString.m in Sources */,
 				E577D9691BD73ED200C862E9 /* AppDelegate.m in Sources */,
 				E577D9A11BD7489900C862E9 /* StartViewController.m in Sources */,
+				E5525A001C1B155F00CA0F7E /* AWTreadmill.m in Sources */,
 				E577D9721BD73ED200C862E9 /* ECApplicationTemplate.xcdatamodeld in Sources */,
 				E53CF33F1C09E5BE00BF72F8 /* AWPeripheral.m in Sources */,
 				E577D9661BD73ED200C862E9 /* main.m in Sources */,
@@ -946,7 +986,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = ECApplicationTemplate/ECPrefixHeader.pch;
 				INFOPLIST_FILE = ECApplicationTemplate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,7 +1005,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = ECApplicationTemplate/ECPrefixHeader.pch;
 				INFOPLIST_FILE = ECApplicationTemplate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

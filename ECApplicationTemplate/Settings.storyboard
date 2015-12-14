@@ -162,7 +162,6 @@
                                                         <connections>
                                                             <outlet property="manufacturerLabel" destination="9bx-iW-lV0" id="BPo-tl-7SO"/>
                                                             <outlet property="pairingPeripheralIndicatorView" destination="TIy-Az-Oe3" id="3ND-2v-sDi"/>
-                                                            <segue destination="U5l-72-c7u" kind="show" identifier="SettingsToAbout" id="S5K-mr-KIA"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
