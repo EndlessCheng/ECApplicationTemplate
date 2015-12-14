@@ -23,9 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.planViews = @[self.nowPlan, self.planGroups];
-    for (NSInteger i = 0; i < self.planViews.count; ++i) {
-        self.planViews[i].hidden = (i != 0);
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

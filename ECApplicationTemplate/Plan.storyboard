@@ -74,7 +74,7 @@
                                     <constraint firstAttribute="bottom" secondItem="K0A-Fg-K0I" secondAttribute="bottom" constant="40" id="t6d-ed-RyR"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4E-vc-ReP">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4E-vc-ReP">
                                 <rect key="frame" x="0.0" y="138" width="600" height="462"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4d0-2v-bLq">
