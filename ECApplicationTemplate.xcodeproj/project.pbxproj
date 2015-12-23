@@ -292,7 +292,6 @@
 			children = (
 				E55178B81C0433770010C25D /* NSError+AWHardwareError.h */,
 				E55178B91C0433770010C25D /* NSError+AWHardwareError.m */,
-				E55259CC1C1B055E00CA0F7E /* AlgManager.h */,
 				E5525A061C1B159B00CA0F7E /* AWPeripheral */,
 				E5525A051C1B158100CA0F7E /* AWTreadmill */,
 				E50542601BF5B2C300B66F1F /* AWBluetooth.h */,
@@ -429,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				E55259FB1C1B088500CA0F7E /* WeCoachGesture.h */,
+				E55259CC1C1B055E00CA0F7E /* AlgManager.h */,
 				E55259CD1C1B055E00CA0F7E /* AlgManager.mm */,
 				E55259FE1C1B155F00CA0F7E /* AWTreadmill.h */,
 				E55259FF1C1B155F00CA0F7E /* AWTreadmill.m */,
